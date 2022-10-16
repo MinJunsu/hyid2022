@@ -5,7 +5,7 @@ function Works() {
   const [types, setTypes] = useState<number>(0);
 
   return (
-    <div className="px-[40px] py-[25px] bg-white">
+    <div className="px-[40px] py-[25px] bg-white cursor-{works}">
       <div className="Navbar flex items-center justify-between">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -184,21 +184,27 @@ function Works() {
               />
             </g>
           </svg>
-          <input placeholder="작업물을 검색하세요" type="text" />
+          <input
+            placeholder="작업물을 검색하세요"
+            type="text"
+            className="focus:outline-none"
+          />
         </div>
       </div>
-      <div className="workList flex flex-wrap  ">
+      <div className="workList flex flex-wrap justify-between   ">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((res, index) => {
           return (
-            <div className="my-2 mx-3 hover:opacity-50 ">
+            <div className=" w-[23%] hover:block group mb-7 relative">
               <Image
                 src="/dummy/images/WorksImage.png"
                 width={428}
                 height={366}
                 alt="workImage"
-                className=""
+                className="hover:opacity-25 duration-300"
               />
-              <div className="summary relative bottom-[90px] left-[30px] invisible ">
+              <div
+                className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline  `}
+              >
                 <h2 className="text-[25px]">Breeze</h2>
                 <p className="text-[20px]">이다빈</p>
               </div>
