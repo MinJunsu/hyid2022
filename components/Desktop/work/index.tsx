@@ -1,11 +1,17 @@
 import { useState } from "react";
 import Image from "next/image";
+import router from "next/router";
+import { Category } from "@prisma/client";
 
-function Works() {
+interface IndexProps {
+  categories: Category[];
+}
+
+function Index({ categories }: IndexProps) {
   const [types, setTypes] = useState<number>(0);
 
   return (
-    <div className="px-[40px] py-[25px] bg-white cursor-{works}">
+    <div className="works px-[40px] py-[25px] bg-white cursor-works">
       <div className="Navbar flex items-center justify-between">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -116,34 +122,31 @@ function Works() {
       </div>
       <div className="tabMenu flex items-center mt-[76px] mb-[53px] ">
         <div className=" flex space-x-[9px]">
-          {["ALL", "PRODUCT", "BRANDING", "UX·UI", "MOBILITY", "SPATIAL"].map(
-            (res, index) => {
-              return (
-                <div className="description ">
-                  <p
-                    onClick={() => {
-                      setTypes(index);
-                      console.log(types, index);
-                    }}
-                    className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px] cursor-pointer border-[1px] border-[#DBDBDB] w-full ${
-                      types === index
-                        ? "bg-[#0649EC] text-white"
-                        : "bg-white text-black"
-                    }`}
+          {categories?.map((category, index) => {
+            return (
+              <div key={index} className="description ">
+                <p
+                  onClick={() => {
+                    setTypes(index);
+                  }}
+                  className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px] cursor-pointer border-[1px] border-[#DBDBDB] w-full ${
+                    types === index
+                      ? "bg-[#0649EC] text-white"
+                      : "bg-white text-black"
+                  }`}
+                >
+                  {category.name}
+                  <span
+                    className={`${
+                      types === index ? "text-white" : "text-[#0649EC]"
+                    } `}
                   >
-                    {res}
-                    <span
-                      className={`${
-                        types === index ? "text-white" : "text-[#0649EC]"
-                      } `}
-                    >
-                      80
-                    </span>
-                  </p>
-                </div>
-              );
-            }
-          )}
+                    80
+                  </span>
+                </p>
+              </div>
+            );
+          })}
         </div>
         <div className="border-b-[1px] border-black w-[10000px] ml-[47px] mr-[37px] mt-[30px]" />
         <div className="flex justify-between space-x-4">
@@ -194,7 +197,13 @@ function Works() {
       <div className="workList flex flex-wrap justify-between   ">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((res, index) => {
           return (
-            <div className=" w-[23%] hover:block group mb-7 relative">
+            <div
+              key={index}
+              className=" w-[23%] hover:block group mb-7 relative"
+              onClick={() => {
+                router.push(`work/1`);
+              }}
+            >
               <Image
                 src="/dummy/images/WorksImage.png"
                 width={428}
@@ -216,4 +225,4 @@ function Works() {
   );
 }
 
-export default Works;
+export default Index;
