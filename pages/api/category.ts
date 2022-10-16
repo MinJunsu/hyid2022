@@ -10,8 +10,26 @@ export default async function handler(
         orderBy: [
             {
                 id: 'asc',
+            },
+        ],
+        include: {
+            works: {
+                select: {
+                    id: true,
+                    title: true,
+                    students: {
+                        select: {
+                            student: {
+                                select: {
+                                    nameKor: true,
+                                }
+                            }
+                        }
+                    },
+                    thumbnailImage: true,
+                }
             }
-        ]
+        }
     });
-    response.status(200).json(categories);
+    return response.status(200).json(categories);
 }

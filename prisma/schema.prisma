@@ -39,9 +39,9 @@ model StudentsOnTags {
 }
 
 model Category {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-  Work Work[]
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  works Work[]
 }
 
 model Work {
@@ -55,7 +55,7 @@ model Work {
   shortDescription String
   description      String
   mainImage        String
-  Like             Like[]
+  likes            Like[]
 }
 
 model Like {
