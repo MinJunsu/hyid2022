@@ -5,7 +5,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      cursor: {
+        works: "url(/dummy/images/mouse.png), works",
+      },
+    },
   },
   plugins: [],
-}
+};
