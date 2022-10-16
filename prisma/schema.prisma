@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id           Int               @id @default(autoincrement())
+  isManager    Boolean           @default(false)
+  studentId    Int
+  name         String
+  nameKor      String
+  profileImage String?
+  email        String?
+  snsLink      String?
+  webSite      String?
+  tags         StudentsOnTags[]
+  works        StudentsOnWorks[]
+}
+
+model Tag {
+  id       Int              @id @default(autoincrement())
+  name     String           @unique
+  students StudentsOnTags[]
+}
+
+model StudentsOnTags {
+  id        Int     @id @default(autoincrement())
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId Int
+  tag       Tag     @relation(fields: [tagId], references: [id])
+  tagId     Int
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  Work Work[]
+}
+
+model Work {
+  id               Int               @id @default(autoincrement())
+  category         Category          @relation(fields: [categoryId], references: [id])
+  students         StudentsOnWorks[]
+  categoryId       Int
+  thumbnailImage   String
+  backdropImage    String
+  title            String
+  shortDescription String
+  description      String
+  mainImage        String
+  Like             Like[]
+}
+
+model Like {
+  work      Work   @relation(fields: [workId], references: [id])
+  workId    Int
+  ipAddress String
+
+  @@unique([workId, ipAddress])
+}
+
+model StudentsOnWorks {
+  id        Int     @id @default(autoincrement())
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId Int
+  work      Work    @relation(fields: [workId], references: [id])
+  workId    Int
+}
