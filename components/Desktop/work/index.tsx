@@ -212,7 +212,7 @@ function Index({ categories }: IndexProps) {
                 className="hover:opacity-25 duration-300"
               />
               <div
-                className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline  `}
+                className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline`}
               >
                 <h2 className="text-[25px]">Breeze</h2>
                 <p className="text-[20px]">이다빈</p>
