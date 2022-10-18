@@ -194,18 +194,14 @@ function Designer({ students }: IndexProps) {
       </div>
       <div className="mt-[50px]">
         <Slider {...setting}>
-          {students.map((student, index) => {
+          {students?.map((student, index) => {
             return (
               <div key={index}>
                 <div
-                  className={`hover:w-[360px] hover:bg-white hover:text-center hover:h-[550px] hover:pt-[10px] hover:text-blue-700`}
+                  className={`hover:w-[360px] hover:bg-white hover:text-center hover:h-[550px] hover:pt-[15px] text-white hover:text-blue-700`}
                 >
-                  <Image
-                    src="/images/web/profile/2018055414.png"
-                    width={330}
-                    height={420}
-                  />
-                  <div className="w-[340px] text-white mt-[20px] hover:w-[360px] ">
+                  <Image src={student.profileImage!} width={330} height={420} />
+                  <div className="w-[360px]  mt-[20px] hover:w-[360px] ">
                     <p className="text-[25px] text-center">{student.nameKor}</p>
                     <p className="text-[20px] text-center">{student.name}</p>
                   </div>

@@ -5,7 +5,7 @@ import { Student } from "@prisma/client";
 
 function Designers() {
   const getStudent = () => {
-    return axios.get("/api/student").then((res) => res.data);
+    return axios.get("/api/students").then((res) => res.data);
   };
 
   const { data, isLoading } = useQuery<Student[]>(["student"], getStudent);
