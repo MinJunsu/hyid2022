@@ -3,6 +3,7 @@ import { Student } from "@prisma/client";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Nav from "../navbar/nav";
 
 interface IndexProps {
   students: Student[];
@@ -30,139 +31,13 @@ function Designer({ students }: IndexProps) {
           centerPadding: "30px",
         },
       },
-      // {
-      //   breakpoint: 600,
-      //   settings: {
-      //     slidesToShow: 1,
-      //   },
-      // },
     ],
   };
 
   return (
     <div className="bg-cover w-full h-[1080px]  bg-[url('/images/web/background/profile_background.png')] overflow-x-hidden">
-      <div className="works px-[40px] py-[25px] ">
-        <div className="Navbar flex items-center justify-between">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="122"
-            height="79"
-            viewBox="0 0 122 79"
-          >
-            <g
-              id="그룹_430"
-              data-name="그룹 430"
-              transform="translate(-56 -42)"
-            >
-              <text
-                id="ONGOJISIN"
-                transform="translate(56 116)"
-                fill="#fff"
-                fontSize="22"
-                fontFamily="WorkSans-Medium, Work Sans"
-                fontWeight="500"
-              >
-                <tspan x="0" y="0">
-                  ONGOJISIN
-                </tspan>
-              </text>
-              <g
-                id="그룹_259"
-                data-name="그룹 259"
-                transform="translate(76 42)"
-              >
-                <g
-                  id="그룹_258"
-                  data-name="그룹 258"
-                  transform="translate(0 0)"
-                >
-                  <line
-                    id="선_81"
-                    data-name="선 81"
-                    x2="80.56"
-                    transform="translate(0 43.507)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeWidth="4"
-                  />
-                  <line
-                    id="선_82"
-                    data-name="선 82"
-                    y1="43.507"
-                    transform="translate(40.28)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeWidth="4"
-                  />
-                  <line
-                    id="선_83"
-                    data-name="선 83"
-                    x1="29.832"
-                    y1="31.076"
-                    transform="translate(10.448 12.432)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeWidth="4"
-                  />
-                  <line
-                    id="선_84"
-                    data-name="선 84"
-                    y1="31.076"
-                    x2="29.832"
-                    transform="translate(40.28 12.432)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeWidth="4"
-                  />
-                </g>
-                <line
-                  id="선_85"
-                  data-name="선 85"
-                  x2="17.622"
-                  y2="40.829"
-                  transform="translate(22.657 2.679)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeWidth="4"
-                />
-                <line
-                  id="선_86"
-                  data-name="선 86"
-                  x1="17.622"
-                  y2="40.829"
-                  transform="translate(40.28 2.679)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeWidth="4"
-                />
-                <line
-                  id="선_87"
-                  data-name="선 87"
-                  x2="37.762"
-                  y2="17.622"
-                  transform="translate(2.517 25.885)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeWidth="4"
-                />
-                <line
-                  id="선_88"
-                  data-name="선 88"
-                  x1="37.762"
-                  y2="17.622"
-                  transform="translate(40.28 25.885)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeWidth="4"
-                />
-              </g>
-            </g>
-          </svg>
-          <div className="flex space-x-4 text-white">
-            <p>WORKS</p>
-            <p>DESIGNER</p>
-          </div>
-        </div>
+      <div className="px-[40px] py-[20px]">
+        <Nav color="white" />
       </div>
 
       <div className="relative top-[175px] left-[194px]">
