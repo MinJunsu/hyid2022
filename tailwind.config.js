@@ -9,9 +9,6 @@ module.exports = {
       cursor: {
         works: "url(/dummy/images/mouse.png), works",
       },
-      backgroundImage: {
-        profile: "url:(`/images/web/background/profile_background.png`)",
-      },
     },
   },
   plugins: [

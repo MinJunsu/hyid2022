@@ -35,18 +35,14 @@ function Designer({ students }: IndexProps) {
   };
 
   return (
-    <div className="bg-cover w-full h-[1080px]  bg-[url('/images/web/background/profile_background.png')] overflow-x-hidden">
+    <div className="bg-cover w-full h-auto  bg-[url('/web/background/profile_background.png')] overflow-x-hidden">
       <div className="px-[40px] py-[20px]">
         <Nav color="white" />
       </div>
 
       <div className="relative top-[175px] left-[194px]">
         <div className="absolute left-20 bottom-8 animate-pulse">
-          <Image
-            src="/images/web/icon/design_star.png"
-            height={77}
-            width={77}
-          />
+          <Image src="/web/icon/design_star.png" height={77} width={77} />
         </div>
         <p className="text-white font-light">
           Click on the
@@ -67,7 +63,7 @@ function Designer({ students }: IndexProps) {
           })}
         </div>
       </div>
-      <div className="mt-[50px]">
+      <div className="mt-[50px] pb-[200px]">
         <Slider {...setting}>
           {students?.map((student, index) => {
             return (

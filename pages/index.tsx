@@ -41,20 +41,15 @@ const Home: NextPage = () => {
   return (
     <div className="webView">
       <div className="section1">
-        <div className="bg-[url('/images/web/background/web_main_banner_1_gif.gif')] bg-cover bg-center h-[100vh] px-[40px] py-[20px]">
+        <div className="bg-[url('/web/background/web_main_banner_1_gif.gif')] bg-cover bg-center h-[100vh] px-[40px] py-[20px]">
           <Nav color="white" />
         </div>
       </div>
 
       <div className="section2">
-        {" "}
-        <div className="second bg-[url('/images/web/background/web_main_2_gif.gif')] bg-cover bg-center h-[100vh] flex flex-col">
+        <div className="second bg-[url('/web/background/web_main_2_gif.gif')] bg-cover bg-center h-[100vh] flex flex-col">
           <div className="flex justify-center ml-[100px]">
-            <Image
-              src="/images/web/icon/main_icon.svg"
-              width={299}
-              height={361}
-            />
+            <Image src="/web/icon/second.png" width={299} height={361} />
           </div>
           <div className="flex-col text-white justify-center flex w-full text-center">
             <p className="text-[44px] font-normal">온고지신</p>
@@ -70,14 +65,10 @@ const Home: NextPage = () => {
         </div>
       </div>
       <div className="section3">
-        <div className="third bg-[url('/images/web/background/web_main_3_gif.gif')]  bg-cover bg-center h-[100vh] text-white  ">
+        <div className="third bg-[url('/web/background/web_main_3_gif.gif')]  bg-cover bg-center h-[100vh] text-white  ">
           <div className="flex-col justify-center text-center items-center relative top-[30vh] ">
             <h2 className="text-[30px] mb-10">각자의 방식으로 미래를 그리다</h2>
-            <Image
-              src="/images/web/icon/design_star.png"
-              width={77}
-              height={77}
-            />
+            <Image src="/web/icon/design_star.png" width={77} height={77} />
             <p className="text-[22px] mt-10 font-extralight">
               2022 한양대학교 산업디자인학과 졸업 전시 '온고지신'은
               <br />
@@ -93,17 +84,13 @@ const Home: NextPage = () => {
         <div className="fourth bg-black  bg-cover bg-center h-auto text-white relative   ">
           <div className="pt-[490px] flex justify-center">
             <Image
-              src="/images/web/icon/Concept.png"
+              src="/web/background/concept.png"
               width={1450}
               height={900}
             />
           </div>
           <div className="float-right mr-[80px]">
-            <Image
-              src="/images/web/icon/design_star.png"
-              width={77}
-              height={77}
-            />
+            <Image src="/web/icon/design_star.png" width={77} height={77} />
             <p className="font-extralight leading-7 ml-[50px]">
               무수한 과거와 현재가 이어져 미지의 공간인 미래를
               <br />
@@ -121,7 +108,7 @@ const Home: NextPage = () => {
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index, res) => {
                 return (
                   <Image
-                    src="/images/web/logo/slideLogo.png"
+                    src="/web/logo/slideLogo.png"
                     width={330}
                     height={50}
                   />
@@ -139,7 +126,7 @@ const Home: NextPage = () => {
               onClick={() => {
                 router.push("/works");
               }}
-              src="/images/web/icon/GotoWork.png"
+              src="/web/icon/GotoWork.png"
               width={335}
               height={335}
             />
@@ -204,6 +191,20 @@ const Home: NextPage = () => {
                 <p> </p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="footer bg-[#0649EC] border-t-[1px] border-white h-auto px-[200px]">
+        <div className="py-[150px] text-white">
+          <h2 className="text-[25px] mb-[10px] ">
+            Ongozisin, Hanyang univ. All Rights Reserved
+          </h2>
+          <div className="flex items-center justify-between ">
+            <p className="text-[20px] font-extralight">
+              59-9, Hanyangdaehak 1-gil, Sangnok-gu, Ansan-si, Gyeonggi-do,
+              Republic of Korea
+            </p>
+            <p className="text-[20px] font-extralight">Today 20 | Total 800</p>
           </div>
         </div>
       </div>

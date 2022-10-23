@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fullpage/react-fullpage": "^0.1.28",
     "@prisma/client": "4.4.0",
     "@tanstack/react-query": "^4.12.0",
     "autoprefixer": "^10.4.12",

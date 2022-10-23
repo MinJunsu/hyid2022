@@ -15,7 +15,7 @@ function Nav({ color }: navProps) {
         }}
       >
         <Image
-          src={`/images/web/logo/${
+          src={`/web/logo/${
             color === "black" ? "web_logo_black.svg" : "web_logo_white.svg"
           }`}
           width={122}

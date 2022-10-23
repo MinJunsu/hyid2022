@@ -31,15 +31,15 @@ function Dummy() {
   }, []);
 
   return (
-    <div className="bg-white relative">
+    <div className="bg-[#fff] relative h-full ">
       <div className="coverImage  ">
         <Image src="/dummy/images/details.png" width={1920} height={1080} />
       </div>
       <div
         onClick={() => {
-          router.push("/");
+          router.push("/works");
         }}
-        className="w-[66px] h-[66px] rounded-[50%] bg-white flex justify-center items-center drop-shadow-2xl cursor-pointer absolute top-10 right-16  "
+        className="closeButton w-[66px] h-[66px] rounded-[50%] bg-white flex justify-center items-center drop-shadow-2xl cursor-pointer absolute top-10 right-16  "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@ function Dummy() {
         </svg>
       </div>
 
-      <div className="description px-[160px] mt-[100px]">
+      <div className="description px-[160px] pt-[100px]">
         <h3 className="text-[30px] font-semibold">Breeze</h3>
         <h4 className="text-[25px] mt-[30px]  ">뭐머해서 뭐뭐하는 서비스</h4>
         <p className="columns-2 mt-[40px]">
@@ -110,7 +110,7 @@ function Dummy() {
           />
         </div>
       </div>
-      <div className="flex justify-center mt-[90px] mb-[30px]">
+      <div className="flex justify-center mt-[90px] pb-[100px]">
         <div className="loved flex items-center border-[2px] border-[#AEAEAE] w-[200px] rounded-3xl p-3 text-center justify-evenly">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -257,8 +257,6 @@ function Dummy() {
             );
           })}
         </div>
-
-        <div></div>
       </div>
     </div>
   );
