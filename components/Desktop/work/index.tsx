@@ -20,9 +20,9 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
   };
 
   return (
-    <>
+    <div className="cursor-[url(/web/mouse/cursor.cur),_pointer]">
       <div
-        className={`works px-[40px] py-[25px] bg-white cursor-works ${
+        className={`works px-[40px] py-[25px] bg-white cursor-works  ${
           modal ? "blur-lg" : null
         } `}
       >
@@ -38,7 +38,7 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
                     onClick={() => {
                       setTypes(index);
                     }}
-                    className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px] cursor-pointer border-[1px] border-[#DBDBDB] w-full ${
+                    className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px]  border-[1px] border-[#DBDBDB] w-full ${
                       types === index
                         ? "bg-[#0649EC] text-white"
                         : "bg-white text-black"
@@ -108,7 +108,7 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
             return (
               <div
                 key={index}
-                className=" w-[23%] hover:block group mb-7 relative"
+                className=" w-[23%] hover:block group mb-7 relative "
                 onClick={() => {
                   router.push(`work/1`);
                 }}
@@ -141,7 +141,7 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
         } `}
       >
         <div
-          className="closeButton bg-white rounded-[5p%] w-[90px] h-[90px] flex items-center justify-center rounded-full float-right shadow-2xl cursor-pointer hover:scale-105"
+          className="closeButton bg-white rounded-[5p%] w-[90px] h-[90px] flex items-center justify-center rounded-full float-right shadow-2xl  hover:scale-105"
           onClick={setClose}
         >
           <Image src="/web/icon/close.svg" width={40} height={40} alt="close" />
@@ -151,9 +151,7 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
             return (
               <div key={idx} className="group relative">
                 <div className="text-[105px]  flex">
-                  <h2 className="hover:text-[#0649EC] cursor-pointer">
-                    {category.name}{" "}
-                  </h2>
+                  <h2 className="hover:text-[#0649EC] ">{category.name} </h2>
                   <h2
                     className={`${
                       category.id === 13 ? "hidden" : null
@@ -175,7 +173,7 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
