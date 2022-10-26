@@ -4,20 +4,27 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Nav from "../navbar/nav";
+import { useRef, useState } from "react";
+import router from "next/router";
 
 interface IndexProps {
   students: Student[];
 }
 
 function Designer({ students }: IndexProps) {
+  //학생 Select State
+  const [studentId, setStudentId] = useState<number>(0);
+
+  const slider = useRef<any>();
+
   const setting = {
     dots: false,
     infinite: true,
-    speed: 3000,
+    speed: 2500,
     slidesToShow: 4,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 2500,
     focusOnSelect: true,
     arrows: false,
     centerMode: true,
@@ -55,7 +62,17 @@ function Designer({ students }: IndexProps) {
           {students?.map((student, index) => {
             return (
               <div key={index}>
-                <p className="text-[18px] mr-[43px] mt-[15px] font-extralight w-[4vw] truncate text-center hover:underline cursor-pointer">
+                <p
+                  onClick={() => {
+                    setStudentId(student.id);
+                    slider.current.slickGoTo(index);
+                    slider.current.slickPause();
+                    setTimeout(() => {
+                      slider.current.slickPlay();
+                    }, 4000);
+                  }}
+                  className="text-[18px] mr-[43px] mt-[15px] font-extralight w-[4vw] truncate text-center hover:underline cursor-pointer"
+                >
                   {student.nameKor}
                 </p>
               </div>
@@ -64,15 +81,28 @@ function Designer({ students }: IndexProps) {
         </div>
       </div>
       <div className="mt-[50px] pb-[200px]">
-        <Slider {...setting}>
+        <Slider ref={slider} {...setting}>
           {students?.map((student, index) => {
             return (
-              <div key={index}>
+              <div
+                key={index}
+                onClick={() => {
+                  router.push(`designers/${student.id}`);
+                }}
+              >
                 <div
-                  className={`hover:w-[360px] hover:bg-white hover:text-center hover:h-[550px] hover:pt-[15px] text-white hover:text-blue-700`}
+                  className={`${
+                    studentId === student.id
+                      ? "w-[360px] bg-white text-center h-[550px] pt-[15px]  text-blue-700"
+                      : "text-white"
+                  }`}
                 >
                   <Image src={student.profileImage!} width={330} height={420} />
-                  <div className="w-[360px]  mt-[20px] hover:w-[360px] ">
+                  <div
+                    className={`w-[360px]  mt-[20px]  ${
+                      studentId === student.id ? "w-[360px]" : null
+                    } `}
+                  >
                     <p className="text-[25px] text-center">{student.nameKor}</p>
                     <p className="text-[20px] text-center">{student.name}</p>
                   </div>

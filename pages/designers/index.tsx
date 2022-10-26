@@ -1,9 +1,9 @@
-import Designer from "../components/Desktop/designer";
+import Designer from "../../components/Desktop/designer";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { Student } from "@prisma/client";
 
-function Designers() {
+function Index() {
   const getStudent = () => {
     return axios.get("/api/students").then((res) => res.data);
   };
@@ -20,4 +20,4 @@ function Designers() {
     </div>
   );
 }
-export default Designers;
+export default Index;
