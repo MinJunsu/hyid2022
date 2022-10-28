@@ -70,7 +70,7 @@ const Home: NextPage = () => {
             <h2 className="text-[30px] mb-10">각자의 방식으로 미래를 그리다</h2>
             <Image src="/web/icon/design_star.png" width={77} height={77} />
             <p className="text-[22px] mt-10 font-extralight">
-              2022 한양대학교 산업디자인학과 졸업 전시 '온고지신'은
+              2022 한양대학교 산업디자인학과 졸업 전시 &apos온고지신&apos은
               <br />
               학생이라는 신분에서 배워 온 많은 것들을 몸으로 익히고,
               <br />
@@ -108,6 +108,7 @@ const Home: NextPage = () => {
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index, res) => {
                 return (
                   <Image
+                    key={index}
                     src="/web/logo/slideLogo.png"
                     width={330}
                     height={50}

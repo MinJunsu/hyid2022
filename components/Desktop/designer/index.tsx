@@ -87,21 +87,19 @@ function Designer({ students }: IndexProps) {
               <div
                 key={index}
                 onClick={() => {
-                  router.push(`designers/${student.id}`);
+                  router.push(`designer/${student.id}`);
                 }}
               >
                 <div
-                  className={`${
-                    studentId === student.id
+                  className={`${studentId === student.id
                       ? "w-[360px] bg-white text-center h-[550px] pt-[15px]  text-blue-700"
                       : "text-white"
-                  }`}
+                    }`}
                 >
                   <Image src={student.profileImage!} width={330} height={420} />
                   <div
-                    className={`w-[360px]  mt-[20px]  ${
-                      studentId === student.id ? "w-[360px]" : null
-                    } `}
+                    className={`w-[360px]  mt-[20px]  ${studentId === student.id ? "w-[360px]" : null
+                      } `}
                   >
                     <p className="text-[25px] text-center">{student.nameKor}</p>
                     <p className="text-[20px] text-center">{student.name}</p>

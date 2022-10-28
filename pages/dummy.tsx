@@ -170,9 +170,8 @@ function Dummy() {
         </div>
       )}
       <div
-        className={`maker w-[66px] h-[341px] bg-[#FF7437] fixed right-0 top-48 origin-center    ${
-          showModal ? "hidden  origin-center " : "block  origin-center "
-        }  `}
+        className={`maker w-[66px] h-[341px] bg-[#FF7437] fixed right-0 top-48 origin-center    ${showModal ? "hidden  origin-center " : "block  origin-center "
+          }  `}
         onClick={() => {
           setShowModal(true);
         }}
@@ -218,9 +217,8 @@ function Dummy() {
       {/*디자이너 펼쳤을 때*/}
 
       <div
-        className={`maker  h-[341px] bg-[#000000] fixed right-0 top-48 p-5  origin-center    ${
-          showModal ? "block ease-in duration-300 " : "hidden  origin-center "
-        }`}
+        className={`maker  h-[341px] bg-[#000000] fixed right-0 top-48 p-5  origin-center    ${showModal ? "block ease-in duration-300 " : "hidden  origin-center "
+          }`}
         onClick={() => {
           setShowModal(false);
         }}
@@ -228,7 +226,7 @@ function Dummy() {
         <div className="flex items-center cursor-pointer">
           {[1, 2].map((res, idx) => {
             return (
-              <div className="flex space-x-4 justify-start ">
+              <div className="flex space-x-4 justify-start" key={idx}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="32"
