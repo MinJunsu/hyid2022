@@ -6,7 +6,7 @@ const MobileHome: React.FC = () => {
     <div className="flex flex-col">
       {/* Main Page - Main Animation 1  */}
       <div
-        className="flex flex-col h-[100vh] bg-cover"
+        className="flex flex-col h-[100vh] bg-cover bg-center"
         style={{
           backgroundImage: 'url("/mobile/animation/main-animation-1.gif");',
         }}
@@ -21,7 +21,7 @@ const MobileHome: React.FC = () => {
       </div>
       {/* Main Page - Main Animation 2  */}
       <div
-        className="flex flex-col h-[100vh] bg-cover"
+        className="flex flex-col h-[100vh] bg-cover bg-center"
         style={{
           backgroundImage: 'url("/mobile/animation/main-animation-2.gif");',
         }}
@@ -84,7 +84,7 @@ const MobileHome: React.FC = () => {
               2022 한양대학교 산업디자인학과
             </span>
             <span className="text-white w-full flex justify-center">
-              졸업 전시 '온고지신'은 학생이라는 신분에서
+              졸업 전시 &apos온고지신&apos은 학생이라는 신분에서
             </span>
             <span className="text-white w-full flex justify-center">
               배워 온 많은 것들을 몸으로 익히고,
