@@ -8,6 +8,11 @@ function Works() {
     return Axios.get("/api/category").then((res) => res.data);
   };
   const { data, isLoading } = useQuery<Category[]>(["category"], getCategory);
+
+  if (isLoading) {
+    return <div></div>;
+  }
+
   return (
     <div>
       <Index categories={data!} />

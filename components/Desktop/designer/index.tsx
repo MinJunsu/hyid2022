@@ -68,7 +68,7 @@ function Designer({ students }: IndexProps) {
                     slider.current.slickGoTo(index);
                     slider.current.slickPause();
                     setTimeout(() => {
-                      slider.current.slickPlay();
+                      slider.current?.slickPlay();
                     }, 4000);
                   }}
                   className="text-[18px] mr-[43px] mt-[15px] font-extralight w-[4vw] truncate text-center hover:underline cursor-pointer"
@@ -87,19 +87,22 @@ function Designer({ students }: IndexProps) {
               <div
                 key={index}
                 onClick={() => {
-                  router.push(`designer/${student.id}`);
+                  router.push(`designers/${student.id}`);
                 }}
               >
                 <div
-                  className={`${studentId === student.id
+                  className={`
+                  cursor-pointer${
+                    studentId === student.id
                       ? "w-[360px] bg-white text-center h-[550px] pt-[15px]  text-blue-700"
                       : "text-white"
-                    }`}
+                  }`}
                 >
                   <Image src={student.profileImage!} width={330} height={420} />
                   <div
-                    className={`w-[360px]  mt-[20px]  ${studentId === student.id ? "w-[360px]" : null
-                      } `}
+                    className={`w-[360px]  mt-[20px]  ${
+                      studentId === student.id ? "w-[360px]" : null
+                    } `}
                   >
                     <p className="text-[25px] text-center">{student.nameKor}</p>
                     <p className="text-[20px] text-center">{student.name}</p>
