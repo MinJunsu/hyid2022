@@ -151,7 +151,15 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
             return (
               <div key={idx} className="group relative">
                 <div className="text-[105px]  flex">
-                  <h2 className="hover:text-[#0649EC] ">{category.name} </h2>
+                  <h2
+                    onClick={() => {
+                      setTypes(idx);
+                      setModal(false);
+                    }}
+                    className="hover:text-[#0649EC] "
+                  >
+                    {category.name}{" "}
+                  </h2>
                   <h2
                     className={`${
                       category.id === 13 ? "hidden" : null
