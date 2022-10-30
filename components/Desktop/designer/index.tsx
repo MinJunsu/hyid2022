@@ -68,7 +68,7 @@ function Designer({ students }: IndexProps) {
                     slider.current.slickGoTo(index);
                     slider.current.slickPause();
                     setTimeout(() => {
-                      slider.current?.slickPlay();
+                      slider.current.slickPlay();
                     }, 4000);
                   }}
                   className="text-[18px] mr-[43px] mt-[15px] font-extralight w-[4vw] truncate text-center hover:underline cursor-pointer"
@@ -91,8 +91,7 @@ function Designer({ students }: IndexProps) {
                 }}
               >
                 <div
-                  className={`
-                  cursor-pointer${
+                  className={`${
                     studentId === student.id
                       ? "w-[360px] bg-white text-center h-[550px] pt-[15px]  text-blue-700"
                       : "text-white"

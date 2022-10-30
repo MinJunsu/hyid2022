@@ -1,7 +1,7 @@
 function Index() {
   return (
     <div>
-      <h2>hello world</h2>
+      <h2>디자이너 개인 페이지</h2>
     </div>
   );
 }
