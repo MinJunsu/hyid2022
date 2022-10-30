@@ -1,43 +1,43 @@
-import { PrismaClient, Student } from '@prisma/client'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { PrismaClient, Student } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
-    request: NextApiRequest,
-    response: NextApiResponse<Student | null>
+  request: NextApiRequest,
+  response: NextApiResponse<Student | null>
 ) {
-    const id = Number(request.query.id);
-    const prisma = new PrismaClient();
-    const student = await prisma.student.findUnique({
-        where: {
-            id: id,
+  const id = Number(request.query.id);
+  const prisma = new PrismaClient();
+  const student = await prisma.student.findUnique({
+    where: {
+      id: id,
+    },
+    include: {
+      tags: {
+        select: {
+          tag: true,
         },
-        include: {
-            tags: {
+      },
+      works: {
+        select: {
+          id: true,
+          work: {
+            select: {
+              title: true,
+              thumbnailImage: true,
+              students: {
                 select: {
-                    tag: true,
-                }
+                  student: {
+                    select: {
+                      nameKor: true,
+                    },
+                  },
+                },
+              },
             },
-            works: {
-                select: {
-                    id: true,
-                    work: {
-                        select: {
-                            title: true,
-                            thumbnailImage: true,
-                            students: {
-                                select: {
-                                    student: {
-                                        select: {
-                                            nameKor: true,
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    });
-    response.status(200).json(student);
+          },
+        },
+      },
+    },
+  });
+  return response.status(200).json(student);
 }
