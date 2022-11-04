@@ -1,10 +1,11 @@
-import { PrismaClient, Student } from "@prisma/client";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { PrismaClient, Student, Tag, Work } from '@prisma/client'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(
-  request: NextApiRequest,
-  response: NextApiResponse<Student | null>
+    request: NextApiRequest,
+    response: NextApiResponse<Student | null>
 ) {
+
   const id = Number(request.query.id);
   const prisma = new PrismaClient();
   const student = await prisma.student.findUnique({
@@ -15,7 +16,7 @@ export default async function handler(
       tags: {
         select: {
           tag: true,
-        },
+        }
       },
       works: {
         select: {
@@ -29,15 +30,15 @@ export default async function handler(
                   student: {
                     select: {
                       nameKor: true,
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   });
-  return response.status(200).json(student);
+  response.status(200).json(student);
 }

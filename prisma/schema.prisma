@@ -24,6 +24,14 @@ model Student {
   works        StudentsOnWorks[]
 }
 
+model ViewCount {
+  id        Int      @id @default(autoincrement())
+  created   DateTime @db.Date
+  ipAddress String
+
+  @@unique([created, ipAddress])
+}
+
 model Tag {
   id       Int              @id @default(autoincrement())
   name     String           @unique

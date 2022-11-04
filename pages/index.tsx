@@ -7,10 +7,21 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import router from "next/router";
 import React, { useState } from "react";
+import MobileHome from "../components/mobile";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { viewCount } from "./api";
+
+
 
 const Home: NextPage = () => {
   const mobile = useMobile();
-  // return <MobileHome/>;
+  const getViewCount = () => {
+    return axios.get("/api/").then((res) => res.data);
+  };
+  const { data, isLoading } = useQuery<viewCount>(["viewCount"], getViewCount);
+  // console.log(data);
+  // return <MobileHome />;
 
   const setting = {
     dots: false,
@@ -35,8 +46,6 @@ const Home: NextPage = () => {
       },
     ],
   };
-
-  const [dot, setDot] = useState<number>(0);
 
   return (
     <div className="webView">
@@ -183,14 +192,14 @@ const Home: NextPage = () => {
                 <p className="text-[20px] font-extralight">조호현</p>
                 <p> </p>
               </div>
-              <div className="grid grid-cols-6 space-x-[74px] pt-[55px] ">
+              {/* <div className="grid grid-cols-6 space-x-[74px] pt-[55px] ">
                 <h1> </h1>
                 <p className="text-[20px] font-extralight">개발팀</p>
                 <p className="text-[20px] font-extralight">민준수</p>
                 <p className="text-[20px] font-extralight">박재현</p>
                 <p> </p>
                 <p> </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
