@@ -20,8 +20,8 @@ function Dummy() {
       } else {
         setShowButton(false);
       }
-      console.log(window.scrollY);
-      console.log(showButton);
+      // console.log(window.scrollY);
+      // console.log(showButton);
     };
 
     window.addEventListener("scroll", handleShowButton);
@@ -170,8 +170,9 @@ function Dummy() {
         </div>
       )}
       <div
-        className={`maker w-[66px] h-[341px] bg-[#FF7437] fixed right-0 top-48 origin-center    ${showModal ? "hidden  origin-center " : "block  origin-center "
-          }  `}
+        className={`maker w-[66px] h-[341px] bg-[#FF7437] fixed right-0 top-48 origin-center    ${
+          showModal ? "hidden  origin-center " : "block  origin-center "
+        }  `}
         onClick={() => {
           setShowModal(true);
         }}
@@ -217,8 +218,9 @@ function Dummy() {
       {/*디자이너 펼쳤을 때*/}
 
       <div
-        className={`maker  h-[341px] bg-[#000000] fixed right-0 top-48 p-5  origin-center    ${showModal ? "block ease-in duration-300 " : "hidden  origin-center "
-          }`}
+        className={`maker  h-[341px] bg-[#000000] fixed right-0 top-48 p-5  origin-center    ${
+          showModal ? "block ease-in duration-300 " : "hidden  origin-center "
+        }`}
         onClick={() => {
           setShowModal(false);
         }}

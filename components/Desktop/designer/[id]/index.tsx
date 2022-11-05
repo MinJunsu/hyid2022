@@ -42,7 +42,9 @@ function Index({ student }: StudentProps) {
                 </div>
                 <div className="instargram flex items-center space-x-[100px]">
                   <p className="w-[90px]">Instargram</p>
-                  <p>@{student.snsLink}</p>
+                  <a href={`https://www.instagram.com/${student.snsLink}/`}>
+                    {student.snsLink}
+                  </a>
                 </div>
                 <div className="website flex items-center space-x-[100px]">
                   <p className="w-[90px]">Web Site</p>

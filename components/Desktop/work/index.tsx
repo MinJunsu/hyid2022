@@ -14,7 +14,7 @@ interface Close {
 function Index({ categories }: IndexProps, { modalState }: Close) {
   const [types, setTypes] = useState<number>(0);
   // Modal 관련 State
-  const [modal, setModal] = useState<boolean>(false);
+  const [modal, setModal] = useState<boolean>(true);
   const setClose = () => {
     setModal(false);
   };

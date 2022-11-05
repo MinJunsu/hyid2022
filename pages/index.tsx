@@ -6,20 +6,21 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import router from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-scroll";
+const Fade = require("react-reveal/Fade");
+
 import MobileHome from "../components/mobile";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { viewCount } from "./api";
-
-
+// import { viewCount } from "./api";
 
 const Home: NextPage = () => {
   const mobile = useMobile();
-  const getViewCount = () => {
-    return axios.get("/api/").then((res) => res.data);
-  };
-  const { data, isLoading } = useQuery<viewCount>(["viewCount"], getViewCount);
+  // const getViewCount = () => {
+  //   return axios.get("/api/").then((res) => res.data);
+  // };
+  // const { data, isLoading } = useQuery<viewCount>(["viewCount"], getViewCount);
   // console.log(data);
   // return <MobileHome />;
 
@@ -47,68 +48,232 @@ const Home: NextPage = () => {
     ],
   };
 
+  // Slide 구현
+  const [pages, setPages] = useState<number>(0);
+
+  const [ScrollY, setScrollY] = useState(0); // 스크롤값을 저장하기 위한 상태
+  const handleFollow = () => {
+    setScrollY(window.scrollY); // window 스크롤 값을 ScrollY에 저장
+  };
+
+  useEffect(() => {
+    console.log("ScrollY is ", ScrollY); // ScrollY가 변화할때마다 값을 콘솔에 출력
+    //1000
+    const section1 = window.innerHeight - 100;
+    //2000
+    const section2 = (window.innerHeight - 100) * 2;
+    //3000
+    const section3 = (window.innerHeight - 100) * 3;
+    //4000
+    const section4 = (window.innerHeight - 100) * 4;
+    if (ScrollY < section1) {
+      setPages(0);
+    }
+    if (ScrollY > section1 && ScrollY < section2) {
+      setPages(1);
+    }
+    if (ScrollY > section2 && ScrollY < section3) {
+      setPages(2);
+    }
+    if (ScrollY > section3 && ScrollY < section4) {
+      setPages(3);
+    }
+  }, [ScrollY]);
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener("scroll", handleFollow);
+    };
+    watch(); // addEventListener 함수를 실행
+    return () => {
+      window.removeEventListener("scroll", handleFollow); // addEventListener 함수를 삭제
+    };
+  });
+
   return (
     <div className="webView">
-      <div className="section1">
+      <div className="dots fixed text-white z-20 right-8 bottom-[50%] ">
+        <Link to="section1" smooth={true} spy={true}>
+          <svg
+            onClick={() => {
+              setPages(0);
+            }}
+            className="mb-2"
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+          >
+            <circle
+              id="타원_96"
+              data-name="타원 96"
+              cx="5"
+              cy="5"
+              r="5"
+              fill="#fff"
+              opacity={`${pages === 0 ? null : 0.25}`}
+            />
+          </svg>
+        </Link>
+        <Link to="section2" smooth={true} spy={true}>
+          <svg
+            onClick={() => {
+              setPages(1);
+            }}
+            className="mb-2"
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+          >
+            <circle
+              id="타원_96"
+              data-name="타원 96"
+              cx="5"
+              cy="5"
+              r="5"
+              fill="#fff"
+              opacity={`${pages === 1 ? null : 0.25}`}
+            />
+          </svg>
+        </Link>
+        <Link to="section3" smooth={true} spy={true}>
+          <svg
+            onClick={() => {
+              setPages(2);
+            }}
+            className="mb-2"
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+          >
+            <circle
+              id="타원_96"
+              data-name="타원 96"
+              cx="5"
+              cy="5"
+              r="5"
+              fill="#fff"
+              opacity={`${pages === 2 ? null : 0.25}`}
+            />
+          </svg>
+        </Link>
+        <Link to="section4" smooth={true} spy={true}>
+          <svg
+            onClick={() => {
+              setPages(3);
+            }}
+            className="mb-2"
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+          >
+            <circle
+              id="타원_96"
+              data-name="타원 96"
+              cx="5"
+              cy="5"
+              r="5"
+              fill="#fff"
+              opacity={`${pages === 3 ? null : 0.25}`}
+            />
+          </svg>
+        </Link>
+      </div>
+      <div className="section1 relative">
         <div className="bg-[url('/web/background/web_main_banner_1_gif.gif')] bg-cover bg-center h-[100vh] px-[40px] py-[20px]">
           <Nav color="white" />
+          <Link to="section2" spy={true} smooth={true}>
+            <div className="flex items-center space-x-[18px] absolute bottom-5 animate-bounce cursor-pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30.178"
+                height="19.938"
+                viewBox="0 0 30.178 19.938"
+              >
+                <path
+                  id="패스_333"
+                  data-name="패스 333"
+                  d="M180.408,30,163.592,16,180.408,2"
+                  transform="translate(-0.911 181.315) rotate(-90)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeWidth="2.835"
+                />
+              </svg>
+              <p className="text-[24px] text-white font-normal">scroll down</p>
+            </div>
+          </Link>
         </div>
       </div>
 
       <div className="section2">
         <div className="second bg-[url('/web/background/web_main_2_gif.gif')] bg-cover bg-center h-[100vh] flex flex-col">
-          <div className="flex justify-center ml-[100px]">
-            <Image src="/web/icon/second.png" width={299} height={361} />
-          </div>
-          <div className="flex-col text-white justify-center flex w-full text-center">
-            <p className="text-[44px] font-normal">온고지신</p>
-            <p className="text-[33px] font-extralight"> 溫故知新 </p>
-            <p className="mt-[10vh] text-[22px] font-extralight">
-              서당 개 3년이면 풍월을 읊는다고 하였습니다.
-              <br /> 우리는 4년이라는 긴 시간 동안 교수님의 어깨 너머로 배운
-              것들을 스스로 깨닫고, <br />
-              산업 디자인과라는 일련의 과정 속에서 찾아낸 색으로 우리의 미래를
-              표현해 보고자 합니다.
-            </p>
-          </div>
+          <Fade top cascade>
+            <div className="flex justify-center ml-[100px]">
+              <Image src="/web/icon/second.png" width={299} height={361} />
+            </div>
+
+            <div className="flex-col text-white justify-center flex w-full text-center">
+              <p className="text-[44px] font-normal">온고지신</p>
+              <p className="text-[33px] font-extralight"> 溫故知新 </p>
+              <p className="mt-[10vh] text-[22px] font-extralight">
+                서당 개 3년이면 풍월을 읊는다고 하였습니다.
+                <br /> 우리는 4년이라는 긴 시간 동안 교수님의 어깨 너머로 배운
+                것들을 스스로 깨닫고, <br />
+                산업 디자인과라는 일련의 과정 속에서 찾아낸 색으로 우리의 미래를
+                표현해 보고자 합니다.
+              </p>
+            </div>
+          </Fade>
         </div>
       </div>
+
       <div className="section3">
         <div className="third bg-[url('/web/background/web_main_3_gif.gif')]  bg-cover bg-center h-[100vh] text-white  ">
-          <div className="flex-col justify-center text-center items-center relative top-[30vh] ">
-            <h2 className="text-[30px] mb-10">각자의 방식으로 미래를 그리다</h2>
-            <Image src="/web/icon/design_star.png" width={77} height={77} />
-            <p className="text-[22px] mt-10 font-extralight">
-              2022 한양대학교 산업디자인학과 졸업 전시 &apos온고지신&apos은
-              <br />
-              학생이라는 신분에서 배워 온 많은 것들을 몸으로 익히고,
-              <br />
-              학교 밖을 벗어나 자신만의 새로운 미래를 만들어가는 전환점이 될
-              것입니다.
-            </p>
-          </div>
+          <Fade top cascade>
+            <div className="flex-col justify-center text-center items-center relative top-[30vh] ">
+              <h2 className="text-[30px] mb-10">
+                각자의 방식으로 미래를 그리다
+              </h2>
+              <Image src="/web/icon/design_star.png" width={77} height={77} />
+              <p className="text-[22px] mt-10 font-extralight">
+                2022 한양대학교 산업디자인학과 졸업 전시 &apos온고지신&apos은
+                <br />
+                학생이라는 신분에서 배워 온 많은 것들을 몸으로 익히고,
+                <br />
+                학교 밖을 벗어나 자신만의 새로운 미래를 만들어가는 전환점이 될
+                것입니다.
+              </p>
+            </div>
+          </Fade>
         </div>
       </div>
+
       <div className="section4">
         <div className="fourth bg-black  bg-cover bg-center h-auto text-white relative   ">
-          <div className="pt-[490px] flex justify-center">
-            <Image
-              src="/web/background/concept.png"
-              width={1450}
-              height={900}
-            />
-          </div>
-          <div className="float-right mr-[80px]">
-            <Image src="/web/icon/design_star.png" width={77} height={77} />
-            <p className="font-extralight leading-7 ml-[50px]">
-              무수한 과거와 현재가 이어져 미지의 공간인 미래를
-              <br />
-              만들어 간다는 의미를 담아 옛것을 흐리게, 새로운 것을
-              <br /> 뚜렷하게 표현하여 과거와 미래가 공존하는 온고지신을
-              <br />
-              그래픽으로 표현하였습니다.
-            </p>
-          </div>
+          <Fade top cascade>
+            <div className="pt-[490px] flex justify-center">
+              <Image
+                src="/web/background/concept.png"
+                width={1450}
+                height={900}
+              />
+            </div>
+            <div className="float-right mr-[80px]">
+              <Image src="/web/icon/design_star.png" width={77} height={77} />
+              <p className="font-extralight leading-7 ml-[50px]">
+                무수한 과거와 현재가 이어져 미지의 공간인 미래를
+                <br />
+                만들어 간다는 의미를 담아 옛것을 흐리게, 새로운 것을
+                <br /> 뚜렷하게 표현하여 과거와 미래가 공존하는 온고지신을
+                <br />
+                그래픽으로 표현하였습니다.
+              </p>
+            </div>
+          </Fade>
         </div>
 
         <div className="bg-black  bg-cover bg-center pt-[500px]">
@@ -128,6 +293,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
+
       <div className="section5">
         <div className="last bg-[#0649EC]  bg-cover bg-center h-auto text-white flex flex-col ">
           <div className="flex justify-center pt-[285px] cursor-pointer  ">
@@ -204,6 +370,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
+
       <div className="footer bg-[#0649EC] border-t-[1px] border-white h-auto px-[200px]">
         <div className="py-[150px] text-white">
           <h2 className="text-[25px] mb-[10px] ">
