@@ -65,8 +65,11 @@ function Designer({ students }: IndexProps) {
                 <p
                   onClick={() => {
                     setStudentId(student.id);
-                    slider.current.slickGoTo(index);
-                    slider.current.slickPause();
+                    slider.current?.slickGoTo(index);
+                    // slider.current?.slickPause();
+                    setTimeout(() => {
+                      slider.current?.slickPause();
+                    }, 1000);
                     setTimeout(() => {
                       slider.current?.slickPlay();
                     }, 4000);
