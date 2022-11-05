@@ -66,13 +66,15 @@ function Designer({ students }: IndexProps) {
                   onClick={() => {
                     setStudentId(student.id);
                     slider.current?.slickGoTo(index);
-                    // slider.current?.slickPause();
                     setTimeout(() => {
                       slider.current?.slickPause();
-                    }, 1000);
-                    setTimeout(() => {
-                      slider.current?.slickPlay();
-                    }, 4000);
+                    }, 1500);
+                    // setTimeout(() => {
+                    //   slider.current?.slickPause();
+                    // }, 1000);
+                    // setTimeout(() => {
+                    //   slider.current?.slickPlay();
+                    // }, 4000);
                   }}
                   className="text-[18px] mr-[43px] mt-[15px] font-extralight w-[4vw] truncate text-center hover:underline cursor-pointer"
                 >

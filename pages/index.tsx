@@ -360,9 +360,9 @@ const Home: NextPage = () => {
               </div>
               {/* <div className="grid grid-cols-6 space-x-[74px] pt-[55px] ">
                 <h1> </h1>
-                <p className="text-[20px] font-extralight">개발팀</p>
-                <p className="text-[20px] font-extralight">민준수</p>
-                <p className="text-[20px] font-extralight">박재현</p>
+                <p className="text-[20px] fonts-extralight">개발팀</p>
+                <p className="text-[20px] fonts-extralight">민준수</p>
+                <p className="text-[20px] fonts-extralight">박재현</p>
                 <p> </p>
                 <p> </p>
               </div> */}

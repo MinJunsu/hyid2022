@@ -225,25 +225,28 @@ function Dummy() {
           setShowModal(false);
         }}
       >
-        <div className="flex items-center cursor-pointer">
+        <div className="flex items-center cursor-pointer  ">
+          <div className="absolute top-6">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+            >
+              <path
+                id="패스_237"
+                data-name="패스 237"
+                d="M120.587,74.192l-2.678-4.384L106.139,77.46,107.265,64H101.91l1.126,13.46L91.265,69.808l-2.678,4.384L101.484,80l-12.9,5.808,2.678,4.384,11.771-7.652L101.91,96h5.356l-1.126-13.46,11.771,7.652,2.678-4.384L107.69,80Z"
+                transform="translate(-88.587 -64)"
+                fill="#ff7437"
+              />
+            </svg>
+          </div>
+
           {[1, 2].map((res, idx) => {
             return (
-              <div className="flex space-x-4 justify-start" key={idx}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                >
-                  <path
-                    id="패스_237"
-                    data-name="패스 237"
-                    d="M120.587,74.192l-2.678-4.384L106.139,77.46,107.265,64H101.91l1.126,13.46L91.265,69.808l-2.678,4.384L101.484,80l-12.9,5.808,2.678,4.384,11.771-7.652L101.91,96h5.356l-1.126-13.46,11.771,7.652,2.678-4.384L107.69,80Z"
-                    transform="translate(-88.587 -64)"
-                    fill="#ff7437"
-                  />
-                </svg>
-                <div>
+              <div className="flex justify-start ml-11 " key={idx}>
+                <div className="mr-4">
                   <h2 className="text-white text-[25px]">이다빈</h2>
                   <h3 className="text-white text-[15px]">DABIN LEE</h3>
                   <p className="text-white my-[18px] ">dabin123 @naver.com</p>
