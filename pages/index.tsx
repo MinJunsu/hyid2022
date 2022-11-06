@@ -57,7 +57,7 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
-    console.log("ScrollY is ", ScrollY); // ScrollY가 변화할때마다 값을 콘솔에 출력
+    // console.log("ScrollY is ", ScrollY); // ScrollY가 변화할때마다 값을 콘솔에 출력
     //1000
     const section1 = window.innerHeight - 100;
     //2000
@@ -84,14 +84,14 @@ const Home: NextPage = () => {
     const watch = () => {
       window.addEventListener("scroll", handleFollow);
     };
-    watch(); // addEventListener 함수를 실행
+    watch();
     return () => {
-      window.removeEventListener("scroll", handleFollow); // addEventListener 함수를 삭제
+      window.removeEventListener("scroll", handleFollow);
     };
   });
 
   return (
-    <div className="webView">
+    <div className="webView scroll-smooth">
       <div className="dots fixed text-white z-20 right-8 bottom-[50%] ">
         <Link to="section1" smooth={true} spy={true}>
           <svg

@@ -6,13 +6,16 @@ import "slick-carousel/slick/slick-theme.css";
 import Nav from "../navbar/nav";
 import { useRef, useState } from "react";
 import router from "next/router";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 interface IndexProps {
   students: Student[];
 }
 
 function Designer({ students }: IndexProps) {
-  //학생 Select State
+  // 학생 Select State
+
   const [studentId, setStudentId] = useState<number>(0);
 
   const slider = useRef<any>();
@@ -64,17 +67,20 @@ function Designer({ students }: IndexProps) {
               <div key={index}>
                 <p
                   onClick={() => {
-                    setStudentId(student.id);
+                    //
+                    // console.log(index);
                     slider.current?.slickGoTo(index);
-                    setTimeout(() => {
-                      slider.current?.slickPause();
-                    }, 1500);
+                    setStudentId(student.id);
+                    slider.current?.slickPause();
+                    // setTimeout(() => {
+                    //   slider.current?.slickPause();
+                    // }, 1500);
                     // setTimeout(() => {
                     //   slider.current?.slickPause();
                     // }, 1000);
-                    // setTimeout(() => {
-                    //   slider.current?.slickPlay();
-                    // }, 4000);
+                    setTimeout(() => {
+                      slider.current?.slickPlay();
+                    }, 3000);
                   }}
                   className="text-[18px] mr-[43px] mt-[15px] font-extralight w-[4vw] truncate text-center hover:underline cursor-pointer"
                 >
