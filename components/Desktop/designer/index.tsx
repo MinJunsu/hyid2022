@@ -70,17 +70,21 @@ function Designer({ students }: IndexProps) {
                     //
                     // console.log(index);
                     slider.current?.slickGoTo(index);
-                    setStudentId(student.id);
                     slider.current?.slickPause();
+                    setStudentId(student.id);
+
                     // setTimeout(() => {
                     //   slider.current?.slickPause();
                     // }, 1500);
                     // setTimeout(() => {
                     //   slider.current?.slickPause();
                     // }, 1000);
+                    // setTimeout(() => {
+                    //   setStudentId(0);
+                    // }, 6000);
                     setTimeout(() => {
                       slider.current?.slickPlay();
-                    }, 3000);
+                    }, 5000);
                   }}
                   className="text-[18px] mr-[43px] mt-[15px] font-extralight w-[4vw] truncate text-center hover:underline cursor-pointer"
                 >
