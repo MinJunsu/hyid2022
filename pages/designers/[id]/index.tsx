@@ -11,7 +11,10 @@ function Index() {
     return axios.get(`/api/students/${id}`).then((res) => res.data);
   };
 
-  const { data, isLoading } = useQuery<Student>(["students"], getStudentWorks);
+  const { data, isLoading } = useQuery<Student>(
+    ["students", id],
+    getStudentWorks
+  );
 
   if (isLoading) {
     return <div></div>;

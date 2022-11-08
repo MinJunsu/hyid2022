@@ -17,6 +17,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const Home: NextPage = () => {
   const mobile = useMobile();
+
   // const getViewCount = () => {
   //   return axios.get("/api/").then((res) => res.data);
   // };
@@ -30,7 +31,7 @@ const Home: NextPage = () => {
     speed: 3000,
     fade: false,
     slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
     focusOnSelect: true,
@@ -95,9 +96,6 @@ const Home: NextPage = () => {
       <div className="dots fixed text-white z-20 right-8 bottom-[50%] ">
         <Link to="section1" smooth={true} spy={true}>
           <svg
-            onClick={() => {
-              setPages(0);
-            }}
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
             width="10"
@@ -117,9 +115,6 @@ const Home: NextPage = () => {
         </Link>
         <Link to="section2" smooth={true} spy={true}>
           <svg
-            onClick={() => {
-              setPages(1);
-            }}
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
             width="10"
@@ -139,9 +134,6 @@ const Home: NextPage = () => {
         </Link>
         <Link to="section3" smooth={true} spy={true}>
           <svg
-            onClick={() => {
-              setPages(2);
-            }}
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
             width="10"
@@ -161,9 +153,6 @@ const Home: NextPage = () => {
         </Link>
         <Link to="section4" smooth={true} spy={true}>
           <svg
-            onClick={() => {
-              setPages(3);
-            }}
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
             width="10"

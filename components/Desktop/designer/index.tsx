@@ -50,7 +50,7 @@ function Designer({ students }: IndexProps) {
         <Nav color="white" />
       </div>
 
-      <div className="relative top-[175px] left-[194px]">
+      <div className="relative top-[175px] left-[194px] ">
         <div className="absolute left-20 bottom-8 animate-pulse">
           <Image src="/web/icon/design_star.png" height={77} width={77} />
         </div>
@@ -59,7 +59,7 @@ function Designer({ students }: IndexProps) {
           <br /> name of the designer
         </p>
       </div>
-      <div className="relative -top-[64px] text-white -right-[751px]  ">
+      <div className="relative -top-[64px] text-white -right-[751px] w-[30vw]  ">
         <h2 className=" text-[28px]">Designers</h2>
         <div className="studentName flex flex-wrap items-center justify-start w-[950px]  ">
           {students?.map((student, index) => {
@@ -112,7 +112,12 @@ function Designer({ students }: IndexProps) {
                       : "text-white"
                   }`}
                 >
-                  <Image src={student.profileImage!} width={330} height={420} />
+                  <Image
+                    priority={true}
+                    src={student.profileImage!}
+                    width={330}
+                    height={420}
+                  />
                   <div
                     className={`w-[360px]  mt-[20px]  ${
                       studentId === student.id ? "w-[360px]" : null
