@@ -24,5 +24,10 @@ function Index() {
   );
 }
 // query id 새로고침 시 undefinded 방지
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
 
 export default Index;
