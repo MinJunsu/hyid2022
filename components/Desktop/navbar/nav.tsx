@@ -7,7 +7,7 @@ interface navProps {
 
 function Nav({ color }: navProps) {
   return (
-    <div className="flex justify-between bg-transparent z-50">
+    <div className="flex justify-between bg-transparent z-50 ">
       <div
         className="logo cursor-pointer"
         onClick={() => {

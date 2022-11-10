@@ -100,6 +100,7 @@ function Designer({ students }: IndexProps) {
           {students?.map((student, index) => {
             return (
               <div
+                className="cursor-pointer"
                 key={index}
                 onClick={() => {
                   router.push(`designers/${student.id}`);
