@@ -26,6 +26,7 @@ function Designer({ students }: IndexProps) {
     speed: 2500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    pauseOnHover: false,
     autoplay: true,
     autoplaySpeed: 2500,
     focusOnSelect: true,
@@ -59,7 +60,7 @@ function Designer({ students }: IndexProps) {
           <br /> name of the designer
         </p>
       </div>
-      <div className="relative -top-[64px] text-white -right-[751px] w-[30vw]  ">
+      <div className="relative -top-[64px] text-white -right-[751px] w-[30vw]">
         <h2 className=" text-[28px]">Designers</h2>
         <div className="studentName flex flex-wrap items-center justify-start w-[950px]  ">
           {students?.map((student, index) => {
@@ -67,21 +68,10 @@ function Designer({ students }: IndexProps) {
               <div key={index}>
                 <p
                   onClick={() => {
-                    //
-                    // console.log(index);
                     slider.current?.slickGoTo(index);
                     slider.current?.slickPause();
                     setStudentId(student.id);
 
-                    // setTimeout(() => {
-                    //   slider.current?.slickPause();
-                    // }, 1500);
-                    // setTimeout(() => {
-                    //   slider.current?.slickPause();
-                    // }, 1000);
-                    // setTimeout(() => {
-                    //   setStudentId(0);
-                    // }, 6000);
                     setTimeout(() => {
                       slider.current?.slickPlay();
                     }, 5000);
@@ -107,7 +97,7 @@ function Designer({ students }: IndexProps) {
                 }}
               >
                 <div
-                  className={`${
+                  className={`hover:w-[360px] hover:bg-white hover:text-center hover:h-[550px] hover:pt-[15px]  hover:text-blue-700 text-white ${
                     studentId === student.id
                       ? "w-[360px] bg-white text-center h-[550px] pt-[15px]  text-blue-700"
                       : "text-white"

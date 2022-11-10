@@ -33,20 +33,40 @@ function Index({ student }: StudentProps) {
                   );
                 })}
               </div>
+
               <div className="mt-[135px]">
-                <div className="E-mail flex items-center space-x-[100px] ">
-                  <p className="w-[90px]">E-mail</p>
-                  <p>{student.email}</p>
+                <div
+                  className={`
+                  ${student.email === null ? "hidden" : null}
+                `}
+                >
+                  <div className="E-mail flex items-center space-x-[100px] ">
+                    <p className="w-[90px]">E-mail</p>
+                    <p>{student.email}</p>
+                  </div>
                 </div>
-                <div className="instargram flex items-center space-x-[100px]">
-                  <p className="w-[90px]">Instargram</p>
-                  <a href={`https://www.instagram.com/${student.snsLink}/`}>
-                    {student.snsLink}
-                  </a>
+
+                <div
+                  className={`
+                  ${student.snsLink === null ? "hidden" : null}
+                `}
+                >
+                  <div className="instargram flex items-center space-x-[100px]">
+                    <p className="w-[90px]">Instargram</p>
+                    <a href={`https://www.instagram.com/${student.snsLink}/`}>
+                      {student.snsLink}
+                    </a>
+                  </div>
                 </div>
-                <div className="website flex items-center space-x-[100px]">
-                  <p className="w-[90px]">Web Site</p>
-                  <p>{student.webSite}</p>
+                <div
+                  className={`
+                  ${student.webSite === null ? "hidden" : null}
+                `}
+                >
+                  <div className="website flex items-center space-x-[100px]">
+                    <p className="w-[90px]">Web Site</p>
+                    <p>{student.webSite}</p>
+                  </div>
                 </div>
               </div>
               <div className="works flex  mt-[42px] space-x-[50px]">
