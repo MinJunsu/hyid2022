@@ -9,7 +9,7 @@ const Fade = require("react-reveal/Fade");
 import MobileHome from "../components/mobile";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import Index from "../components/Desktop/main";
+import Index from "../components/Desktop/main/index";
 // import { viewCount } from "./api";
 
 const Home: NextPage = () => {
