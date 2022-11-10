@@ -22,7 +22,7 @@ function Index({ student }: StudentProps) {
                 <h2 className="text-[40px]">{student.nameKor}</h2>
                 <h3 className="text-[25px]">{student.name}</h3>
               </div>
-              <div className="tag mt-[35px]">
+              <div className="tag mt-[35px] flex space-x-4">
                 {student.tags.map(({ tag }: { tag: Tag }, index: number) => {
                   return (
                     <div key={index}>
