@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import router from "next/router";
 
-// import Box from "@mui/material/Box";
-// import LinearProgress from "@mui/material/LinearProgress";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 import Header from "@components/desktop/header";
 import { CategoryWithWorks } from "@pages/api/category";
 
@@ -147,7 +147,7 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
                 className=" w-[23%] hover:block group mb-7 relative "
                 onClick={() => {
                   setLoading(true);
-                  setTimeout(() => router.push("/dummy"), 3000);
+                  setTimeout(() => router.push(`/works/${index}`), 3000);
 
                   router.push(`/works/${index}`);
                 }}

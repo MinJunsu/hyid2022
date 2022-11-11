@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CategoryWithWorks } from "@pages/api/category";
 import type { NextPage } from "next";
 import MobileWorks from "@components/mobile/works";
+import Index from "@components/desktop/works";
 
 const WorksPage: NextPage = () => {
   const getCategory = () => {
@@ -20,8 +21,8 @@ const WorksPage: NextPage = () => {
 
   return (
     <div>
-      <MobileWorks categories={data!} />
-      {/*<Index categories={data!} />*/}
+      {/*<MobileWorks categories={data!} />*/}
+      <Index categories={data!} />
     </div>
   );
 };
