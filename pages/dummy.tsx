@@ -1,10 +1,29 @@
 import Image from "next/image";
 import router from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 function Dummy() {
   const [showButton, setShowButton] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const outside = useRef<any>();
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handlerOutside);
+    return () => {
+      document.removeEventListener("mousedown", handlerOutside);
+    };
+  });
+  //
+  const handlerOutside = (e: any) => {
+    if (!outside.current.contains(e.target)) {
+      toggleSide();
+    }
+  };
+
+  const toggleSide = () => {
+    setShowModal(false);
+  };
 
   const scrollTop = () => {
     window.scrollTo({
@@ -15,7 +34,7 @@ function Dummy() {
 
   useEffect(() => {
     const handleShowButton = () => {
-      if (window.scrollY > 400) {
+      if (window.scrollY > (window.innerHeight / 3) * 2) {
         setShowButton(true);
       } else {
         setShowButton(false);
@@ -169,64 +188,16 @@ function Dummy() {
           </button>
         </div>
       )}
-      <div
-        className={`maker w-[66px] h-[341px] bg-[#FF7437] fixed right-0 top-48 origin-center    ${
-          showModal ? "hidden  origin-center " : "block  origin-center "
-        }  `}
-        onClick={() => {
-          setShowModal(true);
-        }}
-      >
-        <div className="flex-col justify-center align-middle items-center text-center px-[20px] py-[30px]">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-          >
-            <path
-              id="패스_237"
-              data-name="패스 237"
-              d="M120.587,74.192l-2.678-4.384L106.139,77.46,107.265,64H101.91l1.126,13.46L91.265,69.808l-2.678,4.384L101.484,80l-12.9,5.808,2.678,4.384,11.771-7.652L101.91,96h5.356l-1.126-13.46,11.771,7.652,2.678-4.384L107.69,80Z"
-              transform="translate(-88.587 -64)"
-              fill="#0649ec"
-            />
-          </svg>
-          <svg
-            className="mt-[25px]"
-            xmlns="http://www.w3.org/2000/svg"
-            width="34"
-            height="2"
-            viewBox="0 0 34 2"
-          >
-            <path
-              id="패스_261"
-              data-name="패스 261"
-              d="M0,0H34"
-              transform="translate(0 1)"
-              fill="none"
-              stroke="#0649ec"
-              strokeWidth="2"
-            />
-          </svg>
-          <p className="writing-mode-vertical-lr mt-[100px] text-[#0649EC] text-[25px] ">
-            Designer
-          </p>
-        </div>
-      </div>
-
-      {/*디자이너 펼쳤을 때*/}
-
-      <div
-        className={`maker  h-[341px] bg-[#000000] fixed right-0 top-48 p-5  origin-center    ${
-          showModal ? "block ease-in duration-300 " : "hidden  origin-center "
-        }`}
-        onClick={() => {
-          setShowModal(false);
-        }}
-      >
-        <div className="flex items-center cursor-pointer  ">
-          <div className="absolute top-6">
+      <div ref={outside}>
+        <div
+          className={`maker w-[66px] h-[341px] bg-[#FF7437] fixed right-0 top-48 origin-center     ${
+            showModal ? "hidden  origin-center " : "block  origin-center "
+          }  `}
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
+          <div className="flex-col justify-center align-middle items-center text-center px-[20px] py-[30px]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -238,27 +209,83 @@ function Dummy() {
                 data-name="패스 237"
                 d="M120.587,74.192l-2.678-4.384L106.139,77.46,107.265,64H101.91l1.126,13.46L91.265,69.808l-2.678,4.384L101.484,80l-12.9,5.808,2.678,4.384,11.771-7.652L101.91,96h5.356l-1.126-13.46,11.771,7.652,2.678-4.384L107.69,80Z"
                 transform="translate(-88.587 -64)"
-                fill="#ff7437"
+                fill="#0649ec"
               />
             </svg>
+            <svg
+              className="mt-[25px]"
+              xmlns="http://www.w3.org/2000/svg"
+              width="34"
+              height="2"
+              viewBox="0 0 34 2"
+            >
+              <path
+                id="패스_261"
+                data-name="패스 261"
+                d="M0,0H34"
+                transform="translate(0 1)"
+                fill="none"
+                stroke="#0649ec"
+                strokeWidth="2"
+              />
+            </svg>
+            <p className="writing-mode-vertical-lr mt-[100px] text-[#0649EC] text-[25px] ease-in ">
+              Designer
+            </p>
           </div>
+        </div>
 
-          {[1, 2].map((res, idx) => {
-            return (
-              <div className="flex justify-start ml-11 " key={idx}>
-                <div className="mr-4">
-                  <h2 className="text-white text-[25px]">이다빈</h2>
-                  <h3 className="text-white text-[15px]">DABIN LEE</h3>
-                  <p className="text-white my-[18px] ">dabin123 @naver.com</p>
-                  <Image
-                    src="/dummy/images/details.png"
-                    width={215}
-                    height={183}
-                  />
+        {/*디자이너 펼쳤을 때*/}
+
+        <div
+          className={`maker  h-[341px] bg-[#000000] fixed right-0 top-48 p-5  origin-center ease-in-out    ${
+            showModal ? "block ease-in duration-300 " : "hidden  origin-center "
+          }`}
+          // onClick={() => {
+          //   setShowModal(false);
+          // }}
+        >
+          <div className="flex items-center cursor-pointer  ">
+            <div className="absolute top-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+              >
+                <path
+                  id="패스_237"
+                  data-name="패스 237"
+                  d="M120.587,74.192l-2.678-4.384L106.139,77.46,107.265,64H101.91l1.126,13.46L91.265,69.808l-2.678,4.384L101.484,80l-12.9,5.808,2.678,4.384,11.771-7.652L101.91,96h5.356l-1.126-13.46,11.771,7.652,2.678-4.384L107.69,80Z"
+                  transform="translate(-88.587 -64)"
+                  fill="#ff7437"
+                />
+              </svg>
+            </div>
+
+            {[1, 2].map((res, idx) => {
+              return (
+                <div
+                  onClick={() => {
+                    console.log("hello");
+                  }}
+                  className="flex justify-start ml-11 "
+                  key={idx}
+                >
+                  <div className="mr-4">
+                    <h2 className="text-white text-[25px]">이다빈</h2>
+                    <h3 className="text-white text-[15px]">DABIN LEE</h3>
+                    <p className="text-white my-[18px] ">dabin123 @naver.com</p>
+                    <Image
+                      src="/dummy/images/details.png"
+                      width={215}
+                      height={183}
+                    />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
