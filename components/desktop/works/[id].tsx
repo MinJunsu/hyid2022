@@ -1,9 +1,27 @@
 import Image from "next/image";
 import router from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
-function Dummy() {
+const animation = {
+  initial: {
+    transform: `translateY(1000px)`,
+    opacity: 0,
+    transition: `transform 10s ease-in-out`,
+  },
+  animate: {
+    transform: `translateY(0px)`,
+    opacity: 1,
+    transition: `transform 10s ease`,
+  },
+  exit: {
+    transform: `translateY(1000px)`,
+    opacity: 0,
+    transition: `transform 10s ease`,
+  },
+};
+
+function WorkDetail() {
   const [showButton, setShowButton] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const outside = useRef<any>();
@@ -309,22 +327,5 @@ function Dummy() {
     </AnimatePresence>
   );
 }
-const animate = {
-  initial: {
-    transform: `translateY(1000px)`,
-    opacity: 0,
-    transition: `transform 10s ease-in-out`,
-  },
-  animate: {
-    transform: `translateY(0px)`,
-    opacity: 1,
-    transition: `transform 10s ease`,
-  },
-  exit: {
-    transform: `translateY(1000px)`,
-    opacity: 0,
-    transition: `transform 10s ease`,
-  },
-};
 
-export default Dummy;
+export default WorkDetail;

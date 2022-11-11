@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Nav from "../navbar/nav";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import router from "next/router";
 import { Link } from "react-scroll";
+import Header from "@components/desktop/header";
+
 const Fade = require("react-reveal/Fade");
 
 function Index() {
@@ -157,7 +158,7 @@ function Index() {
       </div>
       <div className="section1 relative">
         <div className="bg-[url('/web/background/web_main_banner_1_gif.gif')] bg-cover bg-center h-[100vh] px-[40px] py-[20px]">
-          <Nav color="white" />
+          <Header color="white" />
           <Link to="section2" spy={true} smooth={true}>
             <div className="flex items-center space-x-[18px] absolute bottom-5 animate-bounce cursor-pointer">
               <svg
@@ -303,33 +304,33 @@ function Index() {
                 <h1 className="text-[25px]">졸업준비위원회</h1>
                 <p className="text-[20px] font-extralight">위원장</p>
                 <p className="text-[20px] font-extralight">한윤정</p>
-                <p> </p>
-                <p> </p>
-                <p> </p>
+                <p></p>
+                <p></p>
+                <p></p>
               </div>
               <div className="grid grid-cols-6 space-x-[74px]  pt-[55px]">
-                <h1> </h1>
+                <h1></h1>
                 <p className="text-[20px] font-extralight">부위원장</p>
                 <p className="text-[20px] font-extralight">임예지</p>
-                <p className="text-[20px] font-extralight"> </p>
-                <p> </p>
-                <p> </p>
+                <p className="text-[20px] font-extralight"></p>
+                <p></p>
+                <p></p>
               </div>
               <div className="grid grid-cols-6 space-x-[74px]  pt-[55px]">
-                <h1> </h1>
+                <h1></h1>
                 <p className="text-[20px] font-extralight">기획/홍보팀</p>
                 <p className="text-[20px] font-extralight">이다은</p>
                 <p className="text-[20px] font-extralight">공일빈</p>
-                <p> </p>
-                <p> </p>
+                <p></p>
+                <p></p>
               </div>
               <div className="grid grid-cols-6 space-x-[74px] pt-[55px] ">
-                <h1> </h1>
+                <h1></h1>
                 <p className="text-[20px] font-extralight">그래픽팀</p>
                 <p className="text-[20px] font-extralight">이다빈</p>
                 <p className="text-[20px] font-extralight">이민주</p>
                 <p className="text-[20px] font-extralight">조호현</p>
-                <p> </p>
+                <p></p>
               </div>
               {/* <div className="grid grid-cols-6 space-x-[74px] pt-[55px] ">
                 <h1> </h1>

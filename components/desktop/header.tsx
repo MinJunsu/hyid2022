@@ -1,19 +1,14 @@
 import Image from "next/image";
 import router from "next/router";
 
-interface navProps {
+interface NavProps {
   color: string;
 }
 
-function Nav({ color }: navProps) {
+function Header({ color }: NavProps) {
   return (
     <div className="flex justify-between bg-transparent z-50 ">
-      <div
-        className="logo cursor-pointer"
-        onClick={() => {
-          router.push("/");
-        }}
-      >
+      <div className="logo cursor-pointer" onClick={() => router.push("/")}>
         <Image
           src={`/web/logo/${
             color === "black" ? "web_logo_black.svg" : "web_logo_white.svg"
@@ -50,4 +45,5 @@ function Nav({ color }: navProps) {
     </div>
   );
 }
-export default Nav;
+
+export default Header;

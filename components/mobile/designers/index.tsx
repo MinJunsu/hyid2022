@@ -1,11 +1,11 @@
 import { Student } from "@prisma/client";
-import Header from "../header";
-import InputBox from "../input-box";
 import { useRouter } from "next/router";
 import * as Hangul from "hangul-js";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import InputBox from "@components/mobile/input-box";
+import Header from "@components/mobile/header";
 
 interface MobileDesignerProps {
   students: Student[];

@@ -1,12 +1,12 @@
-import { CategoryWithWork } from "../../../pages/api/category";
+import { CategoryWithWorks } from "@pages/api/category";
 import { useEffect, useState } from "react";
-import MobileCategory from "./category";
-import Header from "../header";
-import InputBox from "../input-box";
 import { useRouter } from "next/router";
+import MobileCategory from "@components/mobile/works/category";
+import InputBox from "@components/mobile/input-box";
+import Header from "@components/mobile/header";
 
 interface MobileWorksProps {
-  categories: CategoryWithWork[];
+  categories: CategoryWithWorks[];
 }
 
 function MobileWorks({ categories }: MobileWorksProps) {

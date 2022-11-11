@@ -1,7 +1,7 @@
-import Header from "../header";
 import Image from "next/image";
-import { StudentWithWorksAndTags } from "../../../pages/api/students/[id]";
+import { StudentWithWorksAndTags } from "@pages/api/students/[id]";
 import Link from "next/link";
+import Header from "@components/mobile/header";
 
 interface MobileDesignerDetailProps {
   student: StudentWithWorksAndTags;
