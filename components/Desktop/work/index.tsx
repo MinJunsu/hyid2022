@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import router from "next/router";
 import { Category } from "@prisma/client";
 import Nav from "../navbar/nav";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 
 interface IndexProps {
   categories: Category[];
@@ -18,34 +20,66 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
   const setClose = () => {
     setModal(false);
   };
+  // loading 바 관련 State
+  const [loading, setLoading] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress === 100) {
+          return 0;
+        }
+        const diff = 10;
+        return Math.min(oldProgress + diff, 100);
+      });
+    }, 430);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   return (
-    <div className="cursor-[url(/web/mouse/cursor.cur),_pointer]">
+    <div>
+      <div className={`${loading ? "block" : "hidden"}`}>
+        <Box sx={{ width: "100%" }}>
+          <LinearProgress
+            variant="determinate"
+            value={progress}
+            color="inherit"
+          />
+        </Box>
+      </div>
       <div
-        className={`works px-[40px] py-[25px] bg-white cursor-works  ${modal ? "blur-lg" : null
-          } `}
+        className={`works px-[40px] py-[25px] bg-white cursor-works  ${
+          modal ? "blur-lg" : null
+        } `}
       >
         <div>
           <Nav color="black" />
         </div>
-        <div className="tabMenu flex items-center mt-[76px] mb-[53px] ">
-          <div className=" flex space-x-[9px]">
+        <div className="tabMenu flex items-center mt-[76px] mb-[53px] cursor-pointer ">
+          <div className=" flex space-x-[9px] ">
             {categories?.map((category, index) => {
               return (
-                <div key={index} className="description ">
+                <div
+                  onClick={() => setTypes(index)}
+                  key={index}
+                  className="description  "
+                >
                   <p
-                    onClick={() => {
-                      setTypes(index);
-                    }}
-                    className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px]  border-[1px] border-[#DBDBDB] w-full ${types === index
-                      ? "bg-[#0649EC] text-white"
-                      : "bg-white text-black"
-                      }`}
+                    className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px]  border-[1px] border-[#DBDBDB] w-full ${
+                      types === index
+                        ? "bg-[#0649EC] text-white"
+                        : "bg-white text-black"
+                    }`}
                   >
                     {category.name.toUpperCase()}
                     <span
-                      className={`${types === index ? "text-white" : "text-[#0649EC]"
-                        } `}
+                      className={`${
+                        types === index ? "text-white" : "text-[#0649EC]"
+                      } `}
                     >
                       80
                     </span>
@@ -100,14 +134,15 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
             />
           </div>
         </div>
-        <div className="workList flex flex-wrap justify-between   ">
+        <div className="workList flex flex-wrap justify-between cursor-[url(/web/mouse/cursor.cur),_pointer]">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((res, index) => {
             return (
               <div
                 key={index}
                 className=" w-[23%] hover:block group mb-7 relative "
                 onClick={() => {
-                  router.push(`dummy`);
+                  setLoading(true);
+                  setTimeout(() => router.push("/dummy"), 3000);
                 }}
               >
                 <Image
@@ -115,12 +150,14 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
                   width={428}
                   height={366}
                   alt="workImage"
-                  className={`${modal ? null : "hover:opacity-25 duration-300"
-                    } `}
+                  className={`${
+                    modal ? null : "hover:opacity-25 duration-300"
+                  } `}
                 />
                 <div
-                  className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline ${modal ? "hidden" : null
-                    }`}
+                  className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline ${
+                    modal ? "hidden" : null
+                  }`}
                 >
                   <h2 className="text-[25px]">Breeze</h2>
                   <p className="text-[20px]">이다빈</p>
@@ -131,8 +168,9 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
         </div>
       </div>
       <div
-        className={`modal px-[43px] relative max-h-[10px] bottom-[140vh] ${modal ? null : "hidden"
-          } `}
+        className={`modal px-[43px] relative max-h-[10px] bottom-[140vh] ${
+          modal ? null : "hidden"
+        } `}
       >
         <div
           className="closeButton bg-white rounded-[5p%] w-[90px] h-[90px] flex items-center justify-center rounded-full float-right shadow-2xl  hover:scale-105"
@@ -155,8 +193,9 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
                     {category.name}{" "}
                   </h2>
                   <h2
-                    className={`${category.id === 13 ? "hidden" : null
-                      } mx-[10px]`}
+                    className={`${
+                      category.id === 13 ? "hidden" : null
+                    } mx-[10px]`}
                   >
                     ,
                   </h2>

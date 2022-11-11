@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-function Works() {
+function WorksPage() {
   const [types, setTypes] = useState<number>(0);
 
   return (
@@ -123,17 +123,19 @@ function Works() {
                   <p
                     onClick={() => {
                       setTypes(index);
-                      console.log(types, index);
+                      // console.log(types, index);
                     }}
-                    className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px] cursor-pointer border-[1px] border-[#DBDBDB] w-full ${types === index
-                      ? "bg-[#0649EC] text-white"
-                      : "bg-white text-black"
-                      }`}
+                    className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px] cursor-pointer border-[1px] border-[#DBDBDB] w-full ${
+                      types === index
+                        ? "bg-[#0649EC] text-white"
+                        : "bg-white text-black"
+                    }`}
                   >
                     {res}
                     <span
-                      className={`${types === index ? "text-white" : "text-[#0649EC]"
-                        } `}
+                      className={`${
+                        types === index ? "text-white" : "text-[#0649EC]"
+                      } `}
                     >
                       80
                     </span>
@@ -192,7 +194,10 @@ function Works() {
       <div className="workList flex flex-wrap justify-between   ">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((res, index) => {
           return (
-            <div className=" w-[23%] hover:block group mb-7 relative" key={index}>
+            <div
+              className=" w-[23%] hover:block group mb-7 relative"
+              key={index}
+            >
               <Image
                 src="/dummy/images/WorksImage.png"
                 width={428}
@@ -214,4 +219,4 @@ function Works() {
   );
 }
 
-export default Works;
+export default WorksPage;

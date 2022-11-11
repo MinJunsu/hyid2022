@@ -2,6 +2,8 @@ import Axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { CategoryWithWork } from "./api/category";
 import MobileWorks from "../components/mobile/works";
+import WorksPage from "../components/Desktop/works";
+import Index from "../components/Desktop/work";
 
 function Works() {
   const getCategory = () => {
@@ -18,8 +20,8 @@ function Works() {
 
   return (
     <div>
-      <MobileWorks categories={data!} />
-      {/*<Id categories={data!} />*/}
+      {/*<MobileWorks categories={data!} />*/}
+      <Index categories={data!} />
     </div>
   );
 }
