@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import router from "next/router";
-import { Category } from "@prisma/client";
-import Nav from "../navbar/nav";
+
+import Header from "@components/desktop/header";
+import { CategoryWithWorks } from "@pages/api/category";
 
 interface IndexProps {
-  categories: Category[];
+  categories: CategoryWithWorks[];
 }
+
 interface Close {
   modalState: boolean;
 }
@@ -22,11 +24,12 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
   return (
     <div className="cursor-[url(/web/mouse/cursor.cur),_pointer]">
       <div
-        className={`works px-[40px] py-[25px] bg-white cursor-works  ${modal ? "blur-lg" : null
-          } `}
+        className={`works px-[40px] py-[25px] bg-white cursor-works  ${
+          modal ? "blur-lg" : null
+        } `}
       >
         <div>
-          <Nav color="black" />
+          <Header color="black" />
         </div>
         <div className="tabMenu flex items-center mt-[76px] mb-[53px] ">
           <div className=" flex space-x-[9px]">
@@ -37,15 +40,17 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
                     onClick={() => {
                       setTypes(index);
                     }}
-                    className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px]  border-[1px] border-[#DBDBDB] w-full ${types === index
-                      ? "bg-[#0649EC] text-white"
-                      : "bg-white text-black"
-                      }`}
+                    className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px]  border-[1px] border-[#DBDBDB] w-full ${
+                      types === index
+                        ? "bg-[#0649EC] text-white"
+                        : "bg-white text-black"
+                    }`}
                   >
                     {category.name.toUpperCase()}
                     <span
-                      className={`${types === index ? "text-white" : "text-[#0649EC]"
-                        } `}
+                      className={`${
+                        types === index ? "text-white" : "text-[#0649EC]"
+                      } `}
                     >
                       80
                     </span>
@@ -107,7 +112,7 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
                 key={index}
                 className=" w-[23%] hover:block group mb-7 relative "
                 onClick={() => {
-                  router.push(`dummy`);
+                  router.push(`/works/${index}`);
                 }}
               >
                 <Image
@@ -115,12 +120,14 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
                   width={428}
                   height={366}
                   alt="workImage"
-                  className={`${modal ? null : "hover:opacity-25 duration-300"
-                    } `}
+                  className={`${
+                    modal ? null : "hover:opacity-25 duration-300"
+                  } `}
                 />
                 <div
-                  className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline ${modal ? "hidden" : null
-                    }`}
+                  className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline ${
+                    modal ? "hidden" : null
+                  }`}
                 >
                   <h2 className="text-[25px]">Breeze</h2>
                   <p className="text-[20px]">이다빈</p>
@@ -131,8 +138,9 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
         </div>
       </div>
       <div
-        className={`modal px-[43px] relative max-h-[10px] bottom-[140vh] ${modal ? null : "hidden"
-          } `}
+        className={`modal px-[43px] relative max-h-[10px] bottom-[140vh] ${
+          modal ? null : "hidden"
+        } `}
       >
         <div
           className="closeButton bg-white rounded-[5p%] w-[90px] h-[90px] flex items-center justify-center rounded-full float-right shadow-2xl  hover:scale-105"
@@ -155,8 +163,9 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
                     {category.name}{" "}
                   </h2>
                   <h2
-                    className={`${category.id === 13 ? "hidden" : null
-                      } mx-[10px]`}
+                    className={`${
+                      category.id === 13 ? "hidden" : null
+                    } mx-[10px]`}
                   >
                     ,
                   </h2>

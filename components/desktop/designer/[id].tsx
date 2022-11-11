@@ -1,4 +1,4 @@
-import Nav from "../../navbar/nav";
+import Header from "../header";
 import Image from "next/image";
 import { Tag } from "@prisma/client";
 
@@ -6,17 +6,17 @@ interface StudentProps {
   student: any;
 }
 
-function Index({ student }: StudentProps) {
+function Id({ student }: StudentProps) {
   return (
     <div className="px-[40px] py-[20px]">
-      <Nav color="black" />
+      <Header color="black" />
 
       <div className="fixed left-0 top-0 w-[100vw] h-[100vh] -z-50">
         <div className="flex h-full -z-30">
           <div className="profile w-[45%] bg-[#EFEFEF]  h-full flex justify-center items-center">
             <Image src={student.profileImage!} width={455} height={560} />
           </div>
-          <div className="작품 전시 페이지 w-[55%] h-full flex items-center ml-[115px] ">
+          <div className="w-[55%] h-full flex items-center ml-[115px] ">
             <div className="w-full">
               <div>
                 <h2 className="text-[40px]">{student.nameKor}</h2>
@@ -93,4 +93,4 @@ function Index({ student }: StudentProps) {
   );
 }
 
-export default Index;
+export default Id;

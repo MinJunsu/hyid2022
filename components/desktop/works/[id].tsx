@@ -1,7 +1,6 @@
 import Image from "next/image";
 import router from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 
 function Dummy() {
   const [showButton, setShowButton] = useState(false);

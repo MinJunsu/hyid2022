@@ -1,13 +1,14 @@
 import Axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { CategoryWithWork } from "./api/category";
-import MobileWorks from "../components/mobile/works";
+import { CategoryWithWorks } from "@pages/api/category";
+import MobileWorks from "@components/mobile/works";
+import type { NextPage } from "next";
 
-function Works() {
+const WorksPage: NextPage = () => {
   const getCategory = () => {
     return Axios.get("/api/category").then((res) => res.data);
   };
-  const { data, isLoading } = useQuery<CategoryWithWork[]>(
+  const { data, isLoading } = useQuery<CategoryWithWorks[]>(
     ["category"],
     getCategory
   );
@@ -22,6 +23,6 @@ function Works() {
       {/*<Id categories={data!} />*/}
     </div>
   );
-}
+};
 
-export default Works;
+export default WorksPage;
