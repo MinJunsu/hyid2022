@@ -100,15 +100,14 @@ function MobileDesigner({ students }: MobileDesignerProps) {
           return (
             <Link href={`/designers/${student.id}`} key={index}>
               <div
-                className="flex flex-col justify-center items-center cursor-pointer"
+                className="flex flex-col justify-center items-center cursor-pointer m-2"
                 key={index}
               >
-                <div className="1">
+                <div className="w-full aspect-[1/1.31] relative">
                   <Image
                     src={student.profileImage!}
-                    width={184}
-                    height={235}
-                    layout="fixed"
+                    layout="fill"
+                    objectFit="cover"
                   />
                 </div>
                 <div className="my-3 flex flex-col justify-center items-center">

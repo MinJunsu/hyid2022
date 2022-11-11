@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
 
 interface InputBoxProps {
   keyword: string;
@@ -12,7 +11,6 @@ interface SearchWord {
 }
 
 function InputBox({ keyword, setWord }: InputBoxProps) {
-  const router = useRouter();
   const { register, handleSubmit, reset } = useForm<SearchWord>();
   const onSubmit = (word: SearchWord) => {
     reset();
@@ -29,6 +27,7 @@ function InputBox({ keyword, setWord }: InputBoxProps) {
       <div className="flex flex-1">
         <input
           {...register("word")}
+          autoComplete="off"
           placeholder={`${keyword}을 검색하세요`}
           type="text"
           className="mx-2 text-gray-500 focus:outline-none"
