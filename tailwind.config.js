@@ -15,5 +15,6 @@ module.exports = {
     require("tailwindcss-writing-mode")({
       variants: ["responsive", "hover"],
     }),
+    require("tailwind-scrollbar-hide"),
   ],
 };

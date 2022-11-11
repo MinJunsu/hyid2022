@@ -1,13 +1,16 @@
 import Axios from "axios";
-import Index from "../components/Desktop/work";
 import { useQuery } from "@tanstack/react-query";
-import { Category } from "@prisma/client";
+import { CategoryWithWork } from "./api/category";
+import MobileWorks from "../components/mobile/works";
 
 function Works() {
   const getCategory = () => {
     return Axios.get("/api/category").then((res) => res.data);
   };
-  const { data, isLoading } = useQuery<Category[]>(["category"], getCategory);
+  const { data, isLoading } = useQuery<CategoryWithWork[]>(
+    ["category"],
+    getCategory
+  );
 
   if (isLoading) {
     return <div></div>;
@@ -15,8 +18,10 @@ function Works() {
 
   return (
     <div>
-      <Index categories={data!} />
+      <MobileWorks categories={data!} />
+      {/*<Id categories={data!} />*/}
     </div>
   );
 }
+
 export default Works;

@@ -1,35 +1,39 @@
-import { PrismaClient, Category } from '@prisma/client'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { Category, PrismaClient, Work } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from "next";
+
+export interface CategoryWithWork extends Category {
+  works: Work[] | any;
+}
 
 export default async function handler(
-    request: NextApiRequest,
-    response: NextApiResponse<Category[]>
+  request: NextApiRequest,
+  response: NextApiResponse<CategoryWithWork[]>
 ) {
-    const prisma = new PrismaClient();
-    const categories = await prisma.category.findMany({
-        orderBy: [
-            {
-                id: 'asc',
-            },
-        ],
-        include: {
-            works: {
+  const prisma = new PrismaClient();
+  const categories = await prisma.category.findMany({
+    orderBy: [
+      {
+        id: "asc",
+      },
+    ],
+    include: {
+      works: {
+        select: {
+          id: true,
+          title: true,
+          students: {
+            select: {
+              student: {
                 select: {
-                    id: true,
-                    title: true,
-                    students: {
-                        select: {
-                            student: {
-                                select: {
-                                    nameKor: true,
-                                }
-                            }
-                        }
-                    },
-                    thumbnailImage: true,
-                }
-            }
-        }
-    });
-    return response.status(200).json(categories);
+                  nameKor: true,
+                },
+              },
+            },
+          },
+          thumbnailImage: true,
+        },
+      },
+    },
+  });
+  return response.status(200).json(categories);
 }
