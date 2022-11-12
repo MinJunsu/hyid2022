@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const MobileHome: React.FC = () => {
   return (
@@ -8,14 +9,18 @@ const MobileHome: React.FC = () => {
       <div
         className="flex flex-col h-[100vh] bg-cover bg-center"
         style={{
-          backgroundImage: 'url("/mobile/animation/main-animation-1.gif");',
+          backgroundImage: 'url("/mobile/animation/main-animation-1.gif")',
         }}
       >
-        <div className="flex flex-row mx-10 my-14 justify-between items-center">
+        <div className="flex flex-row mx-8 my-6 justify-between items-center">
           <Image src="/mobile/logo_white.png" width={52} height={51} />
           <div className="flex flex-row space-x-5">
-            <span className="text-white font-normal text-xl">WORKS</span>
-            <span className="text-white font-normal text-xl">DESIGNER</span>
+            <Link href="/works/?category=true">
+              <a className="text-white font-normal text-xl">WORKS</a>
+            </Link>
+            <Link href="/designers">
+              <a className="text-white font-normal text-xl">DESIGNER</a>
+            </Link>
           </div>
         </div>
       </div>
@@ -23,7 +28,7 @@ const MobileHome: React.FC = () => {
       <div
         className="flex flex-col h-[100vh] bg-cover bg-center"
         style={{
-          backgroundImage: 'url("/mobile/animation/main-animation-2.gif");',
+          backgroundImage: 'url("/mobile/animation/main-animation-2.gif")',
         }}
       >
         <div className="h-[20%]" />
@@ -68,7 +73,7 @@ const MobileHome: React.FC = () => {
       <div
         className="flex flex-col h-[100vh] bg-cover bg-center"
         style={{
-          backgroundImage: 'url("/mobile/animation/main-animation-3.gif");',
+          backgroundImage: 'url("/mobile/animation/main-animation-3.gif")',
         }}
       >
         <div className="h-[35vh]" />

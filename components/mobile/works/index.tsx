@@ -8,11 +8,11 @@ import Link from "next/link";
 interface MobileWorksProps {
   categories: CategoryWithWorks[];
   keyword: string;
+  isCategory: boolean;
 }
 
-function MobileWorks({ categories }: MobileWorksProps) {
-  // TODO: Set Default Value false
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+function MobileWorks({ categories, keyword, isCategory }: MobileWorksProps) {
+  const [isOpen, setIsOpen] = useState<boolean>(isCategory);
 
   if (isOpen) {
     return (
@@ -53,7 +53,9 @@ function MobileWorks({ categories }: MobileWorksProps) {
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
           return (
             <Link href={`/works/${item}`} key={index}>
-              <div className="bg-black cursor-pointer w-48 h-36">asdfasdf</div>
+              <div className="bg-black cursor-pointer aspect-[154/131]">
+                asdfasdf
+              </div>
             </Link>
           );
         })}

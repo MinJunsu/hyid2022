@@ -4,11 +4,11 @@ import MobileDesignerDetail from "@components/mobile/designers/detail";
 import { useRouter } from "next/router";
 import { StudentWithWorksAndTags } from "@pages/api/students/[id]";
 import type { NextPage } from "next";
-import Designers from '@components/desktop/designer/[id]'
-
-
+import Designers from "@components/desktop/designer/[id]";
+import useMobile from "@hooks/mobile";
 
 const DesignersDetailPage: NextPage = () => {
+  const mobile = useMobile();
   const router = useRouter();
   const id = router.query.id;
 
@@ -25,12 +25,8 @@ const DesignersDetailPage: NextPage = () => {
     return <div></div>;
   }
 
-  return (
-    <div>
-      {/*<MobileDesignerDetail student={data!} />*/}
-      <Designers student={data!} />
-    </div>
-  );
+  if (mobile) return <MobileDesignerDetail student={data!} />;
+  return <Designers student={data!} />;
 };
 
 export async function getServerSideProps() {

@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 
 const WorksPage: NextPage = () => {
   const router = useRouter();
+  const isCategory = Boolean((router.query.category as string) === "true");
   const keyword = (router.query.keyword as string) || "ALL";
   const mobile = useMobile();
   const getCategory = () => {
@@ -22,7 +23,14 @@ const WorksPage: NextPage = () => {
   if (isLoading) {
     return <div></div>;
   }
-  if (mobile) return <MobileWorks categories={data!} keyword={keyword} />;
+  if (mobile)
+    return (
+      <MobileWorks
+        categories={data!}
+        keyword={keyword}
+        isCategory={isCategory}
+      />
+    );
   else return <Works categories={data!} />;
 };
 
