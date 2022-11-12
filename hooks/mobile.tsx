@@ -4,7 +4,8 @@ import { isMobile } from "react-device-detect";
 const useMobile = (): boolean => {
   const [mobile, setMobile] = useState<boolean>(false);
   useEffect(() => {
-    setMobile(isMobile);
+    const width = document.documentElement.clientWidth;
+    setMobile(isMobile || width < 768);
   }, []);
   return mobile;
 };

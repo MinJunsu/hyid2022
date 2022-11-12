@@ -1,10 +1,14 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { Student } from "@prisma/client";
-import MobileDesignerDetail from "../../components/mobile/designers/detail";
+import MobileDesignerDetail from "@components/mobile/designers/detail";
 import { useRouter } from "next/router";
+import { StudentWithWorksAndTags } from "@pages/api/students/[id]";
+import type { NextPage } from "next";
+import Designers from '@components/desktop/designer/[id]'
 
-function DesignerDetail() {
+
+
+const DesignersDetailPage: NextPage = () => {
   const router = useRouter();
   const id = router.query.id;
 
@@ -12,7 +16,7 @@ function DesignerDetail() {
     return axios.get(`/api/students/${id}`).then((res) => res.data);
   };
 
-  const { data, isLoading } = useQuery<Student>(
+  const { data, isLoading } = useQuery<StudentWithWorksAndTags>(
     ["student", id],
     getStudentWorks
   );
@@ -23,10 +27,16 @@ function DesignerDetail() {
 
   return (
     <div>
-      <MobileDesignerDetail student={data!} />
-      {/*<Designers student={data!} />*/}
+      {/*<MobileDesignerDetail student={data!} />*/}
+      <Designers student={data!} />
     </div>
   );
+};
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
 }
 
-export default DesignerDetail;
+export default DesignersDetailPage;

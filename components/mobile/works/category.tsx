@@ -1,7 +1,7 @@
-import { CategoryWithWork } from "../../../pages/api/category";
+import { CategoryWithWorks } from "@pages/api/category";
 
 interface MobileCategoryProps {
-  categories: CategoryWithWork[];
+  categories: CategoryWithWorks[];
   setClose: () => void;
 }
 
@@ -18,7 +18,6 @@ function MobileCategory({ categories, setClose }: MobileCategoryProps) {
       </div>
       <div className="flex flex-col space-y-8 mx-8">
         {categories.map((category, index) => {
-          console.log(category);
           return (
             <div key={index}>
               <div className="relative inline cursor-pointer">

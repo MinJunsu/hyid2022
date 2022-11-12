@@ -3,11 +3,9 @@ import { Student } from "@prisma/client";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Nav from "../navbar/nav";
 import { useRef, useState } from "react";
 import router from "next/router";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
+import Header from "@components/desktop/header";
 
 interface IndexProps {
   students: Student[];
@@ -48,7 +46,7 @@ function Designer({ students }: IndexProps) {
   return (
     <div className="bg-cover w-full h-auto  bg-[url('/web/background/profile_background.png')] overflow-x-hidden">
       <div className="px-[40px] py-[20px]">
-        <Nav color="white" />
+        <Header color="white" />
       </div>
 
       <div className="relative top-[175px] left-[194px] ">

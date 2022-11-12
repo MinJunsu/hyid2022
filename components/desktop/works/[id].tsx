@@ -1,9 +1,11 @@
 import Image from "next/image";
 import router from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion} from "framer-motion";
 
-function Dummy() {
+
+
+function WorkDetail() {
   const [showButton, setShowButton] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const outside = useRef<any>();
@@ -327,4 +329,4 @@ const animate = {
   },
 };
 
-export default Dummy;
+export default WorkDetail;

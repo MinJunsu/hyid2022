@@ -1,19 +1,21 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import router from "next/router";
-import { Category } from "@prisma/client";
-import Nav from "../navbar/nav";
+
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
+import Header from "@components/desktop/header";
+import { CategoryWithWorks } from "@pages/api/category";
 
 interface IndexProps {
-  categories: Category[];
+  categories: CategoryWithWorks[];
 }
+
 interface Close {
   modalState: boolean;
 }
 
-function Index({ categories }: IndexProps, { modalState }: Close) {
+function Works({ categories }: IndexProps, { modalState }: Close) {
   const [types, setTypes] = useState<number>(0);
   // Modal 관련 State
   const [modal, setModal] = useState<boolean>(true);
@@ -57,7 +59,7 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
         } `}
       >
         <div>
-          <Nav color="black" />
+          <Header color="black" />
         </div>
         <div className="tabMenu flex items-center mt-[76px] mb-[53px] cursor-pointer ">
           <div className=" flex space-x-[9px] ">
@@ -69,6 +71,9 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
                   className="description  "
                 >
                   <p
+                    onClick={() => {
+                      setTypes(index);
+                    }}
                     className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px]  border-[1px] border-[#DBDBDB] w-full ${
                       types === index
                         ? "bg-[#0649EC] text-white"
@@ -142,7 +147,9 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
                 className=" w-[23%] hover:block group mb-7 relative "
                 onClick={() => {
                   setLoading(true);
-                  setTimeout(() => router.push("/dummy"), 3000);
+                  setTimeout(() => router.push(`/works/${index}`), 3000);
+
+                  router.push(`/works/${index}`);
                 }}
               >
                 <Image
@@ -217,4 +224,4 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
   );
 }
 
-export default Index;
+export default Works;

@@ -1,10 +1,16 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { Student } from "@prisma/client";
-import MobileDesigner from "../../components/mobile/designers";
-import Designer from "../../components/Desktop/designer";
+import Designer from "../../components/desktop/designer";
 
-function Index() {
+import type { NextPage } from "next";
+import useMobile from "@hooks/mobile";
+import MobileDesigner from "@components/mobile/designers";
+import { useRouter } from "next/router";
+
+const DesignersPage: NextPage = () => {
+  const router = useRouter();
+  const mobile = useMobile();
   const getStudent = () => {
     return axios.get("/api/students").then((res) => res.data);
   };
@@ -15,19 +21,20 @@ function Index() {
     return <div></div>;
   }
 
-  return (
-    <div>
-      {/*<MobileDesigner students={data!}/>*/}
-      <Designer students={data!} />
-    </div>
-  );
+  if (mobile)
+    return (
+      <MobileDesigner
+        students={data!}
+        keyword={router.query.keyword as string}
+      />
+    );
+  else return <Designer students={data!} />;
+};
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
 }
 
-export default Index;
-// SSG 랜더링
-// export async function getStaticProps() {
-//   const res = await axios.get("http://localhost:3000/api/students");
-//   const data = await res.data;
-//
-//   return { props: { data: data } };
-// }
+export default DesignersPage;

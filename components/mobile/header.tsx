@@ -1,10 +1,13 @@
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 function Header() {
   const router = useRouter();
   return (
     <div className="flex flex-row my-8">
-      <div className="w-1/2">HYID</div>
+      <div className="w-1/2">
+        <Image src="/web/logo/web_logo_black.svg" width={100} height={90} />
+      </div>
       <div className="w-1/2 flex justify-end items-center space-x-3">
         <span
           className={`${

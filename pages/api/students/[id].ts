@@ -1,11 +1,45 @@
-import { PrismaClient, Student, Tag, Work } from '@prisma/client'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { Prisma, PrismaClient } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from "next";
+
+export type StudentWithWorksAndTags = Prisma.StudentGetPayload<{
+  include: {
+    works: {
+      select: {
+        id: true;
+        work: {
+          select: {
+            title: true;
+            thumbnailImage: true;
+            students: {
+              select: {
+                student: {
+                  select: {
+                    nameKor: true;
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+    tags: {
+      select: {
+        tag: {
+          select: {
+            id: true;
+            name: true;
+          };
+        };
+      };
+    };
+  };
+}>;
 
 export default async function handler(
-    request: NextApiRequest,
-    response: NextApiResponse<Student | null>
+  request: NextApiRequest,
+  response: NextApiResponse<StudentWithWorksAndTags | null>
 ) {
-
   const id = Number(request.query.id);
   const prisma = new PrismaClient();
   const student = await prisma.student.findUnique({
@@ -15,8 +49,13 @@ export default async function handler(
     include: {
       tags: {
         select: {
-          tag: true,
-        }
+          tag: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
       },
       works: {
         select: {
@@ -30,15 +69,15 @@ export default async function handler(
                   student: {
                     select: {
                       nameKor: true,
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   });
   response.status(200).json(student);
 }
