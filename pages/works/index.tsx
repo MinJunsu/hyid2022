@@ -1,11 +1,16 @@
 import Axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-
 import { CategoryWithWorks } from "@pages/api/category";
 import type { NextPage } from "next";
 import MobileWorks from "@components/mobile/works";
+import useMobile from "@hooks/mobile";
+import Works from "@components/desktop/works";
+import { useRouter } from "next/router";
 
 const WorksPage: NextPage = () => {
+  const router = useRouter();
+  const keyword = (router.query.keyword as string) || "ALL";
+  const mobile = useMobile();
   const getCategory = () => {
     return Axios.get("/api/category").then((res) => res.data);
   };
@@ -17,13 +22,14 @@ const WorksPage: NextPage = () => {
   if (isLoading) {
     return <div></div>;
   }
-
-  return (
-    <div>
-      <MobileWorks categories={data!} />
-      {/*<Index categories={data!} />*/}
-    </div>
-  );
+  if (mobile) return <MobileWorks categories={data!} keyword={keyword} />;
+  else return <Works categories={data!} />;
 };
+
+function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
 
 export default WorksPage;

@@ -9,7 +9,7 @@ import Header from "@components/desktop/header";
 
 const Fade = require("react-reveal/Fade");
 
-function Index() {
+function Home() {
   const setting = {
     dots: false,
     infinite: true,
@@ -363,4 +363,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Home;

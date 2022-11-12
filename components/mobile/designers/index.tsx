@@ -1,5 +1,4 @@
 import { Student } from "@prisma/client";
-import { useRouter } from "next/router";
 import * as Hangul from "hangul-js";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -9,23 +8,24 @@ import Header from "@components/mobile/header";
 
 interface MobileDesignerProps {
   students: Student[];
+  keyword: string;
 }
 
 interface KeywordStudent {
   [key: string]: Student[];
 }
 
-function MobileDesigner({ students }: MobileDesignerProps) {
-  const router = useRouter();
-  const [keyword, setKeyword] = useState<string>("ALL");
+function MobileDesigner({ students, keyword = "ALL" }: MobileDesignerProps) {
   const keywords = ["ALL", "ㄱ", "ㅁ", "ㅂ", "ㅇ", "ㅈ", "ㅊ", "ㅎ"];
   const [word, setWord] = useState<string>("");
   const [isSearch, setIsSearch] = useState<boolean>(false);
   const [searchStudents, setSearchStudents] = useState<Student[]>([]);
+  const [iterStudents, setIterStudents] = useState<Student[]>([]);
   const [keywordStudent, setKeywordStudent] = useState<KeywordStudent>({
     ALL: students,
   });
 
+  // 최초 Components 실행 시 keywordStudent에 keyword 별로 students를 분류하여 저장
   useEffect(() => {
     setKeywordStudent({
       ALL: students,
@@ -54,16 +54,9 @@ function MobileDesigner({ students }: MobileDesignerProps) {
     });
   }, [students]);
 
-  useEffect(() => {
-    setIsSearch(false);
-    if (router.isReady) {
-      setKeyword(router.query.keyword as string);
-    }
-  }, [router.isReady, router.query]);
-
+  // searchWord가 변경되면 해당 word에 해당하는 students를 searchStudents에 저장
   useEffect(() => {
     setIsSearch(true);
-    setKeyword("ALL");
     setSearchStudents([
       ...students.filter((student) => student.nameKor.includes(word)),
       ...students.filter((student) =>
@@ -72,7 +65,15 @@ function MobileDesigner({ students }: MobileDesignerProps) {
     ]);
   }, [students, word]);
 
-  const iterateStudents = isSearch ? searchStudents : keywordStudent[keyword];
+  // keyword 변경 시 searchWord 초기화
+  useEffect(() => {
+    setIsSearch(false);
+  }, [keyword]);
+
+  // searchWord 혹은 keyword 를 기준으로 보여줄 학생 처리
+  useEffect(() => {
+    setIterStudents(isSearch ? searchStudents : keywordStudent[keyword]);
+  }, [isSearch, keyword, keywordStudent, searchStudents]);
 
   return (
     <div className="mx-10">
@@ -96,7 +97,7 @@ function MobileDesigner({ students }: MobileDesignerProps) {
         })}
       </div>
       <div className="grid grid-cols-2 gap-2">
-        {iterateStudents.map((student, index) => {
+        {iterStudents?.map((student, index) => {
           return (
             <Link href={`/designers/${student.id}`} key={index}>
               <div
@@ -108,6 +109,7 @@ function MobileDesigner({ students }: MobileDesignerProps) {
                     src={student.profileImage!}
                     layout="fill"
                     objectFit="cover"
+                    alt="profileImage"
                   />
                 </div>
                 <div className="my-3 flex flex-col justify-center items-center">

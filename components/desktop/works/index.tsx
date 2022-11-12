@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import router from "next/router";
 
-// import Box from "@mui/material/Box";
-// import LinearProgress from "@mui/material/LinearProgress";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 import Header from "@components/desktop/header";
 import { CategoryWithWorks } from "@pages/api/category";
 
@@ -15,7 +15,7 @@ interface Close {
   modalState: boolean;
 }
 
-function Index({ categories }: IndexProps, { modalState }: Close) {
+function Works({ categories }: IndexProps, { modalState }: Close) {
   const [types, setTypes] = useState<number>(0);
   // Modal 관련 State
   const [modal, setModal] = useState<boolean>(true);
@@ -224,4 +224,4 @@ function Index({ categories }: IndexProps, { modalState }: Close) {
   );
 }
 
-export default Index;
+export default Works;

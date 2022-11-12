@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-    .works{
+@layer components {
+    .works {
         @apply cursor-works
     }
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 /*body{*/
