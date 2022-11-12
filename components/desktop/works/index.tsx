@@ -147,7 +147,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                 className=" w-[23%] hover:block group mb-7 relative "
                 onClick={() => {
                   setLoading(true);
-                  setTimeout(() => router.push("/dummy"), 3000);
+                  setTimeout(() => router.push(`/works/${index}`), 3000);
 
                   router.push(`/works/${index}`);
                 }}

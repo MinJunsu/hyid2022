@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import type { NextPage } from "next";
 import useMobile from "@hooks/mobile";
 import MobileWorkDetail from "@components/mobile/works/detail";
+import WorksDetail from '@components/desktop/works/[id]';
 
 const WorksDetailPage: NextPage = () => {
   const mobile = useMobile();
@@ -9,13 +10,7 @@ const WorksDetailPage: NextPage = () => {
   const { id } = router.query;
 
   if (mobile) return <MobileWorkDetail />;
-
-  return (
-    <div>
-      <h1>WorksDetailPage</h1>
-      <p>{id}</p>
-    </div>
-  );
+    else return <WorksDetail/>;
 };
 
 function getServerSideProps() {

@@ -4,6 +4,9 @@ import MobileDesignerDetail from "@components/mobile/designers/detail";
 import { useRouter } from "next/router";
 import { StudentWithWorksAndTags } from "@pages/api/students/[id]";
 import type { NextPage } from "next";
+import Designers from '@components/desktop/designer/[id]'
+
+
 
 const DesignersDetailPage: NextPage = () => {
   const router = useRouter();
@@ -24,8 +27,8 @@ const DesignersDetailPage: NextPage = () => {
 
   return (
     <div>
-      <MobileDesignerDetail student={data!} />
-      {/*<Designers student={data!} />*/}
+      {/*<MobileDesignerDetail student={data!} />*/}
+      <Designers student={data!} />
     </div>
   );
 };
