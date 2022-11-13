@@ -17,13 +17,16 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
     new Set(student.works.map((work) => work.work.category.name))
   );
 
-  console.log(iterateWorkCategory);
-
   return (
     <div className="flex flex-col mx-10">
       <Header />
       <div className="w-full aspect-[1/1.31] relative mb-12">
-        <Image src={student.profileImage!} layout="fill" objectFit="cover" />
+        <Image
+          src={student.profileImage!}
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
       </div>
       <div className="flex flex-col">
         <h1 className="text-3xl font-bold">{student.nameKor}</h1>
@@ -86,13 +89,14 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
       <div className="mt-5 mb-14 grid grid-cols-2 gap-2">
         {student.works.map((work, index) => {
           return (
-            <Link key={index} href={`/works/${work.work.id}`}>
+            <Link key={index} href={`/works/${work.id}`}>
               <a className="block w-full relative aspect-[154/131]">
                 <Image
                   src={work.work.workThumbnailImage!.image}
                   layout="fill"
                   objectFit="cover"
                   alt={work.work.title}
+                  priority
                 />
               </a>
             </Link>

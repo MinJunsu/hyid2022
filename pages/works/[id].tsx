@@ -1,23 +1,31 @@
-import { useRouter } from "next/router";
 import type { NextPage } from "next";
 import useMobile from "@hooks/mobile";
 import MobileWorkDetail from "@components/mobile/works/detail";
 import WorksDetail from "@components/desktop/works/[id]";
 import Axios from "axios";
-import { useQuery } from "@tanstack/react-query";
+import {
+  dehydrate,
+  DehydratedState,
+  QueryClient,
+  useQuery,
+} from "@tanstack/react-query";
 import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 
-const WorksDetailPage: NextPage = () => {
-  const mobile = useMobile();
-  const router = useRouter();
-  const { id } = router.query;
+interface ServerSideProps {
+  dehydratedState: DehydratedState;
+  id: string;
+}
 
-  const getWork = () => {
-    return Axios.get(`/api/works/${id}`).then((res) => res.data);
-  };
+const getWork = (id: string) => {
+  return Axios.get(`/api/works/${id}`).then((res) => res.data);
+};
+
+const WorksDetailPage: NextPage<ServerSideProps> = ({ id }, context) => {
+  const mobile = useMobile();
+
   const { data, isLoading } = useQuery<WorkWithStudentsAndImages>(
     ["work", id],
-    getWork
+    () => getWork(id)
   );
 
   if (isLoading) {
@@ -28,9 +36,15 @@ const WorksDetailPage: NextPage = () => {
   else return <WorksDetail />;
 };
 
-function getServerSideProps() {
+export async function getServerSideProps(context: { params: { id: string } }) {
+  const id = context.params.id;
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(["work", id], () => getWork(id));
   return {
-    props: {},
+    props: {
+      dehydratedState: dehydrate(queryClient),
+      id,
+    },
   };
 }
 

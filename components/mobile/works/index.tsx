@@ -32,6 +32,7 @@ function MobileWorks({ categories, keyword, isCategory }: MobileWorksProps) {
       />
     );
   }
+
   return (
     <div className="flex flex-col mx-10">
       <Header />
@@ -58,7 +59,7 @@ function MobileWorks({ categories, keyword, isCategory }: MobileWorksProps) {
           );
         })}
       </div>
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 gap-2 mb-16">
         {keywordWorks?.works.map((work, index) => {
           if (!work.workThumbnailImage) {
             return <div key={index}></div>;

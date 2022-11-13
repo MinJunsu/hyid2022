@@ -10,7 +10,7 @@ function CloseButton({ onClick }: CloseButtonProps) {
     <Link href={`/works`}>
       <a
         className="block w-12 h-12 bg-white rounded-full flex justify-center items-center cursor-pointer"
-        style={{ boxShadow: "0px 4px 8px #00000042;" }}
+        style={{ boxShadow: "0px 4px 8px #00000042" }}
       >
         <Image
           src="/mobile/icon/close.svg"

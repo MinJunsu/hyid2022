@@ -14,7 +14,12 @@ function Id({ student }: StudentProps) {
       <div className="fixed left-0 top-0 w-[100vw] h-[100vh] -z-50">
         <div className="flex h-full -z-30">
           <div className="profile w-[45%] bg-[#EFEFEF]  h-full flex justify-center items-center">
-            <Image src={student.profileImage!} width={455} height={560} />
+            <Image
+              src={student.profileImage!}
+              width={455}
+              height={560}
+              priority
+            />
           </div>
           <div className="w-[55%] h-full flex items-center ml-[115px] ">
             <div className="w-full">
