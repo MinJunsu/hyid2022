@@ -49,7 +49,6 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
           <LinearProgress
             variant="determinate"
             value={progress}
-            color="inherit"
           />
         </Box>
       </div>
