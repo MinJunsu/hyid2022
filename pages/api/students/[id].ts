@@ -18,6 +18,12 @@ export type StudentWithWorksAndTags = Prisma.StudentGetPayload<{
         id: true;
         work: {
           select: {
+            id: true;
+            category: {
+              select: {
+                name: true;
+              };
+            };
             title: true;
             workThumbnailImage: {
               select: {
@@ -68,6 +74,12 @@ export default async function handler(
           id: true,
           work: {
             select: {
+              id: true,
+              category: {
+                select: {
+                  name: true,
+                },
+              },
               title: true,
               workThumbnailImage: {
                 select: {

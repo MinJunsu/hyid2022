@@ -13,6 +13,12 @@ const getNameFromBehance = (url: string | null) => {
 };
 
 function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
+  const iterateWorkCategory = Array.from(
+    new Set(student.works.map((work) => work.work.category.name))
+  );
+
+  console.log(iterateWorkCategory);
+
   return (
     <div className="flex flex-col mx-10">
       <Header />
@@ -43,6 +49,18 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
             </div>
           );
         })}
+        {[...iterateWorkCategory].map((category, index) => {
+          return (
+            <div
+              className="px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer"
+              key={index}
+            >
+              <span className="flex justify-center items-center text-sm uppercase">
+                {category}
+              </span>
+            </div>
+          );
+        })}
       </div>
       <div className="mt-10">
         <span className="block text-lg my-3">Contact</span>
@@ -65,12 +83,19 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
           )}
         </div>
       </div>
-      <div className="my-10 flex flex-row gap-2">
-        {[0, 1].map((item, index) => {
+      <div className="mt-5 mb-14 grid grid-cols-2 gap-2">
+        {student.works.map((work, index) => {
           return (
-            <div className="w-1/2" key={index}>
-              <div className="bg-gray-500 aspect-[154/131]"></div>
-            </div>
+            <Link key={index} href={`/works/${work.work.id}`}>
+              <a className="block w-full relative aspect-[154/131]">
+                <Image
+                  src={work.work.workThumbnailImage!.image}
+                  layout="fill"
+                  objectFit="cover"
+                  alt={work.work.title}
+                />
+              </a>
+            </Link>
           );
         })}
       </div>

@@ -23,11 +23,17 @@ export type WorkWithStudentsAndImages = Prisma.WorkGetPayload<{
         width: true;
         height: true;
       };
+      orderBy: [
+        {
+          image: "asc";
+        }
+      ];
     };
     students: {
       select: {
         student: {
           select: {
+            id: true;
             name: true;
             nameKor: true;
             email: true;
@@ -35,6 +41,7 @@ export type WorkWithStudentsAndImages = Prisma.WorkGetPayload<{
               select: {
                 work: {
                   select: {
+                    id: true;
                     workProfileImage: {
                       select: {
                         image: true;
@@ -94,6 +101,7 @@ export default async function handler(
         select: {
           student: {
             select: {
+              id: true,
               name: true,
               nameKor: true,
               email: true,
@@ -101,6 +109,7 @@ export default async function handler(
                 select: {
                   work: {
                     select: {
+                      id: true,
                       workProfileImage: {
                         select: {
                           image: true,
