@@ -16,7 +16,7 @@ model Student {
   studentId    Int
   name         String
   nameKor      String
-  profileImage String?
+  profileImage String
   email        String?
   snsLink      String?
   webSite      String?
@@ -53,17 +53,57 @@ model Category {
 }
 
 model Work {
-  id               Int               @id @default(autoincrement())
-  category         Category          @relation(fields: [categoryId], references: [id])
-  students         StudentsOnWorks[]
-  categoryId       Int
-  thumbnailImage   String
-  backdropImage    String
-  title            String
-  shortDescription String
-  description      String
-  mainImage        String
-  likes            Like[]
+  id         Int      @id @default(autoincrement())
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  mainImages         WorkImage[]
+  workThumbnailImage WorkThumbnailImage?
+  workBackdropImage  WorkBackdropImage?
+  workProfileImage   WorkProfileImage?
+
+  title       String
+  subTitle    String
+  description String @db.Text
+
+  students StudentsOnWorks[]
+  likes    Like[]
+}
+
+model WorkThumbnailImage {
+  id     Int    @id @default(autoincrement())
+  work   Work   @relation(fields: [workId], references: [id])
+  workId Int    @unique
+  image  String
+  width  Int
+  height Int
+}
+
+model WorkBackdropImage {
+  id     Int    @id @default(autoincrement())
+  work   Work   @relation(fields: [workId], references: [id])
+  workId Int    @unique
+  image  String
+  width  Int
+  height Int
+}
+
+model WorkProfileImage {
+  id     Int    @id @default(autoincrement())
+  work   Work   @relation(fields: [workId], references: [id])
+  workId Int    @unique
+  image  String
+  width  Int
+  height Int
+}
+
+model WorkImage {
+  id     Int    @id @default(autoincrement())
+  work   Work   @relation(fields: [workId], references: [id])
+  workId Int
+  image  String
+  width  Int
+  height Int
 }
 
 model Like {
