@@ -139,7 +139,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
             />
           </div>
         </div>
-        <div className="workList flex flex-wrap justify-between cursor-[url(/web/mouse/cursor.cur),_pointer]">
+        <div className={`workList flex flex-wrap justify-between  ${ modal ?  null : "cursor-[url(/web/mouse/cursor.cur),_pointer"}`}>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((res, index) => {
             return (
               <div
@@ -175,7 +175,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
         </div>
       </div>
       <div
-        className={`modal px-[43px] relative max-h-[10px] bottom-[140vh] ${
+        className={`modal px-[43px] relative max-h-[10px] bottom-[140vh] cursor-pointer ${
           modal ? null : "hidden"
         } `}
       >
@@ -188,8 +188,8 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
         <div className=" flex flex-wrap max-w-[1000px]   ">
           {categories?.map((category, idx) => {
             return (
-              <div key={idx} className="group relative">
-                <div className="text-[105px]  flex">
+              <div key={idx} className="group relative ">
+                <div className="text-[105px] flex pointer-cursor ">
                   <h2
                     onClick={() => {
                       setTypes(idx);
@@ -197,7 +197,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                     }}
                     className="hover:text-[#0649EC] "
                   >
-                    {category.name}{" "}
+                    {category.name}
                   </h2>
                   <h2
                     className={`${

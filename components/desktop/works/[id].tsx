@@ -52,18 +52,127 @@ function WorkDetail() {
   }, []);
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <motion.div
-        // key={router.route}
-        initial={animate.initial}
-        // @ts-ignore
-        animate={animate.animate}
-        // @ts-ignore
-        exit={animate.exit}
-      >
-        <div className="bg-[#fff] relative h-full ">
-          <div className="coverImage  ">
-            <Image src="/dummy/images/details.png" width={1920} height={1080} />
+      <div className="relative">
+
+        <div className="bg-[#fff] h-full z-20">
+          <div ref={outside} className="fixed z-30 right-0 top-48">
+            <div
+                className={`maker w-[66px] h-[341px] bg-[#FF7437] origin-center     ${
+                    showModal ? "hidden  origin-center " : "block  origin-center "
+                }  `}
+                onClick={() => {
+                  setShowModal(true);
+                }}
+            >
+              <div className="flex-col justify-center align-middle items-center text-center px-[20px] py-[30px]">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                >
+                  <path
+                      id="패스_237"
+                      data-name="패스 237"
+                      d="M120.587,74.192l-2.678-4.384L106.139,77.46,107.265,64H101.91l1.126,13.46L91.265,69.808l-2.678,4.384L101.484,80l-12.9,5.808,2.678,4.384,11.771-7.652L101.91,96h5.356l-1.126-13.46,11.771,7.652,2.678-4.384L107.69,80Z"
+                      transform="translate(-88.587 -64)"
+                      fill="#0649ec"
+                  />
+                </svg>
+                <svg
+                    className="mt-[25px]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="34"
+                    height="2"
+                    viewBox="0 0 34 2"
+                >
+                  <path
+                      id="패스_261"
+                      data-name="패스 261"
+                      d="M0,0H34"
+                      transform="translate(0 1)"
+                      fill="none"
+                      stroke="#0649ec"
+                      strokeWidth="2"
+                  />
+                </svg>
+                <p className="writing-mode-vertical-lr mt-[100px] text-[#0649EC] text-[25px]  ">
+                  Designer
+                </p>
+              </div>
+            </div>
+
+            {/*디자이너 펼쳤을 때*/}
+
+            <div
+                className={`maker  h-[341px] bg-[#000000] fixed right-0 top-48 p-5  origin-center ease-in-out    ${
+                    showModal
+                        ? "block ease-in duration-300 "
+                        : "hidden  origin-center "
+                }`}
+                // onClick={() => {
+                //   setShowModal(false);
+                // }}
+            >
+              <div className="flex items-center cursor-pointer  ">
+                <div className="absolute top-6">
+                  <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 32 32"
+                  >
+                    <path
+                        id="패스_237"
+                        data-name="패스 237"
+                        d="M120.587,74.192l-2.678-4.384L106.139,77.46,107.265,64H101.91l1.126,13.46L91.265,69.808l-2.678,4.384L101.484,80l-12.9,5.808,2.678,4.384,11.771-7.652L101.91,96h5.356l-1.126-13.46,11.771,7.652,2.678-4.384L107.69,80Z"
+                        transform="translate(-88.587 -64)"
+                        fill="#ff7437"
+                    />
+                  </svg>
+                </div>
+
+                {[1, 2].map((res, idx) => {
+                  return (
+                      <div
+                          onClick={() => {
+                            // console.log("hello");
+                          }}
+                          className="flex justify-start ml-11 "
+                          key={idx}
+                      >
+                        <div className="mr-4">
+                          <h2 className="text-white text-[25px]">이다빈</h2>
+                          <h3 className="text-white text-[15px]">DABIN LEE</h3>
+                          <p className="text-white my-[18px] ">
+                            dabin123 @naver.com
+                          </p>
+                          <Image
+                              src="/dummy/images/details.png"
+                              width={215}
+                              height={183}
+                          />
+                        </div>
+                      </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <AnimatePresence exitBeforeEnter>
+            <motion.div
+                initial={animate.initial}
+                // @ts-ignore
+                animate={animate.animate}
+                // @ts-ignore
+                exit={animate.exit}
+            >
+          <div className="coverImage w-full aspect-[16/9] relative  ">
+            <Image src="/works/2015052651/2015052651_1_1.jpg"
+            layout="fill"
+            objectFit="cover"
+            />
           </div>
           <div
             onClick={() => {
@@ -109,38 +218,27 @@ function WorkDetail() {
           </div>
 
           <div className="description px-[160px] pt-[100px]">
-            <h3 className="text-[30px] font-semibold">Breeze</h3>
+            <h3 className="text-[30px] font-semibold">CORSA</h3>
             <h4 className="text-[25px] mt-[30px]  ">
-              뭐머해서 뭐뭐하는 서비스
+              스마트 게이밍라이트
             </h4>
             <p className="columns-2 mt-[40px]">
-              But I must explain to you how all this mistaken idea of denouncing
-              pleasure and praising pain was born and I will give you a complete
-              account of the system, and expound the actual teachings of the
-              great explorer of the truth, the master-builder of human
-              happiness. No one rejects, dislikes, or avoids pleasure itself,
-              because it is pleasure, but because those who do not know how to
-              pursue pleasure rationally But I must explain to you how all this
-              mistaken idea of denouncing pleasure and praising pain was born
-              and I will give you a complete account of the system, and expound
-              the actual teachings of the great explorer of the truth, the
-              master-builder of human happiness. No one rejects, dislikes, or
-              avoids pleasure itself, because it is pleasure, but because those
-              who do not know how to pursue pleasure rationally
+              CORSA는 람보르기니 사의 {'\''}우라칸{'\''}이라는 차량의 컨셉을 바탕으로 한 좌우대칭형 스마트 게이밍 라이트입니다.
+              어두움을 밝히기 위한 일반적인 조명과는 달리 게이밍 라이트는 게이밍 환경의 몰입도를 높이기 위한 특수목적이 있습니다.
+              CORSA는 간접조명을 통해 모니터의 색감과 통일된 빛을 비추어 모니터와 주변 환경이 일체화되도록 하여 몰입감을 극대화합니다.
+              람보르기니는 더욱 빨리 달리기 위한 목적의 고성능 브랜드로, 게이밍이라는 특수 목적을 가진 조명과 그 방향성이 일치하여 람보르기니를 선택하였습니다.
+              CORSA란 이탈리아어로 달리기, 경주라는 뜻으로, 람보르기니에 탑재된 3가지 주행모드 중 가장 강력한 경주용 모드입니다.
             </p>
             <div className="mt-[150px] flex-col">
+              <div className="w-full aspect-[1/7.93] relative">
               <Image
                 className="block"
-                src="/dummy/images/des1.png"
-                width={1600}
-                height={963}
+                src="/works/2015052651/2015052651_1_3_1.jpg"
+                layout="fill"
+                objectFit="cover"
               />
-              <Image
-                className="block"
-                src="/dummy/images/des1.png"
-                width={1600}
-                height={963}
-              />
+              </div>
+
             </div>
           </div>
           <div className="flex justify-center mt-[90px] pb-[100px]">
@@ -202,113 +300,11 @@ function WorkDetail() {
               </button>
             </div>
           )}
-          <div ref={outside}>
-            <div
-              className={`maker w-[66px] h-[341px] bg-[#FF7437] fixed right-0 top-48 origin-center     ${
-                showModal ? "hidden  origin-center " : "block  origin-center "
-              }  `}
-              onClick={() => {
-                setShowModal(true);
-              }}
-            >
-              <div className="flex-col justify-center align-middle items-center text-center px-[20px] py-[30px]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                >
-                  <path
-                    id="패스_237"
-                    data-name="패스 237"
-                    d="M120.587,74.192l-2.678-4.384L106.139,77.46,107.265,64H101.91l1.126,13.46L91.265,69.808l-2.678,4.384L101.484,80l-12.9,5.808,2.678,4.384,11.771-7.652L101.91,96h5.356l-1.126-13.46,11.771,7.652,2.678-4.384L107.69,80Z"
-                    transform="translate(-88.587 -64)"
-                    fill="#0649ec"
-                  />
-                </svg>
-                <svg
-                  className="mt-[25px]"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="34"
-                  height="2"
-                  viewBox="0 0 34 2"
-                >
-                  <path
-                    id="패스_261"
-                    data-name="패스 261"
-                    d="M0,0H34"
-                    transform="translate(0 1)"
-                    fill="none"
-                    stroke="#0649ec"
-                    strokeWidth="2"
-                  />
-                </svg>
-                <p className="writing-mode-vertical-lr mt-[100px] text-[#0649EC] text-[25px] ease-in ">
-                  Designer
-                </p>
-              </div>
-            </div>
-
-            {/*디자이너 펼쳤을 때*/}
-
-            <div
-              className={`maker  h-[341px] bg-[#000000] fixed right-0 top-48 p-5  origin-center ease-in-out    ${
-                showModal
-                  ? "block ease-in duration-300 "
-                  : "hidden  origin-center "
-              }`}
-              // onClick={() => {
-              //   setShowModal(false);
-              // }}
-            >
-              <div className="flex items-center cursor-pointer  ">
-                <div className="absolute top-6">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
-                  >
-                    <path
-                      id="패스_237"
-                      data-name="패스 237"
-                      d="M120.587,74.192l-2.678-4.384L106.139,77.46,107.265,64H101.91l1.126,13.46L91.265,69.808l-2.678,4.384L101.484,80l-12.9,5.808,2.678,4.384,11.771-7.652L101.91,96h5.356l-1.126-13.46,11.771,7.652,2.678-4.384L107.69,80Z"
-                      transform="translate(-88.587 -64)"
-                      fill="#ff7437"
-                    />
-                  </svg>
-                </div>
-
-                {[1, 2].map((res, idx) => {
-                  return (
-                    <div
-                      onClick={() => {
-                        console.log("hello");
-                      }}
-                      className="flex justify-start ml-11 "
-                      key={idx}
-                    >
-                      <div className="mr-4">
-                        <h2 className="text-white text-[25px]">이다빈</h2>
-                        <h3 className="text-white text-[15px]">DABIN LEE</h3>
-                        <p className="text-white my-[18px] ">
-                          dabin123 @naver.com
-                        </p>
-                        <Image
-                          src="/dummy/images/details.png"
-                          width={215}
-                          height={183}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
-      </motion.div>
-    </AnimatePresence>
+
+      </div>
   );
 }
 const animate = {
