@@ -25,7 +25,7 @@ const WorksDetailPage: NextPage = () => {
   }
 
   if (mobile) return <MobileWorkDetail work={data!} />;
-  else return <WorksDetail />;
+  else return <WorksDetail work={data!} />;
 };
 
 function getServerSideProps() {

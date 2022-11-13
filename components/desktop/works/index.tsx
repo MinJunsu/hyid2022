@@ -46,15 +46,12 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
     <div>
       <div className={`${loading ? "block" : "hidden"}`}>
         <Box sx={{ width: "100%" }}>
-          <LinearProgress
-            variant="determinate"
-            value={progress}
-          />
+          <LinearProgress variant="determinate" value={progress} />
         </Box>
       </div>
       <div
         className={`works px-[40px] py-[25px] bg-white cursor-works  ${
-          modal ? "blur-lg" : null
+          modal ? null : null
         } `}
       >
         <div>
@@ -85,7 +82,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                         types === index ? "text-white" : "text-[#0649EC]"
                       } `}
                     >
-                      80
+                      {category.works.length}
                     </span>
                   </p>
                 </div>
@@ -138,87 +135,93 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
             />
           </div>
         </div>
-        <div className={`workList flex flex-wrap justify-between  ${ modal ?  null : "cursor-[url(/web/mouse/cursor.cur),_pointer"}`}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((res, index) => {
+        <div
+          className={`workList grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3  ${
+            modal ? null : "cursor-[url(/web/mouse/cursor.cur),_pointer"
+          }`}
+        >
+          {categories[types]?.works?.map((res, index) => {
             return (
               <div
                 key={index}
-                className=" w-[23%] hover:block group mb-7 relative "
+                className=" w-full hover:block group mb-7 relative p-4 aspect-[428/365]"
                 onClick={() => {
                   setLoading(true);
-                  setTimeout(() => router.push(`/works/${index}`), 3000);
-
-                  router.push(`/works/${index}`);
+                  router.push(`/works/${res.id}`);
                 }}
               >
                 <Image
-                  src="/dummy/images/WorksImage.png"
-                  width={428}
-                  height={366}
+                  src={res.workThumbnailImage?.image!}
                   alt="workImage"
-                  className={`${
-                    modal ? null : "hover:opacity-25 duration-300"
-                  } `}
+                  className={`hover:opacity-25 duration-300`}
+                  layout="fill"
+                  objectFit="cover"
                 />
                 <div
                   className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline ${
                     modal ? "hidden" : null
                   }`}
                 >
-                  <h2 className="text-[25px]">Breeze</h2>
-                  <p className="text-[20px]">이다빈</p>
+                  <h2 className="text-[25px]">{res.title}</h2>
+                  {res.students?.map((student, index) => {
+                    return (
+                      <div key={index}>
+                        <p>{student.student.nameKor}</p>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             );
           })}
         </div>
       </div>
-      <div
-        className={`modal px-[43px] relative max-h-[10px] bottom-[140vh] cursor-pointer ${
-          modal ? null : "hidden"
-        } `}
-      >
-        <div
-          className="closeButton bg-white rounded-[5p%] w-[90px] h-[90px] flex items-center justify-center rounded-full float-right shadow-2xl  hover:scale-105"
-          onClick={setClose}
-        >
-          <Image src="/web/icon/close.svg" width={40} height={40} alt="close" />
-        </div>
-        <div className=" flex flex-wrap max-w-[1000px]   ">
-          {categories?.map((category, idx) => {
-            return (
-              <div key={idx} className="group relative ">
-                <div className="text-[105px] flex pointer-cursor ">
-                  <h2
-                    onClick={() => {
-                      setTypes(idx);
-                      setModal(false);
-                    }}
-                    className="hover:text-[#0649EC] "
-                  >
-                    {category.name}
-                  </h2>
-                  <h2
-                    className={`${
-                      category.id === 13 ? "hidden" : null
-                    } mx-[10px]`}
-                  >
-                    ,
-                  </h2>
-                </div>
-                <div className="counter bg-[#0649EC] w-[90px] h-[62px] rounded-full absolute  opacity-80 text-center text-[39px] text-white group-hover:inline top-0 -right-0 hidden">
-                  40
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div className="total  ">
-          <p className="text-[#E26748] font-extralight text-[60px] mt-[90px]">
-            - 80 Works
-          </p>
-        </div>
-      </div>
+      {/*<div*/}
+      {/*  className={`modal px-[43px] relative max-h-[10px] bottom-[140vh] cursor-pointer ${*/}
+      {/*    modal ? null : "hidden"*/}
+      {/*  } `}*/}
+      {/*>*/}
+      {/*  <div*/}
+      {/*    className="closeButton bg-white rounded-[5p%] w-[90px] h-[90px] flex items-center justify-center rounded-full float-right shadow-2xl  hover:scale-105"*/}
+      {/*    onClick={setClose}*/}
+      {/*  >*/}
+      {/*    <Image src="/web/icon/close.svg" width={40} height={40} alt="close" />*/}
+      {/*  </div>*/}
+      {/*  <div className=" flex flex-wrap max-w-[1000px]   ">*/}
+      {/*    {categories?.map((category, idx) => {*/}
+      {/*      return (*/}
+      {/*        <div key={idx} className="group relative ">*/}
+      {/*          <div className="text-[105px] flex pointer-cursor ">*/}
+      {/*            <h2*/}
+      {/*              onClick={() => {*/}
+      {/*                setTypes(idx);*/}
+      {/*                setModal(false);*/}
+      {/*              }}*/}
+      {/*              className="hover:text-[#0649EC] "*/}
+      {/*            >*/}
+      {/*              {category.name}*/}
+      {/*            </h2>*/}
+      {/*            <h2*/}
+      {/*              className={`${*/}
+      {/*                category.id === 13 ? "hidden" : null*/}
+      {/*              } mx-[10px]`}*/}
+      {/*            >*/}
+      {/*              ,*/}
+      {/*            </h2>*/}
+      {/*          </div>*/}
+      {/*          <div className="counter bg-[#0649EC] w-[90px] h-[62px] rounded-full absolute  opacity-80 text-center text-[39px] text-white group-hover:inline top-0 -right-0 hidden">*/}
+      {/*            40*/}
+      {/*          </div>*/}
+      {/*        </div>*/}
+      {/*      );*/}
+      {/*    })}*/}
+      {/*  </div>*/}
+      {/*  <div className="total  ">*/}
+      {/*    <p className="text-[#E26748] font-extralight text-[60px] mt-[90px]">*/}
+      {/*      - 80 Works*/}
+      {/*    </p>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
     </div>
   );
 }
