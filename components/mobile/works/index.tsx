@@ -1,5 +1,5 @@
 import { CategoryWithWorks } from "@pages/api/category";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MobileCategory from "@components/mobile/works/category";
 import InputBox from "@components/mobile/input-box";
 import Header from "@components/mobile/header";
@@ -13,6 +13,16 @@ interface MobileWorksProps {
 
 function MobileWorks({ categories, keyword, isCategory }: MobileWorksProps) {
   const [isOpen, setIsOpen] = useState<boolean>(isCategory);
+  const [keywordWorks, setKeywordWorks] = useState<CategoryWithWorks>();
+
+  useEffect(() => {
+    console.log(keyword);
+    setKeywordWorks(
+      categories.filter(
+        (category) => category.name.toLowerCase() === keyword.toLowerCase()
+      )[0]
+    );
+  }, [categories, keyword]);
 
   if (isOpen) {
     return (
@@ -22,7 +32,6 @@ function MobileWorks({ categories, keyword, isCategory }: MobileWorksProps) {
       />
     );
   }
-
   return (
     <div className="flex flex-col mx-10">
       <Header />
@@ -50,7 +59,7 @@ function MobileWorks({ categories, keyword, isCategory }: MobileWorksProps) {
         })}
       </div>
       <div className="grid grid-cols-2 gap-2">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
+        {keywordWorks?.works.map((item, index) => {
           return (
             <Link href={`/works/${item}`} key={index}>
               <div className="bg-black cursor-pointer aspect-[154/131]">

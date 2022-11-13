@@ -2,9 +2,16 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import CloseButton from "@components/mobile/icons/close-button";
 import UpButton from "@components/mobile/icons/up-button";
+import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
+import getImageRatio from "../../../utils/image";
 
-function MobileWorkDetail() {
+interface MobileWorkDetailProps {
+  work: WorkWithStudentsAndImages;
+}
+
+function MobileWorkDetail({ work }: MobileWorkDetailProps) {
   const router = useRouter();
+  console.log(work);
   return (
     <div className="flex flex-col relative">
       <div className="z-50 m-5 absolute right-0 shadow-2xl">
@@ -14,10 +21,18 @@ function MobileWorkDetail() {
         <UpButton onClick={() => window.scrollTo(0, 0)} />
       </div>
       {/* Backdrop 이미지 설정 */}
-      <div className="w-full aspect-[1/0.56] relative mb-10">
+      <div
+        className={`w-full relative mb-10`}
+        style={{
+          aspectRatio: `${getImageRatio(
+            work.workBackdropImage!.width,
+            work.workBackdropImage!.height
+          )}`,
+        }}
+      >
         <Image
           className="-z-20"
-          src={"/works/2015052651/2015052651_1_1.jpg"}
+          src={work.workBackdropImage!.image}
           layout="fill"
           objectFit="cover"
           alt="work-detail-backdrop"
@@ -27,70 +42,96 @@ function MobileWorkDetail() {
       <div className="flex flex-col mx-5">
         <div className="flex flex-col">
           {/* 작품 제목 */}
-          <h1 className="block text-xl mb-1">노닐</h1>
+          <h1 className="block text-xl mb-1">{work.title}</h1>
           {/* 작품 부제목 */}
-          <span className="block text-md">우리 것을 우리의 일상으로</span>
+          <span className="block text-md">{work.subTitle}</span>
           {/* 작품 설명 */}
-          <p className="block text-sm my-5">
-            문화[文化]란 민족이 살아가는 고유의 환경에서 형성되어온 의식주로부터
-            민족 전체가 공유하는 정서를 뜻합니다. 저는 우리 문화유산이 가진
-            보편적 가치를 현재로 계승하여 우리의 일상을 자국 문화의 흔적이
-            가득한 풍경으로 만들고 싶었습니다. 노닐은 한옥의 처마 선이 가진
-            곡률을 소재로 한 그릇입니다. 또한 한옥은 여러 개의 가옥이 모여
-            하나의 주거시설을 완성한다는 점과 한식은 다양한 음식들이 어우러져
-            하나의 상을 완성한다는 점을 연결 지어, 그릇을 세트로 구성했을때
-            상차림에서 식과 주의 특징이 모두 드러나도록 의도했습니다. 노닐이
-            우리의 일상에 우리의 문화가 잔잔히 드러나는 풍경을 만드는 긍정적인
-            발자취가 되길 기대해봅니다.
-          </p>
+          <p className="block text-sm my-5">{work.description}</p>
         </div>
         {/* 작품 이미지 */}
         <div className="flex flex-col">
-          <div className="w-full aspect-[1/7.93] relative mb-12">
-            <Image
-              src={"/works/2015052651/2015052651_1_3_1.jpg"}
-              layout="fill"
-              objectFit="cover"
-              alt={"/works/2015052651/2015052651_1_3_1.jpg"}
-            />
-          </div>
-          <div className="w-full aspect-[1/8.11] relative mb-12">
-            <Image
-              src={"/works/2015052651/2015052651_1_3_2.jpg"}
-              layout="fill"
-              objectFit="cover"
-              alt={"/works/2015052651/2015052651_1_3_2.jpg"}
-            />
-          </div>
+          {work.mainImages.map((image, index) => {
+            if (image.image.includes("mp4")) {
+              return (
+                <div
+                  key={index}
+                  className="w-full relative"
+                  style={{
+                    aspectRatio: `${getImageRatio(
+                      image!.width,
+                      image!.height
+                    )}`,
+                  }}
+                >
+                  <video
+                    key={index}
+                    className="w-full relative"
+                    controls
+                    autoPlay={true}
+                    src={image.image}
+                  ></video>
+                </div>
+              );
+            } else {
+              return (
+                <div
+                  key={index}
+                  className="w-full relative"
+                  style={{
+                    aspectRatio: `${getImageRatio(
+                      image!.width,
+                      image!.height
+                    )}`,
+                  }}
+                >
+                  <Image
+                    src={image!.image}
+                    layout="fill"
+                    objectFit="cover"
+                    alt={`메인 이미지 ${index}`}
+                  />
+                </div>
+              );
+            }
+          })}
         </div>
 
         {/* 작가 정보 */}
         <div className="flex flex-col my-10">
-          <h2 className="text-xl font-semibold">이다빈</h2>
-          <span className="text-lg ">DABEEN LEE</span>
-          <span className="text-sm mt-2">sunsuking@gmail.com</span>
-          <div className="flex flex-row my-5 space-x-2">
-            <div className="w-1/2">
-              <div className="w-full aspect-[1/0.85] relative mb-12">
-                <Image
-                  src={"/works/2015052651/2015052651_1_4.jpg.jpg"}
-                  layout="fill"
-                  objectFit="cover"
-                  alt={"/works/2015052651/2015052651_1_3_2.jpg"}
-                />
+          {work.students.map((student, index) => {
+            const {
+              student: { name, nameKor, email, works },
+            } = student;
+            return (
+              <div className="flex flex-col my-10" key={index}>
+                <h2 className="text-xl font-semibold">{nameKor}</h2>
+                <span className="text-lg ">{name}</span>
+                <span className="text-sm mt-2 mb-5">{email}</span>
+                <div className="grid grid-cols-2 gap-2">
+                  {works.map((work, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="w-full relative mb-12"
+                        style={{
+                          aspectRatio: `${getImageRatio(
+                            work.work.workProfileImage!.width,
+                            work.work.workProfileImage!.height
+                          )}`,
+                        }}
+                      >
+                        <Image
+                          src={work.work.workProfileImage!.image}
+                          layout="fill"
+                          objectFit="cover"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-            <div className="w-1/2">
-              <div className="w-full aspect-[1/0.85] relative mb-12">
-                <Image
-                  src={"/works/2015052651/2015052651_1_4.jpg.jpg"}
-                  layout="fill"
-                  objectFit="cover"
-                  alt={"/works/2015052651/2015052651_1_3_2.jpg"}
-                />
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </div>

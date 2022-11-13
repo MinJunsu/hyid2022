@@ -8,13 +8,15 @@ import Works from "@components/desktop/works";
 import { useRouter } from "next/router";
 
 const WorksPage: NextPage = () => {
+  const mobile = useMobile();
   const router = useRouter();
   const isCategory = Boolean((router.query.category as string) === "true");
-  const keyword = (router.query.keyword as string) || "ALL";
-  const mobile = useMobile();
+  const keyword = (router.query.category as string) || "ALL";
+
   const getCategory = () => {
     return Axios.get("/api/category").then((res) => res.data);
   };
+
   const { data, isLoading } = useQuery<CategoryWithWorks[]>(
     ["category"],
     getCategory
@@ -23,6 +25,7 @@ const WorksPage: NextPage = () => {
   if (isLoading) {
     return <div></div>;
   }
+
   if (mobile)
     return (
       <MobileWorks

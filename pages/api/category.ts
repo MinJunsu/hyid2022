@@ -64,5 +64,10 @@ export default async function handler(
       },
     },
   });
+
+  categories[0].works = categories
+    .map((category) => category.works)
+    .reduce((a, b) => a.concat(b), []);
+
   return response.status(200).json(categories);
 }
