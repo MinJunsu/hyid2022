@@ -16,7 +16,13 @@ export type CategoryWithWorks = Prisma.CategoryGetPayload<{
             };
           };
         };
-        thumbnailImage: true;
+        workThumbnailImage: {
+          select: {
+            image: true;
+            width: true;
+            height: true;
+          };
+        };
       };
     };
   };
@@ -47,7 +53,13 @@ export default async function handler(
               },
             },
           },
-          thumbnailImage: true,
+          workThumbnailImage: {
+            select: {
+              image: true,
+              width: true,
+              height: true,
+            },
+          },
         },
       },
     },

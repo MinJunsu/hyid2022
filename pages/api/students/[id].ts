@@ -3,13 +3,29 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export type StudentWithWorksAndTags = Prisma.StudentGetPayload<{
   include: {
+    tags: {
+      select: {
+        tag: {
+          select: {
+            id: true;
+            name: true;
+          };
+        };
+      };
+    };
     works: {
       select: {
         id: true;
         work: {
           select: {
             title: true;
-            thumbnailImage: true;
+            workThumbnailImage: {
+              select: {
+                image: true;
+                width: true;
+                height: true;
+              };
+            };
             students: {
               select: {
                 student: {
@@ -19,16 +35,6 @@ export type StudentWithWorksAndTags = Prisma.StudentGetPayload<{
                 };
               };
             };
-          };
-        };
-      };
-    };
-    tags: {
-      select: {
-        tag: {
-          select: {
-            id: true;
-            name: true;
           };
         };
       };
@@ -63,7 +69,13 @@ export default async function handler(
           work: {
             select: {
               title: true,
-              thumbnailImage: true,
+              workThumbnailImage: {
+                select: {
+                  image: true,
+                  width: true,
+                  height: true,
+                },
+              },
               students: {
                 select: {
                   student: {
