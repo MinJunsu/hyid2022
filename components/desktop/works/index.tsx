@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import router from "next/router";
 
@@ -6,22 +6,31 @@ import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import Header from "@components/desktop/header";
 import { CategoryWithWorks } from "@pages/api/category";
+import WorkModal from "@components/desktop/workModal";
 
 interface IndexProps {
   categories: CategoryWithWorks[];
+  isCategory: boolean;
 }
 
 interface Close {
   modalState: boolean;
 }
 
-function Works({ categories }: IndexProps, { modalState }: Close) {
+function Works({ categories, isCategory }: IndexProps, { modalState }: Close) {
   const [types, setTypes] = useState<number>(0);
   // Modal 관련 State
   const [modal, setModal] = useState<boolean>(true);
   const setClose = () => {
     setModal(false);
   };
+  const OpenModal = () => {
+    setModal(true);
+  };
+
+  // 검색 기능 State
+  const [search, setSearch] = useState<string>("");
+
   // loading 바 관련 State
   const [loading, setLoading] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
@@ -42,8 +51,14 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
     };
   }, []);
 
+  // if (isOpen) {
+  //   return (
+  //     <WorkModal categories={categories} setClose={() => setIsOpen(false)} />
+  //   );
+  // }
+
   return (
-    <div>
+    <div className={`${modal ? "overflow-y-hidden h-[100vh]" : null}`}>
       <div className={`${loading ? "block" : "hidden"}`}>
         <Box sx={{ width: "100%" }}>
           <LinearProgress variant="determinate" value={progress} />
@@ -51,7 +66,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
       </div>
       <div
         className={`works px-[40px] py-[25px] bg-white cursor-works  ${
-          modal ? null : null
+          modal ? "blur-xl" : null
         } `}
       >
         <div>
@@ -64,7 +79,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                 <div
                   onClick={() => setTypes(index)}
                   key={index}
-                  className="description  "
+                  className="description"
                 >
                   <p
                     onClick={() => {
@@ -132,6 +147,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
               placeholder="작업물을 검색하세요"
               type="text"
               className="focus:outline-none"
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
         </div>
@@ -141,87 +157,139 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
           }`}
         >
           {categories[types]?.works?.map((res, index) => {
-            return (
-              <div
-                key={index}
-                className=" w-full hover:block group mb-7 relative p-4 aspect-[428/365]"
-                onClick={() => {
-                  setLoading(true);
-                  router.push(`/works/${res.id}`);
-                }}
-              >
-                <Image
-                  src={res.workThumbnailImage?.image!}
-                  alt="workImage"
-                  className={`hover:opacity-25 duration-300`}
-                  layout="fill"
-                  objectFit="cover"
-                />
+            if (search === "") {
+              return (
                 <div
-                  className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline ${
-                    modal ? "hidden" : null
-                  }`}
+                  key={index}
+                  className=" w-full hover:block group mb-7 relative p-4 aspect-[428/365] cursor-pointer"
+                  onClick={() => {
+                    setLoading(true);
+                    router.push(`/works/${res.id}`);
+                  }}
                 >
-                  <h2 className="text-[25px]">{res.title}</h2>
-                  {res.students?.map((student, index) => {
-                    return (
-                      <div key={index}>
-                        <p>{student.student.nameKor}</p>
-                      </div>
-                    );
-                  })}
+                  <div className={`group-hover:opacity-25 duration-300`}>
+                    <Image
+                      src={res.workThumbnailImage?.image!}
+                      alt="workImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+
+                  <div
+                    className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline ${
+                      modal ? "hidden" : null
+                    }`}
+                  >
+                    <h2 className="text-[20px]">{res.title}</h2>
+                    {res.students?.map((student, index) => {
+                      return (
+                        <div key={index}>
+                          <p className="text-[15px] font-extralight">
+                            {student.student.nameKor}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            } else {
+              if (res.title.toLowerCase().includes(search.toLowerCase())) {
+                return (
+                  <div
+                    key={index}
+                    className=" w-full hover:block group mb-7 relative p-4 aspect-[428/365] cursor-pointer"
+                    onClick={() => {
+                      setLoading(true);
+                      router.push(`/works/${res.id}`);
+                    }}
+                  >
+                    <div className={`group-hover:opacity-25 duration-300`}>
+                      <Image
+                        src={res.workThumbnailImage?.image!}
+                        alt="workImage"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+
+                    <div
+                      className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline ${
+                        modal ? "hidden" : null
+                      }`}
+                    >
+                      <h2 className="text-[20px]">{res.title}</h2>
+                      {res.students?.map((student, index) => {
+                        return (
+                          <div key={index}>
+                            <p className="text-[15px] font-extralight">
+                              {student.student.nameKor}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              }
+            }
+          })}
+        </div>
+      </div>
+      {/*<div>*/}
+      {/*<WorkModal*/}
+      {/*  categories={categories}*/}
+      {/*  setClose={setClose}*/}
+      {/*  modalState={modal}*/}
+      {/*/>*/}
+      {/*</div>*/}
+      <div
+        className={`modal px-[43px] absolute top-0  cursor-pointer w-full ${
+          modal ? null : "hidden"
+        }  `}
+      >
+        <div
+          className="closeButton bg-white rounded-[5p%] w-[90px] h-[90px] flex items-center justify-center rounded-full float-right shadow-2xl  hover:scale-105"
+          onClick={setClose}
+        >
+          <Image src="/web/icon/close.svg" width={40} height={40} alt="close" />
+        </div>
+        <div className=" flex flex-wrap max-w-[1000px]   ">
+          {categories?.map((category, idx) => {
+            return (
+              <div key={idx} className="group relative ">
+                <div className="text-[105px] flex pointer-cursor ">
+                  <h2
+                    onClick={() => {
+                      setTypes(idx);
+                      setModal(false);
+                    }}
+                    className="hover:text-[#0649EC] "
+                  >
+                    {category.name}
+                  </h2>
+                  <h2
+                    className={`${
+                      category.id === 13 ? "hidden" : null
+                    } mx-[10px]`}
+                  >
+                    ,
+                  </h2>
+                </div>
+                <div className="counter bg-[#0649EC] w-[90px] h-[62px] rounded-full absolute  opacity-80 text-center text-[39px] text-white group-hover:inline top-0 -right-0 hidden">
+                  {category.works.length}
                 </div>
               </div>
             );
           })}
         </div>
+        <div className="total  ">
+          <p className="text-[#E26748] font-extralight text-[60px] mt-[90px]">
+            - {categories[0].works.length} Works
+          </p>
+        </div>
       </div>
-      {/*<div*/}
-      {/*  className={`modal px-[43px] relative max-h-[10px] bottom-[140vh] cursor-pointer ${*/}
-      {/*    modal ? null : "hidden"*/}
-      {/*  } `}*/}
-      {/*>*/}
-      {/*  <div*/}
-      {/*    className="closeButton bg-white rounded-[5p%] w-[90px] h-[90px] flex items-center justify-center rounded-full float-right shadow-2xl  hover:scale-105"*/}
-      {/*    onClick={setClose}*/}
-      {/*  >*/}
-      {/*    <Image src="/web/icon/close.svg" width={40} height={40} alt="close" />*/}
-      {/*  </div>*/}
-      {/*  <div className=" flex flex-wrap max-w-[1000px]   ">*/}
-      {/*    {categories?.map((category, idx) => {*/}
-      {/*      return (*/}
-      {/*        <div key={idx} className="group relative ">*/}
-      {/*          <div className="text-[105px] flex pointer-cursor ">*/}
-      {/*            <h2*/}
-      {/*              onClick={() => {*/}
-      {/*                setTypes(idx);*/}
-      {/*                setModal(false);*/}
-      {/*              }}*/}
-      {/*              className="hover:text-[#0649EC] "*/}
-      {/*            >*/}
-      {/*              {category.name}*/}
-      {/*            </h2>*/}
-      {/*            <h2*/}
-      {/*              className={`${*/}
-      {/*                category.id === 13 ? "hidden" : null*/}
-      {/*              } mx-[10px]`}*/}
-      {/*            >*/}
-      {/*              ,*/}
-      {/*            </h2>*/}
-      {/*          </div>*/}
-      {/*          <div className="counter bg-[#0649EC] w-[90px] h-[62px] rounded-full absolute  opacity-80 text-center text-[39px] text-white group-hover:inline top-0 -right-0 hidden">*/}
-      {/*            40*/}
-      {/*          </div>*/}
-      {/*        </div>*/}
-      {/*      );*/}
-      {/*    })}*/}
-      {/*  </div>*/}
-      {/*  <div className="total  ">*/}
-      {/*    <p className="text-[#E26748] font-extralight text-[60px] mt-[90px]">*/}
-      {/*      - 80 Works*/}
-      {/*    </p>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
     </div>
   );
 }

@@ -232,7 +232,7 @@ function WorkDetail({ work }: WorkDetailProps) {
             <div className="description px-[160px] pt-[100px]">
               <h3 className="text-[30px] font-semibold">{work.title}</h3>
               <h4 className="text-[25px] mt-[30px]  ">{work.subTitle}</h4>
-              <p className="columns-2 mt-[40px]">{work.description}</p>
+              <p className=" mt-[40px]">{work.description}</p>
               <div className="mt-[150px] flex-col">
                 {work.mainImages.map((res, idx) => {
                   if (res.image.includes("mp4")) {
@@ -268,7 +268,7 @@ function WorkDetail({ work }: WorkDetailProps) {
                         className="w-full  relative"
                       >
                         <Image
-                          priority={true}
+                          priority
                           src={res.image!}
                           layout="fill"
                           objectFit="cover"

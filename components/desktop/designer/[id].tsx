@@ -2,6 +2,7 @@ import Header from "../header";
 import Image from "next/image";
 import { Tag } from "@prisma/client";
 import getImageRatio from "../../../utils/image";
+import router from "next/router";
 
 interface StudentProps {
   student: any;
@@ -30,10 +31,17 @@ function Id({ student }: StudentProps) {
                 <h3 className="text-[25px]">{student.name}</h3>
               </div>
               <div className="tag mt-[35px] flex space-x-4">
+                {student.isManager && (
+                  <div className="px-5 py-2 rounded-full bg-[#0649EC] text-black cursor-pointer">
+                    <span className="flex justify-center items-center text-sm text-white">
+                      졸준위
+                    </span>
+                  </div>
+                )}
                 {student.tags.map(({ tag }: { tag: Tag }, index: number) => {
                   return (
                     <div key={index}>
-                      <p className="bg-[#F2F2F2] rounded-full w-auto p-2 text-center w-[138px] uppercase">
+                      <p className="bg-[#F2F2F2] rounded-full py-2  px-5 text-center w-auto uppercase">
                         {tag.name}
                       </p>
                     </div>
@@ -81,7 +89,10 @@ function Id({ student }: StudentProps) {
                   return (
                     <div
                       key={index}
-                      className="w-full relative works flex  mt-[42px] space-x-[50px]"
+                      onClick={() => {
+                        router.push(`/works/${res.work.id}`);
+                      }}
+                      className="w-full relative works flex  mt-[42px] space-x-[50px] cursor-pointer"
                       style={{
                         aspectRatio: `${getImageRatio(
                           res?.work.workThumbnailImage.width,
@@ -98,22 +109,6 @@ function Id({ student }: StudentProps) {
                   );
                 })}
               </div>
-              {/*<div className="works flex  mt-[42px] space-x-[50px]">*/}
-              {/*  <div>*/}
-              {/*    <Image*/}
-              {/*      src="/profile/2016018440.png"*/}
-              {/*      width={428}*/}
-              {/*      height={365}*/}
-              {/*    />*/}
-              {/*  </div>*/}
-              {/*  <div>*/}
-              {/*    <Image*/}
-              {/*      src="/profile/2016018440.png"*/}
-              {/*      width={428}*/}
-              {/*      height={365}*/}
-              {/*    />*/}
-              {/*  </div>*/}
-              {/*</div>*/}
             </div>
           </div>
         </div>
