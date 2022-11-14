@@ -54,14 +54,16 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
         })}
         {[...iterateWorkCategory].map((category, index) => {
           return (
-            <div
-              className="px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer"
+            <Link
               key={index}
+              href={`/works/?category=${category.toLowerCase()}`}
             >
-              <span className="flex justify-center items-center text-sm uppercase">
-                {category}
-              </span>
-            </div>
+              <a className="block px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer">
+                <span className="flex justify-center items-center text-sm uppercase">
+                  {category}
+                </span>
+              </a>
+            </Link>
           );
         })}
       </div>

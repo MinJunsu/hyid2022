@@ -28,6 +28,27 @@ export type CategoryWithWorks = Prisma.CategoryGetPayload<{
   };
 }>;
 
+export type CategoryWorks = Prisma.WorkGetPayload<{
+  include: {
+    students: {
+      select: {
+        student: {
+          select: {
+            nameKor: true;
+          };
+        };
+      };
+    };
+    workThumbnailImage: {
+      select: {
+        image: true;
+        width: true;
+        height: true;
+      };
+    };
+  };
+}>;
+
 export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse<CategoryWithWorks[]>
