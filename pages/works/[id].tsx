@@ -33,7 +33,7 @@ const WorksDetailPage: NextPage<ServerSideProps> = ({ id }, context) => {
   }
 
   if (mobile) return <MobileWorkDetail work={data!} />;
-  else return <WorksDetail />;
+  else return <WorksDetail work={data!} />;
 };
 
 export async function getServerSideProps(context: { params: { id: string } }) {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import router from "next/router";
 
@@ -6,22 +6,31 @@ import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import Header from "@components/desktop/header";
 import { CategoryWithWorks } from "@pages/api/category";
+import WorkModal from "@components/desktop/workModal";
 
 interface IndexProps {
   categories: CategoryWithWorks[];
+  isCategory: boolean;
 }
 
 interface Close {
   modalState: boolean;
 }
 
-function Works({ categories }: IndexProps, { modalState }: Close) {
+function Works({ categories, isCategory }: IndexProps, { modalState }: Close) {
   const [types, setTypes] = useState<number>(0);
   // Modal 관련 State
   const [modal, setModal] = useState<boolean>(true);
   const setClose = () => {
     setModal(false);
   };
+  const OpenModal = () => {
+    setModal(true);
+  };
+
+  // 검색 기능 State
+  const [search, setSearch] = useState<string>("");
+
   // loading 바 관련 State
   const [loading, setLoading] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
@@ -42,19 +51,22 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
     };
   }, []);
 
+  // if (isOpen) {
+  //   return (
+  //     <WorkModal categories={categories} setClose={() => setIsOpen(false)} />
+  //   );
+  // }
+
   return (
-    <div>
+    <div className={`${modal ? "overflow-y-hidden h-[100vh]" : null}`}>
       <div className={`${loading ? "block" : "hidden"}`}>
         <Box sx={{ width: "100%" }}>
-          <LinearProgress
-            variant="determinate"
-            value={progress}
-          />
+          <LinearProgress variant="determinate" value={progress} />
         </Box>
       </div>
       <div
         className={`works px-[40px] py-[25px] bg-white cursor-works  ${
-          modal ? "blur-lg" : null
+          modal ? "blur-xl" : null
         } `}
       >
         <div>
@@ -67,7 +79,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                 <div
                   onClick={() => setTypes(index)}
                   key={index}
-                  className="description  "
+                  className="description"
                 >
                   <p
                     onClick={() => {
@@ -85,7 +97,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                         types === index ? "text-white" : "text-[#0649EC]"
                       } `}
                     >
-                      80
+                      {category.works.length}
                     </span>
                   </p>
                 </div>
@@ -135,48 +147,107 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
               placeholder="작업물을 검색하세요"
               type="text"
               className="focus:outline-none"
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
         </div>
-        <div className={`workList flex flex-wrap justify-between  ${ modal ?  null : "cursor-[url(/web/mouse/cursor.cur),_pointer"}`}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((res, index) => {
-            return (
-              <div
-                key={index}
-                className=" w-[23%] hover:block group mb-7 relative "
-                onClick={() => {
-                  setLoading(true);
-                  setTimeout(() => router.push(`/works/${index}`), 3000);
-
-                  router.push(`/works/${index}`);
-                }}
-              >
-                <Image
-                  src="/dummy/images/WorksImage.png"
-                  width={428}
-                  height={366}
-                  alt="workImage"
-                  className={`${
-                    modal ? null : "hover:opacity-25 duration-300"
-                  } `}
-                />
+        <div
+          className={`workList grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3  ${
+            modal ? null : "cursor-[url(/web/mouse/cursor.cur),_pointer"
+          }`}
+        >
+          {categories[types]?.works?.map((res, index) => {
+            if (search === "") {
+              return (
                 <div
-                  className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline ${
-                    modal ? "hidden" : null
-                  }`}
+                  key={index}
+                  className=" w-full hover:block group mb-7 relative p-4 aspect-[428/365] cursor-pointer"
+                  onClick={() => {
+                    setLoading(true);
+                    router.push(`/works/${res.id}`);
+                  }}
                 >
-                  <h2 className="text-[25px]">Breeze</h2>
-                  <p className="text-[20px]">이다빈</p>
+                  <div className={`group-hover:opacity-25 duration-300`}>
+                    <Image
+                      src={res.workThumbnailImage?.image!}
+                      alt="workImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+
+                  <div
+                    className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline ${
+                      modal ? "hidden" : null
+                    }`}
+                  >
+                    <h2 className="text-[20px]">{res.title}</h2>
+                    {res.students?.map((student, index) => {
+                      return (
+                        <div key={index}>
+                          <p className="text-[15px] font-extralight">
+                            {student.student.nameKor}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            );
+              );
+            } else {
+              if (res.title.toLowerCase().includes(search.toLowerCase())) {
+                return (
+                  <div
+                    key={index}
+                    className=" w-full hover:block group mb-7 relative p-4 aspect-[428/365] cursor-pointer"
+                    onClick={() => {
+                      setLoading(true);
+                      router.push(`/works/${res.id}`);
+                    }}
+                  >
+                    <div className={`group-hover:opacity-25 duration-300`}>
+                      <Image
+                        src={res.workThumbnailImage?.image!}
+                        alt="workImage"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+
+                    <div
+                      className={`summary absolute left-[30px] bottom-[30px] hidden group-hover:inline ${
+                        modal ? "hidden" : null
+                      }`}
+                    >
+                      <h2 className="text-[20px]">{res.title}</h2>
+                      {res.students?.map((student, index) => {
+                        return (
+                          <div key={index}>
+                            <p className="text-[15px] font-extralight">
+                              {student.student.nameKor}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              }
+            }
           })}
         </div>
       </div>
+      {/*<div>*/}
+      {/*<WorkModal*/}
+      {/*  categories={categories}*/}
+      {/*  setClose={setClose}*/}
+      {/*  modalState={modal}*/}
+      {/*/>*/}
+      {/*</div>*/}
       <div
-        className={`modal px-[43px] relative max-h-[10px] bottom-[140vh] cursor-pointer ${
+        className={`modal px-[43px] absolute top-0  cursor-pointer w-full ${
           modal ? null : "hidden"
-        } `}
+        }  `}
       >
         <div
           className="closeButton bg-white rounded-[5p%] w-[90px] h-[90px] flex items-center justify-center rounded-full float-right shadow-2xl  hover:scale-105"
@@ -207,7 +278,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                   </h2>
                 </div>
                 <div className="counter bg-[#0649EC] w-[90px] h-[62px] rounded-full absolute  opacity-80 text-center text-[39px] text-white group-hover:inline top-0 -right-0 hidden">
-                  40
+                  {category.works.length}
                 </div>
               </div>
             );
@@ -215,7 +286,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
         </div>
         <div className="total  ">
           <p className="text-[#E26748] font-extralight text-[60px] mt-[90px]">
-            - 80 Works
+            - {categories[0].works.length} Works
           </p>
         </div>
       </div>

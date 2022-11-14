@@ -37,8 +37,8 @@ const DesignersPage: NextPage<ServerSideProps> = ({ keyword }, context) => {
 export async function getServerSideProps(context: {
   query: { keyword: string };
 }) {
-  console.log(context);
-  const keyword = context.query.keyword;
+  // console.log(context);
+  const keyword = context.query.keyword || null;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["students"], getStudent);
   return {
