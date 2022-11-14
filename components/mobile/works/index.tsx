@@ -73,6 +73,7 @@ function MobileWorks({ categories, keyword, isCategory }: MobileWorksProps) {
                     layout="fill"
                     objectFit="cover"
                     alt={work.title}
+                    priority
                   />
                 </div>
                 <div className="flex flex-col my-3 space-y-1">

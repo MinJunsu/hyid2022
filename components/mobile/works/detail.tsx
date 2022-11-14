@@ -37,6 +37,7 @@ function MobileWorkDetail({ work }: MobileWorkDetailProps) {
           layout="fill"
           objectFit="cover"
           alt="work-detail-backdrop"
+          priority
         />
       </div>
       {/* 작품 정보 */}
@@ -89,6 +90,7 @@ function MobileWorkDetail({ work }: MobileWorkDetailProps) {
                     layout="fill"
                     objectFit="cover"
                     alt={`메인 이미지 ${index}`}
+                    priority
                   />
                 </div>
               );
@@ -126,6 +128,7 @@ function MobileWorkDetail({ work }: MobileWorkDetailProps) {
                       src={works[0].work.workProfileImage!.image}
                       layout="fill"
                       objectFit="cover"
+                      priority
                     />
                   </a>
                 </Link>
