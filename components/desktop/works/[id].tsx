@@ -12,6 +12,7 @@ interface WorkDetailProps {
 function WorkDetail({ work }: WorkDetailProps) {
   const [showButton, setShowButton] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const query = false;
   const outside = useRef<any>();
 
   useEffect(() => {
@@ -188,7 +189,13 @@ function WorkDetail({ work }: WorkDetailProps) {
             </div>
             <div
               onClick={() => {
-                router.push("/works");
+                router.push(
+                  {
+                    pathname: "/works",
+                    query: { query },
+                  },
+                  "/works"
+                );
               }}
               className="closeButton w-[66px] h-[66px] rounded-[50%] bg-white flex justify-center items-center drop-shadow-2xl cursor-pointer absolute top-10 right-16  "
             >

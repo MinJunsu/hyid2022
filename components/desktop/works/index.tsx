@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import router from "next/router";
+import { useRouter } from "next/router";
 
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -10,17 +10,18 @@ import WorkModal from "@components/desktop/workModal";
 
 interface IndexProps {
   categories: CategoryWithWorks[];
-  isCategory: boolean;
 }
 
 interface Close {
   modalState: boolean;
 }
 
-function Works({ categories, isCategory }: IndexProps, { modalState }: Close) {
+function Works({ categories }: IndexProps, { modalState }: Close) {
+  const router = useRouter();
+
   const [types, setTypes] = useState<number>(0);
   // Modal 관련 State
-  const [modal, setModal] = useState<boolean>(true);
+  const [modal, setModal] = useState<boolean>(false);
   const setClose = () => {
     setModal(false);
   };
@@ -36,6 +37,9 @@ function Works({ categories, isCategory }: IndexProps, { modalState }: Close) {
   const [progress, setProgress] = useState<number>(0);
 
   useEffect(() => {
+    if (router.query.query !== "false") {
+      setModal(true);
+    }
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
         if (oldProgress === 100) {
@@ -50,12 +54,6 @@ function Works({ categories, isCategory }: IndexProps, { modalState }: Close) {
       clearInterval(timer);
     };
   }, []);
-
-  // if (isOpen) {
-  //   return (
-  //     <WorkModal categories={categories} setClose={() => setIsOpen(false)} />
-  //   );
-  // }
 
   return (
     <div className={`${modal ? "overflow-y-hidden h-[100vh]" : null}`}>
@@ -97,6 +95,7 @@ function Works({ categories, isCategory }: IndexProps, { modalState }: Close) {
                         types === index ? "text-white" : "text-[#0649EC]"
                       } `}
                     >
+                      &nbsp;
                       {category.works.length}
                     </span>
                   </p>
@@ -164,7 +163,9 @@ function Works({ categories, isCategory }: IndexProps, { modalState }: Close) {
                   className=" w-full hover:block group mb-7 relative p-4 aspect-[428/365] cursor-pointer"
                   onClick={() => {
                     setLoading(true);
-                    router.push(`/works/${res.id}`);
+                    setTimeout(() => {
+                      router.push(`/works/${res.id}`);
+                    }, 2000);
                   }}
                 >
                   <div className={`group-hover:opacity-25 duration-300`}>
@@ -237,13 +238,9 @@ function Works({ categories, isCategory }: IndexProps, { modalState }: Close) {
           })}
         </div>
       </div>
-      {/*<div>*/}
-      {/*<WorkModal*/}
-      {/*  categories={categories}*/}
-      {/*  setClose={setClose}*/}
-      {/*  modalState={modal}*/}
-      {/*/>*/}
-      {/*</div>*/}
+
+      {/* 모달 창 */}
+
       <div
         className={`modal px-[43px] absolute top-0  cursor-pointer w-full ${
           modal ? null : "hidden"

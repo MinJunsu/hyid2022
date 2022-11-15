@@ -1,11 +1,14 @@
 import Image from "next/image";
-import router from "next/router";
+import { useRouter } from "next/router";
 
 interface NavProps {
   color: string;
 }
 
 function Header({ color }: NavProps) {
+  const router = useRouter();
+  const path = router.pathname;
+
   return (
     <div className="flex justify-between bg-transparent z-50 ">
       <div className="logo cursor-pointer" onClick={() => router.push("/")}>
@@ -25,7 +28,9 @@ function Header({ color }: NavProps) {
           } flex space-x-[25px] mt-4 `}
         >
           <p
-            className="cursor-pointer"
+            className={`cursor-pointer  ${
+              path.includes("work") ? "underline" : null
+            }`}
             onClick={() => {
               router.push("/works");
             }}
@@ -33,7 +38,9 @@ function Header({ color }: NavProps) {
             WORKS
           </p>
           <p
-            className="cursor-pointer"
+            className={`cursor-pointer ${
+              path.includes("designers") ? "underline" : null
+            }`}
             onClick={() => {
               router.push("/designers");
             }}
