@@ -86,9 +86,9 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                     onClick={() => {
                       setTypes(index);
                     }}
-                    className={`h-[39px] rounded-[22px] text-center py-[6px] px-[18px]  border-[1px] border-[#DBDBDB] w-full ${
+                    className={`h-[39px] rounded-[22px] text-center pb-[5px] pt-[8px] px-[18px]  border-[1px] border-[#DBDBDB]  w-full ${
                       types === index
-                        ? "bg-[#0649EC] text-white"
+                        ? "bg-[#0649EC] text-white border-[#DBDBDB]"
                         : "bg-white text-black"
                     }`}
                   >

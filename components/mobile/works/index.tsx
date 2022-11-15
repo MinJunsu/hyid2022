@@ -72,7 +72,7 @@ function MobileWorks({
                 <div
                   className={`h-8 rounded-full border-gray-300 border-[1px] flex justify-center items-center ${
                     category.name.toLowerCase() === nowCategory &&
-                    "bg-[#0649EC]"
+                    "bg-[#0649EC] border-none"
                   }`}
                 >
                   <div
