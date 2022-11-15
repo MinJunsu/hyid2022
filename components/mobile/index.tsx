@@ -33,6 +33,12 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
           slidesToShow: 7,
         },
       },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
     ],
   };
 
