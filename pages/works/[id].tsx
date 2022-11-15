@@ -27,7 +27,7 @@ export interface Like {
 }
 
 const getLike = (id: string) => {
-  if (!id) return { isLiked: false, likeCount: 0 };
+  if (!id) return null;
   return axios
     .get(
       `https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}/like`
@@ -47,7 +47,7 @@ const WorksDetailPage: NextPage = () => {
   const { data: work, isLoading: workLoading } =
     useQuery<WorkWithStudentsAndImages | null>(["work", id], () => getWork(id));
 
-  const { data: workLike, isLoading: workLikeLoading } = useQuery<Like>(
+  const { data: workLike, isLoading: workLikeLoading } = useQuery<Like | null>(
     ["like", id],
     () => getLike(id)
   );
@@ -59,7 +59,7 @@ const WorksDetailPage: NextPage = () => {
       ),
     {
       onMutate: () => {
-        queryClient.refetchQueries(["like", id]);
+        queryClient.invalidateQueries(["like", id]);
       },
     }
   );
@@ -68,7 +68,7 @@ const WorksDetailPage: NextPage = () => {
     return <div></div>;
   }
 
-  if (workLike && workLikeLoading) {
+  if (workLoading && workLikeLoading) {
     return <div></div>;
   }
 
