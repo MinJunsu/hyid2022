@@ -90,6 +90,9 @@ function Designer({ students }: IndexProps) {
                       setStudentId(student.id);
                       slider.current?.slickPause();
                       setTimeout(() => {
+                        setStudentId(1000);
+                      }, 4000);
+                      setTimeout(() => {
                         slider.current?.slickPlay();
                       }, 5000);
                     }}
@@ -115,7 +118,11 @@ function Designer({ students }: IndexProps) {
                 }}
               >
                 <div
-                  className={`xl:w-[330px] xl:hover:w-[360px] lg:w-[300px] lg:w-[350px] hover:bg-white hover:text-center hover:h-[550px] hover:pt-[15px] transition  duration-1000 hover:text-blue-700 text-white `}
+                  className={`${
+                    student.id === studentId
+                      ? "xl:w-[360px] text-center h-[550px] bg-white text-center pt-[15px] text-blue-700 "
+                      : null
+                  }xl:w-[330px] xl:hover:w-[360px] lg:w-[300px] lg:w-[350px] hover:bg-white hover:text-center hover:h-[550px] hover:pt-[15px] transition  duration-1000 hover:text-blue-700 text-white `}
                 >
                   <Image
                     className="transitions duration-500 ease-in-out transform hover:scale-110"
