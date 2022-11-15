@@ -14,6 +14,7 @@ interface IndexProps {
 
 function Designer({ students }: IndexProps) {
   // 학생 Select State
+  // console.log(students);
 
   const [studentId, setStudentId] = useState<number>(0);
 
@@ -79,8 +80,8 @@ function Designer({ students }: IndexProps) {
           </div>
         </div>
         <div className="rightContents text-white ">
-          <h2 className=" text-[28px] ml-3">Designers</h2>
-          <div className="studentName grid grid-cols-11  ">
+          <h2 className=" text-[28px] ml-10">Designers</h2>
+          <div className="studentName grid grid-cols-11 justify-start  ">
             {students?.map((student, index) => {
               return (
                 <div key={index}>
@@ -96,7 +97,8 @@ function Designer({ students }: IndexProps) {
                         slider.current?.slickPlay();
                       }, 5000);
                     }}
-                    className="flex justify-center min-w-[115px] text-[18px] mx-3 mt-[15px] font-extralight w-[5vw] truncate text-center hover:underline cursor-pointer"
+                    className={`flex justify-center min-w-[115px] text-[18px] mx-3 mt-[15px] font-extralight w-[5vw] truncate text-center hover:underline cursor-pointer
+                    ${student.id === 34 ? "ml-11" : null}`}
                   >
                     {student.nameKor}
                   </p>
