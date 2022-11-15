@@ -166,7 +166,7 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                       </p>
 
                       <Image
-                        src={work.workThumbnailImage?.image!}
+                        src={work?.workThumbnailImage?.image!}
                         width={215}
                         height={183}
                         alt="썸네일 이미지"
@@ -191,14 +191,14 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
               className="coverImage w-full  relative "
               style={{
                 aspectRatio: `${getImageRatio(
-                  work.workBackdropImage?.width!,
-                  work.workBackdropImage?.height!
+                  work?.workBackdropImage?.width!,
+                  work?.workBackdropImage?.height!
                 )}`,
               }}
             >
               <Image
                 priority={true}
-                src={work.workBackdropImage?.image!}
+                src={work?.workBackdropImage?.image!}
                 layout="fill"
                 objectFit="cover"
                 alt="배경 이미지"
@@ -254,11 +254,11 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
             </div>
 
             <div className="description px-[160px] pt-[100px]">
-              <h3 className="text-[30px] font-semibold">{work.title}</h3>
-              <h4 className="text-[25px] mt-[30px]  ">{work.subTitle}</h4>
-              <p className=" mt-[40px]">{work.description}</p>
+              <h3 className="text-[30px] font-semibold">{work?.title}</h3>
+              <h4 className="text-[25px] mt-[30px]  ">{work?.subTitle}</h4>
+              <p className=" mt-[40px]">{work?.description}</p>
               <div className="mt-[150px] flex-col">
-                {work.mainImages.map((res, idx) => {
+                {work?.mainImages.map((res, idx) => {
                   if (res.image.includes("mp4")) {
                     return (
                       <div
@@ -309,8 +309,8 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
               <div className="loved flex items-center border-[2px] border-[#AEAEAE] w-auto rounded-full p-3 text-center justify-evenly px-6 py-4">
                 <svg
                   onClick={() => {
-                    if (stateLike.isLiked) return;
-                    mutation.mutate(work.id);
+                    if (stateLike?.isLiked) return;
+                    mutation.mutate(work?.id);
                     setStateLike((prev) => ({
                       isLiked: true,
                       likeCount: prev.likeCount + 1,
@@ -325,8 +325,8 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                     id="heart"
                     d="M28.383,5.24a7.651,7.651,0,0,0-10.822,0L16.087,6.715,14.612,5.24A7.652,7.652,0,0,0,3.79,16.062l1.474,1.474L16.087,28.359,26.909,17.537l1.474-1.474a7.651,7.651,0,0,0,0-10.822Z"
                     transform="translate(-0.549 -1.998)"
-                    fill={`${stateLike.isLiked ? "#0649EC" : "#FFFFFF"}`}
-                    stroke={`${stateLike.isLiked ? "#0649EC" : "#AEAEAE"}`}
+                    fill={`${stateLike?.isLiked ? "#0649EC" : "#FFFFFF"}`}
+                    stroke={`${stateLike?.isLiked ? "#0649EC" : "#AEAEAE"}`}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
@@ -334,12 +334,14 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                 </svg>
                 <p
                   className={`mx-4 ${
-                    stateLike.isLiked ? "text-[#0649EC]" : "text-[#AEAEAE]"
+                    stateLike?.isLiked ? "text-[#0649EC]" : "text-[#AEAEAE]"
                   }`}
                 >
                   좋아요
                 </p>
-                <p className={`${stateLike.isLiked ? "text-[#0649EC]" : null}`}>
+                <p
+                  className={`${stateLike?.isLiked ? "text-[#0649EC]" : null}`}
+                >
                   {stateLike?.likeCount}
                 </p>
                 <div className="mx-4">
@@ -364,7 +366,7 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                 <div
                   onClick={() => {
                     handleCopyClipBoard(
-                      `www.hyiddegreeshow.kr/work/${work.id}`
+                      `www.hyiddegreeshow.kr/work/${work?.id}`
                     );
                   }}
                 >
