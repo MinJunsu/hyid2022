@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useRef, useState } from "react";
 import router from "next/router";
 import Header from "@components/desktop/header";
+import Head from "next/head";
 
 interface IndexProps {
   students: Student[];
@@ -46,6 +47,9 @@ function Designer({ students }: IndexProps) {
 
   return (
     <div className="bg-cover w-full h-auto  bg-[url('/web/background/profile_background.png')] ">
+      <Head>
+        <title>HYID Designers</title>
+      </Head>
       <div className="px-[40px] py-[20px]">
         <Header color="white" />
       </div>

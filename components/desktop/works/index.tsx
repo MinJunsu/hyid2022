@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import Header from "@components/desktop/header";
 import { CategoryWithWorks } from "@pages/api/category";
-import WorkModal from "@components/desktop/workModal";
+import Head from "next/head";
 
 interface IndexProps {
   categories: CategoryWithWorks[];
@@ -57,6 +57,9 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
 
   return (
     <div className={`${modal ? "overflow-y-hidden h-[100vh]" : null}`}>
+      <Head>
+        <title>HYID Works</title>
+      </Head>
       <div className={`${loading ? "block" : "hidden"}`}>
         <Box sx={{ width: "100%" }}>
           <LinearProgress variant="determinate" value={progress} />

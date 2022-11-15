@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Tag } from "@prisma/client";
 import getImageRatio from "../../../utils/image";
 import router from "next/router";
+import Head from "next/head";
 
 interface StudentProps {
   student: any;
@@ -11,6 +12,9 @@ interface StudentProps {
 function Id({ student }: StudentProps) {
   return (
     <div className="px-[40px] py-[20px]">
+      <Head>
+        <title>Designer: {student.nameKor}</title>
+      </Head>
       <Header color="black" />
       <div className="fixed left-0 top-0 w-[100vw] h-[100vh] -z-50">
         <div className="flex h-full -z-30">

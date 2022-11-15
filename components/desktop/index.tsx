@@ -7,6 +7,7 @@ import router from "next/router";
 import { Link } from "react-scroll";
 import Header from "@components/desktop/header";
 import { ViewCount } from "@pages/api";
+import Head from "next/head";
 
 const Fade = require("react-reveal/Fade");
 
@@ -83,6 +84,9 @@ function Home({ viewCount }: HomeProps) {
 
   return (
     <div className="webView scroll-smooth">
+      <Head>
+        <title>HYID2022</title>
+      </Head>
       <div className="dots fixed text-white z-20 right-8 bottom-[50%] ">
         <Link to="first" smooth={true} spy={true}>
           <svg

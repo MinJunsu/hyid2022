@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import getImageRatio from "../../../utils/image";
 import axios from "axios";
+import Head from "next/head";
 
 interface WorkDetailProps {
   work: WorkWithStudentsAndImages;
@@ -73,6 +74,9 @@ function WorkDetail({ work }: WorkDetailProps) {
 
   return (
     <div className="relative">
+      <Head>
+        <title>Work: {work.title}</title>
+      </Head>
       <div className="bg-[#fff] h-full z-20">
         <div ref={outside} className="fixed z-30 right-0 top-48">
           <div
