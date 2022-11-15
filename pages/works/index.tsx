@@ -19,7 +19,7 @@ interface ServerSideProps {
 
 const getCategory = () => {
   return Axios.get(
-    "https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/category"
+    "https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod/category"
   ).then((res) => res.data);
 };
 
@@ -52,7 +52,7 @@ const WorksPage: NextPage<ServerSideProps> = (
   else return <Works categories={data!} />;
 };
 
-export async function getServerSideProps(context: {
+export async function getInitialProps(context: {
   query: { category: string; keyword: string };
 }) {
   const category = context.query.category || null;

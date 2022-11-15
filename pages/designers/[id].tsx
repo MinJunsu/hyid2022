@@ -1,36 +1,42 @@
 import axios from "axios";
-import {
-  dehydrate,
-  DehydratedState,
-  QueryClient,
-  useQuery,
-} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import MobileDesignerDetail from "@components/mobile/designers/detail";
 import { StudentWithWorksAndTags } from "@pages/api/students/[id]";
 import type { NextPage } from "next";
 import Designers from "@components/desktop/designer/[id]";
 import useMobile from "@hooks/mobile";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-interface ServerSideProps {
-  dehydratedState: DehydratedState;
-  id: string;
-}
+// interface ServerSideProps {
+//   dehydratedState: DehydratedState;
+//   id: string;
+// }
 
 const getStudentWorks = (id: string) => {
   return axios
     .get(
-      `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/students/${id}`
+      `https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod/students/${id}`
     )
     .then((res) => res.data);
 };
 
-const DesignersDetailPage: NextPage<ServerSideProps> = ({ id }) => {
+const DesignersDetailPage: NextPage = () => {
   const mobile = useMobile();
+  const router = useRouter();
+  const [id, setId] = useState<string>("");
+  useEffect(() => {
+    setId(router.query.id as string);
+  }, [router.isReady, router.query.id]);
 
   const { data, isLoading } = useQuery<StudentWithWorksAndTags>(
     ["student", id],
     () => getStudentWorks(id)
   );
+
+  if (!id) {
+    return <div></div>;
+  }
 
   if (isLoading) {
     return <div></div>;
@@ -40,16 +46,16 @@ const DesignersDetailPage: NextPage<ServerSideProps> = ({ id }) => {
   return <Designers student={data!} />;
 };
 
-export async function getServerSideProps(context: { params: { id: string } }) {
-  const id = context.params.id;
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(["student", id], () => getStudentWorks(id));
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-      id,
-    },
-  };
-}
+// export async function getInitialProps(context: { params: { id: string } }) {
+//   const id = context.params.id;
+//   const queryClient = new QueryClient();
+//   await queryClient.prefetchQuery(["student", id], () => getStudentWorks(id));
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//       id,
+//     },
+//   };
+// }
 
 export default DesignersDetailPage;

@@ -46,7 +46,7 @@ function Designer({ students }: IndexProps) {
   };
 
   return (
-    <div className="bg-cover w-full h-auto  bg-[url('/web/background/profile_background.png')] ">
+    <div className="bg-cover w-full h-[100vh]  bg-[url('/web/background/profile_background.png')] ">
       <Head>
         <title>HYID Designers</title>
       </Head>
@@ -56,7 +56,12 @@ function Designer({ students }: IndexProps) {
       <div className="px-[40px] flex items-center ">
         <div className="leftContents w-[40%] relative top-20">
           <div className="animate-pulse absolute bottom-6 left-20  ">
-            <Image src="/web/icon/design_star.png" height={77} width={77} />
+            <Image
+              src="/web/icon/design_star.png"
+              height={77}
+              width={77}
+              alt="icon"
+            />
           </div>
           <div>
             <p className="text-white font-light text-[18px]">
@@ -115,6 +120,7 @@ function Designer({ students }: IndexProps) {
                     src={student.profileImage!}
                     width={330}
                     height={420}
+                    alt="프로필 이미지"
                   />
                   <div
                     className={`w-[360px]  mt-[20px]  ${

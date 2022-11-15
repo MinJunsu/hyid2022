@@ -4,30 +4,26 @@ import MobileWorkDetail from "@components/mobile/works/detail";
 import WorksDetail from "@components/desktop/works/[id]";
 import Axios from "axios";
 import axios from "axios";
-import {
-  dehydrate,
-  DehydratedState,
-  QueryClient,
-  useMutation,
-  useQuery,
-} from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
-interface ServerSideProps {
-  dehydratedState: DehydratedState;
-  id: string;
-}
+// interface ServerSideProps {
+//   dehydratedState: DehydratedState;
+//   id: string;
+// }
 
 const getWork = (id: string) => {
   return Axios.get(
-    `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}`
+    `https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}`
   ).then((res) => res.data);
 };
 
 const getLike = (id: string) => {
   return axios
     .get(
-      `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}/like`
+      `https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}/like`
     )
     .then((res) => res.data);
 };
@@ -37,9 +33,14 @@ export interface Like {
   likeCount: number;
 }
 
-const WorksDetailPage: NextPage<ServerSideProps> = ({ id }, context) => {
+const WorksDetailPage: NextPage = () => {
   const mobile = useMobile();
   const queryClient = new QueryClient();
+  const router = useRouter();
+  const [id, setId] = useState<string>("");
+  useEffect(() => {
+    setId(router.query.id as string);
+  }, [router.isReady, router.query.id]);
 
   const { data: work, isLoading: workLoading } =
     useQuery<WorkWithStudentsAndImages>(["work", id], () => getWork(id));
@@ -52,7 +53,7 @@ const WorksDetailPage: NextPage<ServerSideProps> = ({ id }, context) => {
   const mutation = useMutation(
     (id: number) =>
       fetch(
-        `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}/like/create`
+        `https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}/like/create`
       ),
     {
       onMutate: () => {
@@ -60,6 +61,10 @@ const WorksDetailPage: NextPage<ServerSideProps> = ({ id }, context) => {
       },
     }
   );
+
+  if (!id) {
+    return <div></div>;
+  }
 
   if (workLike && workLikeLoading) {
     return <div></div>;
@@ -72,17 +77,17 @@ const WorksDetailPage: NextPage<ServerSideProps> = ({ id }, context) => {
   else return <WorksDetail work={work!} like={workLike!} mutation={mutation} />;
 };
 
-export async function getServerSideProps(context: { params: { id: string } }) {
-  const id = context.params.id;
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(["work", id], () => getWork(id));
-  await queryClient.prefetchQuery(["like", id], () => getLike(id));
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-      id,
-    },
-  };
-}
+// export async function getInitialProps(context: { params: { id: string } }) {
+//   const id = context.params.id;
+//   const queryClient = new QueryClient();
+//   await queryClient.prefetchQuery(["work", id], () => getWork(id));
+//   await queryClient.prefetchQuery(["like", id], () => getLike(id));
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//       id,
+//     },
+//   };
+// }
 
 export default WorksDetailPage;

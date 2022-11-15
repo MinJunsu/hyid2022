@@ -9,7 +9,12 @@ function Header() {
       <div className="w-1/2">
         <Link href="/">
           <a>
-            <Image src="/web/logo/web_logo_black.svg" width={100} height={90} />
+            <Image
+              src="/web/logo/web_logo_black.svg"
+              width={100}
+              height={90}
+              alt="icon"
+            />
           </a>
         </Link>
       </div>

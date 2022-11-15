@@ -35,14 +35,14 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
         className={`w-full relative mb-10`}
         style={{
           aspectRatio: `${getImageRatio(
-            work.workBackdropImage!.width,
-            work.workBackdropImage!.height
+            work?.workBackdropImage!.width,
+            work?.workBackdropImage!.height
           )}`,
         }}
       >
         <Image
           className="-z-20"
-          src={work.workBackdropImage!.image}
+          src={work?.workBackdropImage!.image}
           layout="fill"
           objectFit="cover"
           alt="work-detail-backdrop"
@@ -53,15 +53,15 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
       <div className="flex flex-col mx-8">
         <div className="flex flex-col">
           {/* 작품 제목 */}
-          <h1 className="block text-xl mb-1">{work.title}</h1>
+          <h1 className="block text-xl mb-1">{work?.title}</h1>
           {/* 작품 부제목 */}
-          <span className="block text-md">{work.subTitle}</span>
+          <span className="block text-md">{work?.subTitle}</span>
           {/* 작품 설명 */}
-          <p className="block text-sm my-5">{work.description}</p>
+          <p className="block text-sm my-5">{work?.description}</p>
         </div>
         {/* 작품 이미지 */}
         <div className="flex flex-col">
-          {work.mainImages.map((image, index) => {
+          {work?.mainImages.map((image, index) => {
             if (image.image.includes("mp4")) {
               return (
                 <div
@@ -109,7 +109,7 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
 
         {/* 작가 정보 */}
         <div className="grid grid-cols-2 gap-2">
-          {work.students.map((student, index) => {
+          {work?.students.map((student, index) => {
             const {
               student: { id, name, nameKor, email, works },
             } = student;
@@ -122,22 +122,23 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
                     <span className="text-sm mt-2 mb-5">{email}</span>
                   </a>
                 </Link>
-                <Link href={`/works/${works[0].work.id}`}>
+                <Link href={`/works/${works[0].work?.id}`}>
                   <a
                     key={index}
                     className="block w-full relative "
                     style={{
                       aspectRatio: `${getImageRatio(
-                        works[0].work.workProfileImage!.width,
-                        works[0].work.workProfileImage!.height
+                        works[0].work?.workProfileImage!.width,
+                        works[0].work?.workProfileImage!.height
                       )}`,
                     }}
                   >
                     <Image
-                      src={works[0].work.workProfileImage!.image}
+                      src={works[0].work?.workProfileImage!.image}
                       layout="fill"
                       objectFit="cover"
                       priority
+                      alt="썸네일 이미지"
                     />
                   </a>
                 </Link>
@@ -152,8 +153,8 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
             <div
               className="flex flex-row cursor-pointer"
               onClick={() => {
-                if (stateLike.isLiked) return;
-                mutation.mutate(work.id);
+                if (stateLike?.isLiked) return;
+                mutation.mutate(work?.id);
                 setStateLike((prev) => ({
                   isLiked: true,
                   likeCount: prev.likeCount + 1,
@@ -170,8 +171,8 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
                   id="heart"
                   d="M28.383,5.24a7.651,7.651,0,0,0-10.822,0L16.087,6.715,14.612,5.24A7.652,7.652,0,0,0,3.79,16.062l1.474,1.474L16.087,28.359,26.909,17.537l1.474-1.474a7.651,7.651,0,0,0,0-10.822Z"
                   transform="translate(-0.549 -1.998)"
-                  fill={`${stateLike.isLiked ? "#0649EC" : "none"}`}
-                  stroke={`${stateLike.isLiked ? "#0649EC" : "#aeaeae"}`}
+                  fill={`${stateLike?.isLiked ? "#0649EC" : "none"}`}
+                  stroke={`${stateLike?.isLiked ? "#0649EC" : "#aeaeae"}`}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
@@ -179,17 +180,17 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
               </svg>
               <span
                 className={`ml-2 font-medium ${
-                  stateLike.isLiked && "text-[#0649EC]"
+                  stateLike?.isLiked && "text-[#0649EC]"
                 }`}
               >
-                {stateLike.likeCount}
+                {stateLike?.likeCount}
               </span>
             </div>
             <span className="mx-3 font-bold">|</span>
             <div
               className="cursor-pointer"
               onClick={() =>
-                handleCopyClipBoard(`www.hyiddegreeshow.kr/work/${work.id}`)
+                handleCopyClipBoard(`www.hyiddegreeshow.kr/work/${work?.id}`)
               }
             >
               <svg

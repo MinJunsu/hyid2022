@@ -177,6 +177,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
                 src="/web/logo/web_logo_white.svg"
                 width={100}
                 height={90}
+                alt="icon"
               />
             </a>
           </Links>
@@ -235,6 +236,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
               src="/mobile/icon/What_We_do.png"
               width={134}
               height={143}
+              alt="icon"
               className="z-20"
             />
           </div>
@@ -272,7 +274,12 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
         <div className="flex flex-col justify-center items-center">
           <h2 className="text-xl text-white">각자의 방식으로 미래를 그리다</h2>
           <div className="h-[15vh] flex justify-center items-center">
-            <Image src="/mobile/icon/orange_logo.svg" width={50} height={50} />
+            <Image
+              src="/mobile/icon/orange_logo.svg"
+              width={50}
+              height={50}
+              alt="icon"
+            />
           </div>
           <div className="flex flex-col space-y-4">
             <span className="text-white w-full flex justify-center">
@@ -296,12 +303,14 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
       </div>
       <div className="bg-black h-[100vh] fourth">
         <div className="flex justify-center mt-[140px]">
-          <Image src="/mobile/icon/ourConcept.png" width={338} height={277} />
+          <Image
+            src="/mobile/icon/ourConcept.png"
+            width={338}
+            height={277}
+            alt="icon"
+          />
         </div>
         <div className="ml-24 mt-[30px]">
-          {/*<div className="relative ">*/}
-          {/*  <Image src="/mobile/icon/orange_logo.svg" width={36} height={36} />*/}
-          {/*</div>*/}
           <div className="flex justify-center mt-10">
             <div className="flex flex-col space-y-2 justify-center">
               <div className="block text-white w-full flex justify-start">
@@ -338,6 +347,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
                 src="/mobile/icon/slide.png"
                 width={120}
                 height={18}
+                alt="icon"
               />
             );
           })}
@@ -346,7 +356,12 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
       <div className="flex flex-col h-[100vh] bg-cover bg-center bg-[#0649EC]">
         <div className="flex justify-center mt-10 my-2">
           <Links href="/works/?category=true">
-            <Image src={"/mobile/icon/gotoWork.png"} width={150} height={150} />
+            <Image
+              src={"/mobile/icon/gotoWork.png"}
+              width={150}
+              height={150}
+              alt="icon"
+            />
           </Links>
         </div>
         <div>

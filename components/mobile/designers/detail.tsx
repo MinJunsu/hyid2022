@@ -22,25 +22,26 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
       <Header />
       <div className="w-full aspect-[1/1.31] relative mb-12">
         <Image
-          src={student.profileImage!}
+          src={student?.profileImage!}
           layout="fill"
           objectFit="cover"
           priority
+          alt="프로필 이미지"
         />
       </div>
       <div className="flex flex-col">
-        <h1 className="text-3xl font-bold">{student.nameKor}</h1>
-        <p className="text-xl">{student.name}</p>
+        <h1 className="text-3xl font-bold">{student?.nameKor}</h1>
+        <p className="text-xl">{student?.name}</p>
       </div>
       <div className="flex flex-row space-x-3 my-3">
-        {student.isManager && (
+        {student?.isManager && (
           <div className="px-3 py-2 rounded-full bg-[#0649EC] text-black cursor-pointer">
             <span className="flex justify-center items-center text-sm text-white">
               졸준위
             </span>
           </div>
         )}
-        {student.tags.map((tag, index) => {
+        {student?.tags.map((tag, index) => {
           return (
             <div
               className="px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer"
@@ -71,25 +72,25 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
         <span className="block text-lg my-3">Contact</span>
         <div className="flex flex-row">
           <span className="w-28">E-mail</span>
-          <a href={`mailto:﻿"${student.email}"`}>{student.email}</a>
+          <a href={`mailto:﻿"${student?.email}"`}>{student?.email}</a>
         </div>
         <div className="flex flex-row">
           <span className="w-28">Instagram</span>
-          <Link href={`https://instagram.com/_u/${student.snsLink}/`}>
-            <a>{student.snsLink}</a>
+          <Link href={`https://instagram.com/_u/${student?.snsLink}/`}>
+            <a>{student?.snsLink}</a>
           </Link>
         </div>
         <div className="flex flex-row">
           <span className="w-28">Behance</span>
-          {student.webSite && (
-            <Link href={student.webSite}>
-              <a>{getNameFromBehance(student.webSite)}</a>
+          {student?.webSite && (
+            <Link href={student?.webSite}>
+              <a>{getNameFromBehance(student?.webSite)}</a>
             </Link>
           )}
         </div>
       </div>
       <div className="mt-5 mb-14 grid grid-cols-2 gap-2">
-        {student.works.map((work, index) => {
+        {student?.works.map((work, index) => {
           return (
             <Link key={index} href={`/works/${work.work.id}`}>
               <a className="block w-full relative aspect-[154/131]">

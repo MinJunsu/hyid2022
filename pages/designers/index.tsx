@@ -15,7 +15,7 @@ import MobileDesigner from "@components/mobile/designers";
 const getStudent = () => {
   return axios
     .get(
-      "https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/students"
+      "https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod/students"
     )
     .then((res) => res.data);
 };
@@ -38,9 +38,7 @@ const DesignersPage: NextPage<ServerSideProps> = ({ keyword }, context) => {
   else return <Designer students={data!} />;
 };
 
-export async function getServerSideProps(context: {
-  query: { keyword: string };
-}) {
+export async function getInitialProps(context: { query: { keyword: string } }) {
   const keyword = context.query.keyword || "ALL";
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["students"], getStudent);

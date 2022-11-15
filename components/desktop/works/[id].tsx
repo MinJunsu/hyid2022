@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import getImageRatio from "../../../utils/image";
-import axios from "axios";
-import Head from "next/head";
 import { Like } from "@pages/works/[id]";
 
 interface WorkDetailProps {
@@ -66,6 +64,10 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
       window.removeEventListener("scroll", handleShowButton);
     };
   }, []);
+
+  if (!work) {
+    return <div></div>;
+  }
 
   return (
     <div className="relative">
@@ -167,6 +169,7 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                         src={work.workThumbnailImage?.image!}
                         width={215}
                         height={183}
+                        alt="썸네일 이미지"
                       />
                     </div>
                   </div>
@@ -198,6 +201,7 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                 src={work.workBackdropImage?.image!}
                 layout="fill"
                 objectFit="cover"
+                alt="배경 이미지"
               />
             </div>
             <div
@@ -293,6 +297,7 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                           layout="fill"
                           objectFit="cover"
                           key={idx}
+                          alt="이미지"
                         />
                       </div>
                     );

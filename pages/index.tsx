@@ -14,7 +14,7 @@ import { ViewCount } from "@pages/api";
 
 const getViewCount = () => {
   return axios
-    .get("https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod")
+    .get("https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod")
     .then((res) => res.data);
 };
 
@@ -27,11 +27,15 @@ const HomePage: NextPage<ServerSideProps> = () => {
 
   const { data, isLoading } = useQuery<ViewCount>(["viewCount"], getViewCount);
 
+  if (isLoading) {
+    return <div></div>;
+  }
+
   if (mobile) return <MobileHome viewCount={data!} />;
   else return <Home viewCount={data!} />;
 };
 
-export async function getServerSideProps() {
+export async function getInitialProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["viewCount"], getViewCount);
   return {

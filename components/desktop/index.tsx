@@ -80,7 +80,7 @@ function Home({ viewCount }: HomeProps) {
     return () => {
       window.removeEventListener("scroll", handleFollow);
     };
-  });
+  }, []);
 
   return (
     <div className="webView scroll-smooth">
@@ -196,7 +196,12 @@ function Home({ viewCount }: HomeProps) {
         <div className=" bg-[url('/web/background/web_main_2_gif.gif')] bg-cover bg-center h-[100vh] flex flex-col">
           <Fade top cascade>
             <div className="flex justify-center ml-[100px]">
-              <Image src="/web/icon/second.png" width={299} height={361} />
+              <Image
+                src="/web/icon/second.png"
+                width={299}
+                height={361}
+                alt="icon"
+              />
             </div>
 
             <div className="flex-col text-white justify-center flex w-full text-center">
@@ -221,7 +226,12 @@ function Home({ viewCount }: HomeProps) {
               <h2 className="text-[30px] mb-10">
                 각자의 방식으로 미래를 그리다
               </h2>
-              <Image src="/web/icon/design_star.png" width={77} height={77} />
+              <Image
+                src="/web/icon/design_star.png"
+                width={77}
+                height={77}
+                alt="icon"
+              />
               <p className="text-[22px] mt-10 font-extralight">
                 2022 한양대학교 산업디자인학과 졸업 전시 {"'"} 온고지신 {"'"} 은
                 <br />
@@ -243,10 +253,16 @@ function Home({ viewCount }: HomeProps) {
                 src="/web/background/concept.png"
                 width={1450}
                 height={900}
+                alt="icon"
               />
             </div>
             <div className="float-right mr-[80px]">
-              <Image src="/web/icon/design_star.png" width={77} height={77} />
+              <Image
+                src="/web/icon/design_star.png"
+                width={77}
+                height={77}
+                alt="icon"
+              />
               <p className="font-extralight leading-7 ml-[50px]">
                 무수한 과거와 현재가 이어져 미지의 공간인 미래를
                 <br />
@@ -269,6 +285,7 @@ function Home({ viewCount }: HomeProps) {
                     src="/web/logo/slideLogo.png"
                     width={330}
                     height={50}
+                    alt="온고지신"
                   />
                 );
               })}
@@ -288,6 +305,7 @@ function Home({ viewCount }: HomeProps) {
               src="/web/icon/GotoWork.png"
               width={335}
               height={335}
+              alt="icon"
             />
           </div>
           <div>
@@ -357,7 +375,8 @@ function Home({ viewCount }: HomeProps) {
               Republic of Korea
             </p>
             <p className="text-[20px] font-extralight">
-              Today {viewCount.todayViewCount} | Total {viewCount.allViewCount}
+              Today {viewCount?.todayViewCount} | Total{" "}
+              {viewCount?.allViewCount}
             </p>
           </div>
         </div>

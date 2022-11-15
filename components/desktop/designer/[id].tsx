@@ -4,12 +4,17 @@ import { Tag } from "@prisma/client";
 import getImageRatio from "../../../utils/image";
 import router from "next/router";
 import Head from "next/head";
+import Link from "next/link";
+import { StudentWithWorksAndTags } from "@pages/api/students/[id]";
 
 interface StudentProps {
-  student: any;
+  student: StudentWithWorksAndTags;
 }
 
 function Id({ student }: StudentProps) {
+  const iterateWorkCategory = Array.from(
+    new Set(student.works.map((work) => work.work.category.name))
+  );
   return (
     <div className="px-[40px] py-[20px]">
       <Head>
@@ -24,6 +29,7 @@ function Id({ student }: StudentProps) {
               width={455}
               height={560}
               priority
+              alt="프로필 이미지"
             />
           </div>
           <div className="w-[55%] h-full flex items-center ml-[115px] ">
@@ -47,6 +53,20 @@ function Id({ student }: StudentProps) {
                         {tag.name}
                       </p>
                     </div>
+                  );
+                })}
+                {[...iterateWorkCategory].map((category, index) => {
+                  return (
+                    <Link
+                      key={index}
+                      href={`/works/?category=${category.toLowerCase()}`}
+                    >
+                      <a className="block px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer">
+                        <span className="flex justify-center items-center text-sm uppercase">
+                          {category}
+                        </span>
+                      </a>
+                    </Link>
                   );
                 })}
               </div>
@@ -106,6 +126,7 @@ function Id({ student }: StudentProps) {
                         src={res?.work.workThumbnailImage.image}
                         layout="fill"
                         objectFit="cover"
+                        alt="썸네일 이미지"
                       />
                     </div>
                   );

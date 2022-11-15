@@ -18,6 +18,11 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link
+            href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
+            rel="stylesheet"
+            type="text/css"
+          />
+          <link
             rel="apple-touch-icon"
             sizes="180x180"
             href="/fav/apple-touch-icon.png"
