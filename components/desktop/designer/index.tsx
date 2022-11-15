@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import router from "next/router";
 import Header from "@components/desktop/header";
 import Head from "next/head";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface IndexProps {
   students: Student[];
@@ -24,7 +25,7 @@ function Designer({ students }: IndexProps) {
     dots: false,
     infinite: true,
     speed: 2500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     pauseOnHover: true,
     pauseOnFocus: true,
@@ -33,122 +34,119 @@ function Designer({ students }: IndexProps) {
     focusOnSelect: false,
     arrows: false,
     centerMode: true,
-    responsive: [
-      {
-        breakpoint: 1650,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "10px",
-        },
-      },
-      {
-        breakpoint: 1145,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "30px",
-        },
-      },
-    ],
   };
 
   return (
-    <div className="bg-cover w-full h-full min-h-[100vh] bg-[url('/web/background/profile_background.png')] ">
-      <Head>
-        <title>HYID Designers</title>
-      </Head>
-      <div className="px-[40px] py-[20px]">
-        <Header color="white" />
-      </div>
-      <div className="px-[40px] flex items-center ">
-        <div className="leftContents w-[40%] relative top-20">
-          <div className="animate-pulse absolute bottom-6 left-20  ">
-            <Image
-              src="/web/icon/design_star.png"
-              height={77}
-              width={77}
-              alt="icon"
-            />
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="bg-cover w-full h-full min-h-[100vh] bg-[url('/web/background/design_back.jpeg')] ">
+          <Head>
+            <title>HYID Designers</title>
+          </Head>
+          <div className="px-[40px] py-[20px]">
+            <Header color="white" />
           </div>
-          <div>
-            <p className="text-white font-light text-[18px]">
-              Click on The <br /> name of the designer
-            </p>
-          </div>
-        </div>
-        <div className="rightContents text-white ">
-          <h2 className=" text-[28px] ml-10">Designers</h2>
-          <div className="studentName grid grid-cols-11 justify-start  ">
-            {students?.map((student, index) => {
-              return (
-                <div key={index}>
-                  <p
-                    onClick={() => {
-                      slider.current?.slickGoTo(index);
-                      setStudentId(student.id);
-                      slider.current?.slickPause();
-                      setTimeout(() => {
-                        setStudentId(1000);
-                      }, 4000);
-                      setTimeout(() => {
-                        slider.current?.slickPlay();
-                      }, 5000);
-                    }}
-                    className={`flex justify-center min-w-[115px] text-[18px] mx-3 mt-[15px] font-extralight w-[5vw] truncate text-center hover:underline cursor-pointer
-                    ${student.id === 34 ? "ml-11" : null}`}
-                  >
-                    {student.nameKor}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-      <div className="mt-[50px] pb-[200px]">
-        <Slider ref={slider} {...setting}>
-          {students?.map((student, index) => {
-            return (
-              <div
-                className="cursor-pointer "
-                key={index}
-                onClick={() => {
-                  router.push(`designers/${student.id}`);
-                }}
-              >
-                <div
-                  className={`${
-                    student.id === studentId
-                      ? "xl:w-[360px] text-center h-[550px] bg-white text-center pt-[15px] text-blue-700 "
-                      : null
-                  }xl:w-[330px] xl:hover:w-[360px] lg:w-[300px] lg:w-[350px] hover:bg-white hover:text-center hover:h-[550px] hover:pt-[15px] transition  duration-1000 hover:text-blue-700 text-white `}
-                >
-                  <Image
-                    className="transitions duration-500 ease-in-out transform hover:scale-110"
-                    priority={true}
-                    src={student.profileImage!}
-                    width={330}
-                    height={420}
-                    alt="프로필 이미지"
-                  />
-                  <div
-                    className={`w-[360px]  mt-[20px]  ${
-                      studentId === student.id ? "w-[360px]" : null
-                    } `}
-                  >
-                    <p className="text-[25px] text-center">{student.nameKor}</p>
-                    <p className="text-[20px] text-center">{student.name}</p>
-                  </div>
-                </div>
+          <div className="px-[40px] flex items-center ">
+            <div className="leftContents w-[40%] relative top-20">
+              <div className="animate-pulse absolute bottom-6 left-20  ">
+                <Image
+                  src="/web/icon/design_star.png"
+                  height={77}
+                  width={77}
+                  alt="icon"
+                />
               </div>
-            );
-          })}
-        </Slider>
-      </div>
-    </div>
+              <div>
+                <p className="text-white font-light text-[18px]">
+                  Click on The <br /> name of the designer
+                </p>
+              </div>
+            </div>
+            <div className="rightContents text-white ">
+              <h2 className=" text-[28px] ml-10">Designers</h2>
+              <div className="studentName grid grid-cols-11 justify-start  ">
+                {students?.map((student, index) => {
+                  return (
+                    <div key={index}>
+                      <p
+                        onClick={() => {
+                          slider.current?.slickGoTo(index);
+                          setStudentId(student.id);
+                          slider.current?.slickPause();
+                          setTimeout(() => {
+                            setStudentId(1000);
+                          }, 4000);
+                          setTimeout(() => {
+                            slider.current?.slickPlay();
+                          }, 5000);
+                        }}
+                        className={`flex justify-center min-w-[115px] text-[18px] mx-3 mt-[15px] font-extralight w-[5vw] truncate text-center active:underline visited:underline cursor-pointer
+                    ${student.id === 34 ? "ml-11" : null}`}
+                      >
+                        {student.nameKor}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          <div className="mt-[50px] ">
+            <Slider ref={slider} {...setting}>
+              {students?.map((student, index) => {
+                return (
+                  <div
+                    className="cursor-pointer"
+                    key={index}
+                    onClick={() => {
+                      router.push(`designers/${student.id}`);
+                    }}
+                  >
+                    <div className="hover:bg-white m-2 hover:p-8">
+                      <div
+                        className={`max-h-[45vh] relative ${
+                          student.id === studentId
+                            ? "text-center  bg-white text-center pt-[15px] text-blue-700  "
+                            : null
+                        } hover:bg-white hover:text-center  transition  duration-1000 hover:text-blue-700 text-white `}
+                        style={{
+                          aspectRatio: "0.78",
+                        }}
+                      >
+                        <div className="flex justify-center px-3">
+                          <Image
+                            className="transitions duration-500 ease-in-out transform hover:scale-110"
+                            priority={true}
+                            src={student.profileImage!}
+                            layout="fill"
+                            alt="프로필 이미지"
+                          />
+                        </div>
+
+                        <div
+                          className={`${studentId === student.id ? "" : null} `}
+                        >
+                          <p className="text-[25px] text-center">
+                            {student.nameKor}
+                          </p>
+                          <p className="text-[20px] text-center">
+                            {student.name}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </Slider>
+          </div>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
