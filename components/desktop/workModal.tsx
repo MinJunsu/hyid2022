@@ -1,5 +1,4 @@
 import { CategoryWithWorks } from "@pages/api/category";
-import category from "@components/mobile/works/category";
 import Image from "next/image";
 
 interface CategoryProps {
@@ -22,15 +21,7 @@ function WorkModal({ categories, setClose, modalState }: CategoryProps) {
           return (
             <div key={idx} className="group relative ">
               <div className="text-[105px] flex pointer-cursor ">
-                <h2
-                  // onClick={() => {
-                  //   setTypes(idx);
-                  //   setModal(false);
-                  // }}
-                  className="hover:text-[#0649EC] "
-                >
-                  {category.name}
-                </h2>
+                <h2 className="hover:text-[#0649EC] ">{category.name}</h2>
                 <h2
                   className={`${
                     category.id === 13 ? "hidden" : null

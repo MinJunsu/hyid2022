@@ -55,8 +55,8 @@ const WorksDetailPage: NextPage<ServerSideProps> = ({ id }, context) => {
         `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}/like/create`
       ),
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["like", id]);
+      onMutate: () => {
+        queryClient.refetchQueries(["like", id]);
       },
     }
   );

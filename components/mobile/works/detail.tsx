@@ -6,6 +6,7 @@ import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import getImageRatio from "../../../utils/image";
 import Link from "next/link";
 import { Like } from "@pages/works/[id]";
+import { useState } from "react";
 
 interface MobileWorkDetailProps {
   work: WorkWithStudentsAndImages;
@@ -15,6 +16,7 @@ interface MobileWorkDetailProps {
 
 function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
   const router = useRouter();
+  const [stateLike, setStateLike] = useState<Like>(like);
 
   const handleCopyClipBoard = async (text: string) => {
     await navigator.clipboard.writeText(text);
@@ -149,7 +151,14 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
           <div className="flex flex-row">
             <div
               className="flex flex-row cursor-pointer"
-              onClick={() => mutation.mutate(work.id)}
+              onClick={() => {
+                if (stateLike.isLiked) return;
+                mutation.mutate(work.id);
+                setStateLike((prev) => ({
+                  isLiked: true,
+                  likeCount: prev.likeCount + 1,
+                }));
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -161,8 +170,8 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
                   id="heart"
                   d="M28.383,5.24a7.651,7.651,0,0,0-10.822,0L16.087,6.715,14.612,5.24A7.652,7.652,0,0,0,3.79,16.062l1.474,1.474L16.087,28.359,26.909,17.537l1.474-1.474a7.651,7.651,0,0,0,0-10.822Z"
                   transform="translate(-0.549 -1.998)"
-                  fill={`${like.isLiked ? "#0649EC" : "none"}`}
-                  stroke={`${like.isLiked ? "#0649EC" : "#aeaeae"}`}
+                  fill={`${stateLike.isLiked ? "#0649EC" : "none"}`}
+                  stroke={`${stateLike.isLiked ? "#0649EC" : "#aeaeae"}`}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
@@ -170,10 +179,10 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
               </svg>
               <span
                 className={`ml-2 font-medium ${
-                  like.isLiked && "text-[#0649EC]"
+                  stateLike.isLiked && "text-[#0649EC]"
                 }`}
               >
-                {like.likeCount}
+                {stateLike.likeCount}
               </span>
             </div>
             <span className="mx-3 font-bold">|</span>
