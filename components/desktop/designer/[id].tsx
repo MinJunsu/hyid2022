@@ -12,7 +12,10 @@ interface StudentProps {
 }
 
 function Id({ student }: StudentProps) {
-  console.log(student);
+  const getNameFromBehance = (url: string | null) => {
+    if (!url) return null;
+    return url.split("https://www.behance.net/")[1];
+  };
   const iterateWorkCategory = Array.from(
     new Set(student.works.map((work) => work.work.category.name))
   );
@@ -80,7 +83,7 @@ function Id({ student }: StudentProps) {
                 >
                   <div className="E-mail flex items-center space-x-[100px] ">
                     <p className="w-[90px]">E-mail</p>
-                    <p>{student?.email}</p>
+                    <a href={`mailto:﻿"${student?.email}"`}>{student?.email}</a>
                   </div>
                 </div>
 
@@ -96,16 +99,15 @@ function Id({ student }: StudentProps) {
                     </a>
                   </div>
                 </div>
-                <div
-                  className={`
-                  ${student?.webSite === null ? "hidden" : null}
-                `}
-                >
+
+                {student?.webSite && (
                   <div className="website flex items-center space-x-[100px]">
-                    <p className="w-[90px]">Web Site</p>
-                    <p>{student?.webSite}</p>
+                    <p className="w-[90px]">Behance</p>
+                    <Link href={student?.webSite}>
+                      <a>{getNameFromBehance(student?.webSite)}</a>
+                    </Link>
                   </div>
-                </div>
+                )}
               </div>
               <div className="grid grid-cols-3 pr-10 space-x-4 relative   ">
                 {student?.works.map((res: any, index: number) => {

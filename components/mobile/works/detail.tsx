@@ -16,6 +16,7 @@ interface MobileWorkDetailProps {
 
 function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
   const router = useRouter();
+
   const [stateLike, setStateLike] = useState<Like>(like);
 
   const handleCopyClipBoard = async (text: string) => {
