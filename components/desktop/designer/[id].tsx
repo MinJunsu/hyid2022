@@ -12,6 +12,7 @@ interface StudentProps {
 }
 
 function Id({ student }: StudentProps) {
+  console.log(student);
   const iterateWorkCategory = Array.from(
     new Set(student.works.map((work) => work.work.category.name))
   );
@@ -49,7 +50,7 @@ function Id({ student }: StudentProps) {
                 {student?.tags.map(({ tag }: { tag: Tag }, index: number) => {
                   return (
                     <div key={index}>
-                      <p className="bg-[#F2F2F2] rounded-full py-2  px-5 text-center w-auto uppercase">
+                      <p className="bg-[#F2F2F2] rounded-full py-2 text-sm  px-5 text-center w-auto uppercase">
                         {tag.name}
                       </p>
                     </div>
@@ -106,29 +107,47 @@ function Id({ student }: StudentProps) {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-row pr-10 space-x-4">
+              <div className="grid grid-cols-3 pr-10 space-x-4 relative   ">
                 {student?.works.map((res: any, index: number) => {
                   return (
-                    <div
-                      key={index}
-                      onClick={() => {
-                        router.push(`/works/${res.work.id}`);
-                      }}
-                      className="w-full relative works flex  mt-[42px] space-x-[50px] cursor-pointer"
-                      style={{
-                        aspectRatio: `${getImageRatio(
-                          res?.work.workThumbnailImage.width,
-                          res?.work.workThumbnailImage.height
-                        )}`,
-                      }}
-                    >
-                      <Image
-                        src={res?.work.workThumbnailImage.image}
-                        layout="fill"
-                        objectFit="cover"
-                        alt="썸네일 이미지"
-                      />
-                    </div>
+                    <>
+                      <div
+                        key={index}
+                        onClick={() => {
+                          router.push(`/works/${res.work.id}`);
+                        }}
+                        className="w-full relative works flex  mt-[42px] group space-x-[50px] cursor-pointer   "
+                        style={{
+                          aspectRatio: `${getImageRatio(
+                            res?.work.workThumbnailImage.width,
+                            res?.work.workThumbnailImage.height
+                          )}`,
+                        }}
+                      >
+                        <Image
+                          className="group-hover:opacity-25 duration-300"
+                          src={res?.work.workThumbnailImage.image}
+                          layout="fill"
+                          objectFit="cover"
+                          alt="썸네일 이미지"
+                        />
+                        <div className="name text-black absolute bottom-1 -left-9 group-hover:opacity-80 hidden group-hover:inline">
+                          <p className="text-[16px]">{res.work.title}</p>
+
+                          {res.work.students.map(
+                            (nameKor: any, index: number) => {
+                              return (
+                                <div key={index}>
+                                  <p className="text-[15px]">
+                                    {nameKor.student.nameKor}
+                                  </p>
+                                </div>
+                              );
+                            }
+                          )}
+                        </div>
+                      </div>
+                    </>
                   );
                 })}
               </div>

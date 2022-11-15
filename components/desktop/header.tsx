@@ -16,8 +16,8 @@ function Header({ color }: NavProps) {
           src={`/web/logo/${
             color === "black" ? "web_logo_black.svg" : "web_logo_white.svg"
           }`}
-          width={122}
-          height={79}
+          width={85}
+          height={55}
           alt="logo"
         />
       </div>
