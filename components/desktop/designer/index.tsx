@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import router from "next/router";
 import Header from "@components/desktop/header";
 import Head from "next/head";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface IndexProps {
   students: Student[];
@@ -18,6 +18,7 @@ function Designer({ students }: IndexProps) {
   // console.log(students);
 
   const [studentId, setStudentId] = useState<number>(0);
+  const [underLineStudentId, setUnderLineStudentId] = useState<number>(0);
 
   const slider = useRef<any>();
 
@@ -76,15 +77,16 @@ function Designer({ students }: IndexProps) {
                         onClick={() => {
                           slider.current?.slickGoTo(index);
                           setStudentId(student.id);
+                          setUnderLineStudentId(student.id);
                           slider.current?.slickPause();
                           setTimeout(() => {
-                            setStudentId(1000);
-                          }, 4000);
-                          setTimeout(() => {
+                            setStudentId(-1);
                             slider.current?.slickPlay();
-                          }, 5000);
+                          }, 10000);
                         }}
-                        className={`flex justify-center min-w-[115px] text-[18px] mx-3 mt-[15px] font-extralight w-[5vw] truncate text-center active:underline visited:underline cursor-pointer
+                        className={`${
+                          student.id === underLineStudentId && "underline"
+                        } flex justify-center min-w-[115px] text-[18px] mx-3 mt-[15px] font-extralight w-[5vw] truncate text-center cursor-pointer
                     ${student.id === 34 ? "ml-11" : null}`}
                       >
                         {student.nameKor}
@@ -106,18 +108,18 @@ function Designer({ students }: IndexProps) {
                       router.push(`designers/${student.id}`);
                     }}
                   >
-                    <div className="hover:bg-white m-2 hover:p-8">
+                    <div
+                      className={`${
+                        student.id === studentId && "bg-white text-blue-700"
+                      } text-white bg-transparent hover:bg-white p-3 m-2 pb-24 hover:text-blue-700`}
+                    >
                       <div
-                        className={`max-h-[45vh] relative ${
-                          student.id === studentId
-                            ? "text-center  bg-white text-center pt-[15px] text-blue-700  "
-                            : null
-                        } hover:bg-white hover:text-center  transition  duration-1000 hover:text-blue-700 text-white `}
+                        className={`bg-transparent flex m-auto flex-col  max-h-[45vh] relative transition  duration-1000 hover:text-blue-700`}
                         style={{
                           aspectRatio: "0.78",
                         }}
                       >
-                        <div className="flex justify-center px-3">
+                        <div className="w-full flex justify-center m-auto">
                           <Image
                             className="transitions duration-500 ease-in-out transform hover:scale-110"
                             priority={true}
@@ -126,11 +128,8 @@ function Designer({ students }: IndexProps) {
                             alt="프로필 이미지"
                           />
                         </div>
-
-                        <div
-                          className={`${studentId === student.id ? "" : null} `}
-                        >
-                          <p className="text-[25px] text-center">
+                        <div className="absolute w-full -bottom-20 flex flex-col">
+                          <p className=" text-[25px] text-center ">
                             {student.nameKor}
                           </p>
                           <p className="text-[20px] text-center">
