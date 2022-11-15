@@ -150,7 +150,7 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
 
         {/* 좋아요 버튼 */}
         <div className="mb-12">
-          <div className="flex flex-row">
+          <div className="flex flex-row items-center space-x-3">
             <div
               className="flex flex-row cursor-pointer"
               onClick={() => {
@@ -187,7 +187,25 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
                 {stateLike?.likeCount}
               </span>
             </div>
-            <span className="mx-3 font-bold">|</span>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1"
+                height="16.664"
+                viewBox="0 0 1 16.664"
+              >
+                <line
+                  id="선_23"
+                  data-name="선 23"
+                  y2="16.664"
+                  transform="translate(0.5)"
+                  fill="none"
+                  stroke="#707070"
+                  strokeWidth="1"
+                  opacity="0.7"
+                />
+              </svg>
+            </div>
             <div
               className="cursor-pointer"
               onClick={() =>
@@ -196,17 +214,15 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="21"
-                height="23"
-                viewBox="0 0 29.042 31.844"
+                width="21.74"
+                height="23.842"
+                viewBox="0 0 21.74 23.842"
               >
                 <path
-                  id="패스_246"
-                  data-name="패스 246"
-                  d="M24.4,20.185a5.6,5.6,0,0,0-3.975,1.652L13,17.511a5.47,5.47,0,0,0,0-3.023l7.42-4.33A5.678,5.678,0,1,0,19,7.708l-7.421,4.33a5.618,5.618,0,1,0,0,7.923L19,24.285a5.616,5.616,0,1,0,5.405-4.1Zm-16.217-6.9a3.458,3.458,0,0,0-.589-.06,3.481,3.481,0,0,0-.59.06,2.666,2.666,0,0,1,1.179,0Z"
-                  transform="translate(-1.479 -0.078)"
-                  stroke="#aeaeae"
-                  strokeWidth="1"
+                  id="패스_242"
+                  data-name="패스 242"
+                  d="M18.3,14.791a4.532,4.532,0,0,0-3.016,1.163L10.16,12.966a4.4,4.4,0,0,0,0-1.921l5.123-2.99a4.55,4.55,0,1,0-1.549-3.4,4.542,4.542,0,0,0,.106.961L8.717,8.6a4.568,4.568,0,1,0,0,6.8l5.124,2.986a4.523,4.523,0,0,0-.108.965A4.568,4.568,0,1,0,18.3,14.791Z"
+                  transform="translate(-1.13 -0.085)"
                 />
               </svg>
             </div>

@@ -72,30 +72,33 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
   return (
     <div className="relative">
       <div className="bg-[#fff] h-full z-20">
-        <div ref={outside} className="fixed z-30 -right-4 top-48">
+        <div ref={outside} className="fixed w-auto z-30 -right-5 top-48">
           <div
-            className={`maker w-auto h-auto bg-[#FF7437] origin-center     ${
-              showModal ? "hidden  origin-center " : "block  origin-center "
+            className={`maker w-auto h-auto bg-[#FF7437] origin-center ${
+              showModal ? "hidden origin-center " : "block origin-center  "
             }  `}
             onClick={() => {
               setShowModal(true);
             }}
           >
-            <div className="flex-col justify-center align-middle items-center text-center px-[20px] py-[30px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-              >
-                <path
-                  id="패스_237"
-                  data-name="패스 237"
-                  d="M120.587,74.192l-2.678-4.384L106.139,77.46,107.265,64H101.91l1.126,13.46L91.265,69.808l-2.678,4.384L101.484,80l-12.9,5.808,2.678,4.384,11.771-7.652L101.91,96h5.356l-1.126-13.46,11.771,7.652,2.678-4.384L107.69,80Z"
-                  transform="translate(-88.587 -64)"
-                  fill="#0649ec"
-                />
-              </svg>
+            <div className="flex-col justify-center align-middle items-center text-center px-[12px] py-[30px]">
+              <div className="mr-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                >
+                  <path
+                    id="패스_237"
+                    data-name="패스 237"
+                    d="M120.587,74.192l-2.678-4.384L106.139,77.46,107.265,64H101.91l1.126,13.46L91.265,69.808l-2.678,4.384L101.484,80l-12.9,5.808,2.678,4.384,11.771-7.652L101.91,96h5.356l-1.126-13.46,11.771,7.652,2.678-4.384L107.69,80Z"
+                    transform="translate(-88.587 -64)"
+                    fill="#0649ec"
+                  />
+                </svg>
+              </div>
+
               <svg
                 className="mt-[25px]"
                 xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +116,7 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                   strokeWidth="2"
                 />
               </svg>
-              <p className="writing-mode-vertical-lr mt-[100px] text-[#0649EC] text-[25px]  ">
+              <p className="writing-mode-vertical-lr mt-[100px] text-[#0649EC] text-[25px] pr-4">
                 Designer
               </p>
             </div>
@@ -305,8 +308,14 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                 })}
               </div>
             </div>
-            <div className="flex justify-center mt-[90px] pb-[100px]">
-              <div className="loved flex items-center border-[2px] border-[#AEAEAE] w-auto rounded-full p-3 text-center justify-evenly px-6 py-4">
+            <div className="flex justify-center mt-[90px] pb-[100px] ">
+              <div
+                className={`loved flex items-center border-[1px] w-auto rounded-full p-3 text-center justify-evenly px-10 py-4 ${
+                  stateLike?.isLiked
+                    ? "border-[#F7F7F7] bg-[#F7F7F7]"
+                    : "bg-white"
+                }`}
+              >
                 <svg
                   onClick={() => {
                     if (stateLike?.isLiked) return;
@@ -333,14 +342,20 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                   />
                 </svg>
                 <p
-                  className={`mx-4 ${
-                    stateLike?.isLiked ? "text-[#0649EC]" : "text-[#AEAEAE]"
+                  className={`mx-2 ${
+                    stateLike?.isLiked ? "text-[#0649EC]" : "text-black"
                   }`}
                 >
                   좋아요
                 </p>
                 <p
-                  className={`${stateLike?.isLiked ? "text-[#0649EC]" : null}`}
+                  className={`${
+                    stateLike?.isLiked
+                      ? "text-[#0649EC]"
+                      : stateLike?.likeCount === 0
+                      ? "hidden"
+                      : null
+                  }`}
                 >
                   {stateLike?.likeCount}
                 </p>
@@ -372,17 +387,16 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="23.042"
-                    height="24.844"
-                    viewBox="0 0 29.042 31.844"
+                    width="20.042"
+                    height="22.844"
+                    viewBox="0 0 28.042 30.844"
                   >
                     <path
-                      id="패스_246"
-                      data-name="패스 246"
+                      id="패스_244"
+                      data-name="패스 244"
                       d="M24.4,20.185a5.6,5.6,0,0,0-3.975,1.652L13,17.511a5.47,5.47,0,0,0,0-3.023l7.42-4.33A5.678,5.678,0,1,0,19,7.708l-7.421,4.33a5.618,5.618,0,1,0,0,7.923L19,24.285a5.616,5.616,0,1,0,5.405-4.1Zm-16.217-6.9a3.458,3.458,0,0,0-.589-.06,3.481,3.481,0,0,0-.59.06,2.666,2.666,0,0,1,1.179,0Z"
-                      transform="translate(-1.479 -0.078)"
-                      stroke="#aeaeae"
-                      strokeWidth="1"
+                      transform="translate(-1.979 -0.578)"
+                      opacity="0.8"
                     />
                   </svg>
                 </div>

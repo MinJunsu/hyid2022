@@ -30,13 +30,13 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 7,
+          slidesToShow: 6,
         },
       },
       {
         breakpoint: 500,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
         },
       },
     ],
@@ -86,7 +86,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
   return (
     <div className="flex flex-col  font-light scroll-smooth">
       <div className="dots fixed z-20 right-4 bottom-[50%]">
-        <Link to="first" smooth={true} spy={true}>
+        <Link to="first" smooth={true} duration={0}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
             />
           </svg>
         </Link>
-        <Link to="second" smooth={true} spy={true}>
+        <Link to="second" smooth={true} duration={0}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +124,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
             />
           </svg>
         </Link>
-        <Link to="third" smooth={true} spy={true}>
+        <Link to="third" smooth={true} duration={0}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +143,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
             />
           </svg>
         </Link>
-        <Link to="fourth" smooth={true} spy={true}>
+        <Link to="fourth" smooth={true} duration={0}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +190,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
             </Links>
           </div>
         </div>
-        <Link to="second" smooth={true} spy={true}>
+        <Link to="second" smooth={true} duration={0}>
           <div className="flex justify-center">
             <div className=" absolute bottom-4 text-center animate-bounce">
               <div className="flex  justify-center text-center">
@@ -338,15 +338,15 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
           </div>
         </div>
       </div>
-      <div className="bg-black">
+      <div className="bg-black pb-5">
         <Slider {...setting}>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index, res) => {
             return (
               <Image
                 key={index}
                 src="/mobile/icon/slide.png"
-                width={120}
-                height={18}
+                width={130}
+                height={25}
                 alt="icon"
               />
             );

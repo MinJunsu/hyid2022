@@ -88,7 +88,7 @@ function Home({ viewCount }: HomeProps) {
         <title>HYID2022</title>
       </Head>
       <div className="dots fixed text-white z-20 right-8 bottom-[50%] ">
-        <Link to="first" smooth={true} spy={true}>
+        <Link to="first" smooth={true} duration={0}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +107,7 @@ function Home({ viewCount }: HomeProps) {
             />
           </svg>
         </Link>
-        <Link to="second" smooth={true} spy={true}>
+        <Link to="second" smooth={true} duration={0}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +126,7 @@ function Home({ viewCount }: HomeProps) {
             />
           </svg>
         </Link>
-        <Link to="third" smooth={true} spy={true}>
+        <Link to="third" smooth={true} duration={0}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +145,7 @@ function Home({ viewCount }: HomeProps) {
             />
           </svg>
         </Link>
-        <Link to="fourth" smooth={true} spy={true}>
+        <Link to="fourth" smooth={true} duration={0}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
