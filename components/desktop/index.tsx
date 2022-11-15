@@ -6,10 +6,15 @@ import Image from "next/image";
 import router from "next/router";
 import { Link } from "react-scroll";
 import Header from "@components/desktop/header";
+import { ViewCount } from "@pages/api";
 
 const Fade = require("react-reveal/Fade");
 
-function Home() {
+interface HomeProps {
+  viewCount: ViewCount;
+}
+
+function Home({ viewCount }: HomeProps) {
   const setting = {
     dots: false,
     infinite: true,
@@ -36,6 +41,7 @@ function Home() {
 
   // Slide 구현
   const [pages, setPages] = useState<number>(0);
+  console.log(viewCount);
 
   const [ScrollY, setScrollY] = useState(0); // 스크롤값을 저장하기 위한 상태
   const handleFollow = () => {
@@ -347,7 +353,9 @@ function Home() {
               59-9, Hanyangdaehak 1-gil, Sangnok-gu, Ansan-si, Gyeonggi-do,
               Republic of Korea
             </p>
-            <p className="text-[20px] font-extralight">Today 20 | Total 800</p>
+            <p className="text-[20px] font-extralight">
+              Today {viewCount.todayViewCount} | Total {viewCount.allViewCount}
+            </p>
           </div>
         </div>
       </div>

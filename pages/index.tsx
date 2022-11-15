@@ -28,7 +28,7 @@ const HomePage: NextPage<ServerSideProps> = () => {
   const { data, isLoading } = useQuery<ViewCount>(["viewCount"], getViewCount);
 
   if (mobile) return <MobileHome viewCount={data!} />;
-  else return <Home />;
+  else return <Home viewCount={data!} />;
 };
 
 export async function getServerSideProps() {
