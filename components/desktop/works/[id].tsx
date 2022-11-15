@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import getImageRatio from "../../../utils/image";
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 
 interface WorkDetailProps {
   work: WorkWithStudentsAndImages;
@@ -14,6 +13,7 @@ interface WorkDetailProps {
 function WorkDetail({ work }: WorkDetailProps) {
   const router = useRouter();
   const idx = router.query.id;
+  const path = router.asPath;
 
   const like = () => {
     axios
@@ -34,7 +34,16 @@ function WorkDetail({ work }: WorkDetailProps) {
       document.removeEventListener("mousedown", handlerOutside);
     };
   });
-  //
+
+  const handleCopyClipBoard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("링크가 복사되었습니다.");
+    } catch (e) {
+      alert("링크 복사에 실패하였습니다. 잠시 후 다시 시도해주세요.");
+    }
+  };
+
   const handlerOutside = (e: any) => {
     if (!outside.current.contains(e.target)) {
       toggleSide();
@@ -321,21 +330,29 @@ function WorkDetail({ work }: WorkDetailProps) {
                   />
                 </svg>
                 <p>좋아요</p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="29.042"
-                  height="31.844"
-                  viewBox="0 0 29.042 31.844"
+                <div
+                  onClick={() => {
+                    handleCopyClipBoard(
+                      `www.hyiddegreeshow.kr/work/${work.id}`
+                    );
+                  }}
                 >
-                  <path
-                    id="패스_246"
-                    data-name="패스 246"
-                    d="M24.4,20.185a5.6,5.6,0,0,0-3.975,1.652L13,17.511a5.47,5.47,0,0,0,0-3.023l7.42-4.33A5.678,5.678,0,1,0,19,7.708l-7.421,4.33a5.618,5.618,0,1,0,0,7.923L19,24.285a5.616,5.616,0,1,0,5.405-4.1Zm-16.217-6.9a3.458,3.458,0,0,0-.589-.06,3.481,3.481,0,0,0-.59.06,2.666,2.666,0,0,1,1.179,0Z"
-                    transform="translate(-1.479 -0.078)"
-                    stroke="#aeaeae"
-                    strokeWidth="1"
-                  />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="29.042"
+                    height="31.844"
+                    viewBox="0 0 29.042 31.844"
+                  >
+                    <path
+                      id="패스_246"
+                      data-name="패스 246"
+                      d="M24.4,20.185a5.6,5.6,0,0,0-3.975,1.652L13,17.511a5.47,5.47,0,0,0,0-3.023l7.42-4.33A5.678,5.678,0,1,0,19,7.708l-7.421,4.33a5.618,5.618,0,1,0,0,7.923L19,24.285a5.616,5.616,0,1,0,5.405-4.1Zm-16.217-6.9a3.458,3.458,0,0,0-.589-.06,3.481,3.481,0,0,0-.59.06,2.666,2.666,0,0,1,1.179,0Z"
+                      transform="translate(-1.479 -0.078)"
+                      stroke="#aeaeae"
+                      strokeWidth="1"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
 

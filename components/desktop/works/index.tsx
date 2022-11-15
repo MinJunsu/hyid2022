@@ -254,6 +254,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
         </div>
         <div className=" flex flex-wrap max-w-[1000px]   ">
           {categories?.map((category, idx) => {
+            console.log(category);
             return (
               <div key={idx} className="group relative ">
                 <div className="text-[105px] flex pointer-cursor ">
@@ -262,13 +263,13 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                       setTypes(idx);
                       setModal(false);
                     }}
-                    className="hover:text-[#0649EC] "
+                    className="group-hover:text-[#0649EC] "
                   >
                     {category.name}
                   </h2>
                   <h2
                     className={`${
-                      category.id === 13 ? "hidden" : null
+                      category.id === 6 ? "hidden" : null
                     } mx-[10px]`}
                   >
                     ,
