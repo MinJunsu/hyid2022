@@ -44,6 +44,5 @@ yarn.lock
 public
 
 aws-credential
-next.config.*
 .serverless
 .serverless_nextjs
