@@ -55,7 +55,7 @@ function Designer({ students }: IndexProps) {
   };
 
   return (
-    <div className="bg-cover w-full h-full  bg-[url('/web/background/profile_background.png')] ">
+    <div className="bg-cover w-full h-full min-h-[100vh] bg-[url('/web/background/profile_background.png')] ">
       <Head>
         <title>HYID Designers</title>
       </Head>
@@ -93,7 +93,7 @@ function Designer({ students }: IndexProps) {
                         slider.current?.slickPlay();
                       }, 5000);
                     }}
-                    className="text-[18px] mr-[43px] mt-[15px] font-extralight w-[5vw] truncate text-center hover:underline cursor-pointer"
+                    className="flex justify-center min-w-[115px] text-[18px] mx-3 mt-[15px] font-extralight w-[5vw] truncate text-center hover:underline cursor-pointer"
                   >
                     {student.nameKor}
                   </p>
