@@ -11,9 +11,4 @@
 html {
     scroll-behavior: smooth;
 }
-
-body {
-    font-family: 'SpoqaHanSansNeo';
-    text-align: left;
-    letter-spacing: 0;
-}
+* { font-family: 'Spoqa Han Sans Neo'; }
