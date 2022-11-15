@@ -56,7 +56,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
   }, []);
 
   return (
-    <div className={`${modal ? "overflow-y-hidden h-[100vh]" : null}`}>
+    <div className={` ${modal ? "overflow-y-hidden h-[100vh]" : null}`}>
       <Head>
         <title>HYID Works</title>
       </Head>
@@ -154,16 +154,14 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
           </div>
         </div>
         <div
-          className={`workList grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3  ${
-            modal ? null : "cursor-[url(/web/mouse/cursor.cur),_pointer"
-          }`}
+          className={`workList grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3`}
         >
           {categories[types]?.works?.map((res, index) => {
             if (search === "") {
               return (
                 <div
                   key={index}
-                  className=" w-full hover:block group mb-7 relative p-4 aspect-[428/365] cursor-pointer"
+                  className=" w-full hover:block group mb-7 relative p-4 aspect-[428/365] "
                   onClick={() => {
                     setLoading(true);
                     setTimeout(() => {
@@ -171,7 +169,13 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                     }, 2000);
                   }}
                 >
-                  <div className={`group-hover:opacity-25 duration-300`}>
+                  <div
+                    className={`group-hover:opacity-25 duration-300 ${
+                      modal
+                        ? null
+                        : "cursor-[url(/web/mouse/cursor.cur),_pointer]"
+                    }`}
+                  >
                     <Image
                       src={res.workThumbnailImage?.image!}
                       alt="workImage"
