@@ -18,7 +18,9 @@ interface ServerSideProps {
 }
 
 const getCategory = () => {
-  return Axios.get("/api/category").then((res) => res.data);
+  return Axios.get(
+    "https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/category"
+  ).then((res) => res.data);
 };
 
 const WorksPage: NextPage<ServerSideProps> = (

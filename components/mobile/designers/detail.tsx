@@ -91,7 +91,7 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
       <div className="mt-5 mb-14 grid grid-cols-2 gap-2">
         {student.works.map((work, index) => {
           return (
-            <Link key={index} href={`/works/${work.id}`}>
+            <Link key={index} href={`/works/${work.work.id}`}>
               <a className="block w-full relative aspect-[154/131]">
                 <Image
                   src={work.work.workThumbnailImage!.image}

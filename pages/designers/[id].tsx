@@ -17,7 +17,11 @@ interface ServerSideProps {
 }
 
 const getStudentWorks = (id: string) => {
-  return axios.get(`/api/students/${id}`).then((res) => res.data);
+  return axios
+    .get(
+      `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/students/${id}`
+    )
+    .then((res) => res.data);
 };
 
 const DesignersDetailPage: NextPage<ServerSideProps> = ({ id }) => {

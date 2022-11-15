@@ -12,7 +12,6 @@ interface MobileWorkDetailProps {
 
 function MobileWorkDetail({ work }: MobileWorkDetailProps) {
   const router = useRouter();
-  console.log(work);
   return (
     <div className="flex flex-col relative">
       <div className="z-50 m-5 absolute right-0 shadow-2xl">
