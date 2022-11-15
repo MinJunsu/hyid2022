@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Links from "next/link";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ViewCount } from "@pages/api";
+import { Link } from "react-scroll";
 
 interface MobileHomeProps {
   viewCount: ViewCount;
@@ -21,22 +22,150 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
     autoplay: true,
     autoplaySpeed: 3000,
     focusOnSelect: true,
+    pauseOnHover: false,
     arrows: false,
     centerMode: true,
     cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 7,
+        },
+      },
+    ],
   };
 
+  //slide 구현 State
+  const [pages, setPages] = useState<number>(0);
+  const [ScrollY, setScrollY] = useState(0);
+
+  const handleFollow = () => {
+    setScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    // console.log("ScrollY is ", ScrollY); // ScrollY가 변화할때마다 값을 콘솔에 출력
+    //1000
+    const section1 = window.innerHeight - 100;
+    //2000
+    const section2 = (window.innerHeight - 100) * 2;
+    //3000
+    const section3 = (window.innerHeight - 100) * 3;
+    //4000
+    const section4 = (window.innerHeight - 100) * 4;
+    if (ScrollY < section1) {
+      setPages(0);
+    }
+    if (ScrollY > section1 && ScrollY < section2) {
+      setPages(1);
+    }
+    if (ScrollY > section2 && ScrollY < section3) {
+      setPages(2);
+    }
+    if (ScrollY > section3 && ScrollY < section4) {
+      setPages(3);
+    }
+  }, [ScrollY]);
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener("scroll", handleFollow);
+    };
+    watch();
+    return () => {
+      window.removeEventListener("scroll", handleFollow);
+    };
+  });
   return (
-    <div className="flex flex-col  font-light">
+    <div className="flex flex-col  font-light scroll-smooth">
+      <div className="dots fixed z-20 right-4 bottom-[50%]">
+        <Link to="first" smooth={true} spy={true}>
+          <svg
+            className="mb-2"
+            xmlns="http://www.w3.org/2000/svg"
+            width="7"
+            height="7"
+            viewBox="0 0 10 10"
+          >
+            <circle
+              id="타원_96"
+              data-name="타원 96"
+              cx="5"
+              cy="5"
+              r="5"
+              fill="#fff"
+              opacity={`${pages === 0 ? null : 0.25}`}
+            />
+          </svg>
+        </Link>
+        <Link to="second" smooth={true} spy={true}>
+          <svg
+            className="mb-2"
+            xmlns="http://www.w3.org/2000/svg"
+            width="7"
+            height="7"
+            viewBox="0 0 10 10"
+          >
+            <circle
+              id="타원_96"
+              data-name="타원 96"
+              cx="5"
+              cy="5"
+              r="5"
+              fill="#fff"
+              opacity={`${pages === 1 ? null : 0.25}`}
+            />
+          </svg>
+        </Link>
+        <Link to="third" smooth={true} spy={true}>
+          <svg
+            className="mb-2"
+            xmlns="http://www.w3.org/2000/svg"
+            width="7"
+            height="7"
+            viewBox="0 0 10 10"
+          >
+            <circle
+              id="타원_96"
+              data-name="타원 96"
+              cx="5"
+              cy="5"
+              r="5"
+              fill="#fff"
+              opacity={`${pages === 2 ? null : 0.25}`}
+            />
+          </svg>
+        </Link>
+        <Link to="fourth" smooth={true} spy={true}>
+          <svg
+            className="mb-2"
+            xmlns="http://www.w3.org/2000/svg"
+            width="7"
+            height="7"
+            viewBox="0 0 10 10"
+          >
+            <circle
+              id="타원_96"
+              data-name="타원 96"
+              cx="5"
+              cy="5"
+              r="5"
+              fill="#fff"
+              opacity={`${pages === 3 ? null : 0.25}`}
+            />
+          </svg>
+        </Link>
+      </div>
       {/* Main Page - Main Animation 1  */}
       <div
-        className="flex flex-col h-[100vh] bg-cover bg-center"
+        className="first flex flex-col h-[100vh] bg-cover bg-center"
         style={{
           backgroundImage: 'url("/mobile/animation/main-animation-1.gif")',
         }}
       >
         <div className="flex flex-row mx-10 my-3 justify-between items-center">
-          <Link href="/">
+          <Links href="/">
             <a>
               <Image
                 src="/web/logo/web_logo_white.svg"
@@ -44,20 +173,51 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
                 height={90}
               />
             </a>
-          </Link>
+          </Links>
           <div className="flex flex-row space-x-5">
-            <Link href="/works/?category=true">
+            <Links href="/works/?category=true">
               <a className="text-white font-normal">WORKS</a>
-            </Link>
-            <Link href="/designers">
+            </Links>
+            <Links href="/designers">
               <a className="text-white font-normal">DESIGNER</a>
-            </Link>
+            </Links>
           </div>
         </div>
+        <Link to="second" smooth={true} spy={true}>
+          <div className="flex justify-center">
+            <div className=" absolute bottom-4 text-center animate-bounce">
+              <div className="flex  justify-center text-center">
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25.396"
+                    height="13.698"
+                    viewBox="0 0 25.396 13.698"
+                  >
+                    <path
+                      id="chevron-down"
+                      d="M6,9,17.284,20.284,28.567,9"
+                      transform="translate(29.982 21.284) rotate(180)"
+                      fill="none"
+                      stroke="#fff"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div className="text-white text-center mt-3 text-[16px]">
+                scroll down
+              </div>
+            </div>
+          </div>
+        </Link>
       </div>
+
       {/* Main Page - Main Animation 2  */}
       <div
-        className="flex flex-col h-[100vh] bg-cover bg-center"
+        className="second flex flex-col h-[100vh] bg-cover bg-center"
         style={{
           backgroundImage: 'url("/mobile/animation/main-animation-2.gif")',
         }}
@@ -97,7 +257,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
       </div>
       {/* Main Page - Main Animation 3  */}
       <div
-        className="flex flex-col h-[100vh] bg-cover bg-center"
+        className=" third flex flex-col h-[100vh] bg-cover bg-center"
         style={{
           backgroundImage: 'url("/mobile/animation/main-animation-3.gif")',
         }}
@@ -128,15 +288,15 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
         </div>
         <div className="h-[35vh]" />
       </div>
-      <div className="bg-black h-[100vh]">
+      <div className="bg-black h-[100vh] fourth">
         <div className="flex justify-center mt-[140px]">
           <Image src="/mobile/icon/ourConcept.png" width={338} height={277} />
         </div>
         <div className="ml-24 mt-[30px]">
-          <div className="ml-4">
-            <Image src="/mobile/icon/orange_logo.svg" width={36} height={36} />
-          </div>
-          <div className="flex justify-center">
+          {/*<div className="relative ">*/}
+          {/*  <Image src="/mobile/icon/orange_logo.svg" width={36} height={36} />*/}
+          {/*</div>*/}
+          <div className="flex justify-center mt-10">
             <div className="flex flex-col space-y-2 justify-center">
               <div className="block text-white w-full flex justify-start">
                 무수한 과거와 현재가 이어져
@@ -179,9 +339,9 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
       </div>
       <div className="flex flex-col h-[100vh] bg-cover bg-center bg-[#0649EC]">
         <div className="flex justify-center mt-10 my-2">
-          <Link href="/works/?category=true">
+          <Links href="/works/?category=true">
             <Image src={"/mobile/icon/gotoWork.png"} width={150} height={150} />
-          </Link>
+          </Links>
         </div>
         <div>
           <h2 className="text-center text-[26px] text-white font-light">
