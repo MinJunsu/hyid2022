@@ -301,7 +301,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
         </div>
         <div className="h-[35vh]" />
       </div>
-      <div className="bg-black h-[100vh] fourth">
+      <div className="bg-black h-[100vh] fourth pb-48">
         <div className="flex justify-center mt-[140px]">
           <Image
             src="/mobile/icon/ourConcept.png"
@@ -310,9 +310,9 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
             alt="icon"
           />
         </div>
-        <div className="ml-24 mt-[30px]">
-          <div className="flex justify-center mt-10">
-            <div className="flex flex-col space-y-2 justify-center">
+        <div className="ml-24 mt-[30px] h-[100vh] ">
+          <div className="flex justify-center ">
+            <div className="flex flex-col space-y-2 justify-center mb-10">
               <div className="block text-white w-full flex justify-start">
                 무수한 과거와 현재가 이어져
               </div>
@@ -353,7 +353,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
           })}
         </Slider>
       </div>
-      <div className="flex flex-col h-[100vh] bg-cover bg-center bg-[#0649EC]">
+      <div className="flex flex-col bg-cover bg-center bg-[#0649EC]">
         <div className="flex justify-center mt-10 my-2">
           <Links href="/works/?category=true">
             <Image
@@ -402,23 +402,26 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
           </div>
         </div>
         <div className="my-3 w-full h-[1px] bg-white bg-opacity-50" />
-        <div className="flex flex-col my-5 mx-6">
-          <span className="text-white font-medium">
-            Ongozisin, Hanyang univ. All Rights Reserved
-          </span>
-          <span className="mx-1 text-white font-light text-opacity-50">
-            59-9, Hanyangdaehak 1-gil, Sangnok-gu,
-          </span>
-          <span className="mx-1 text-white font-light text-opacity-50">
-            Ansan-si, Gyeonggi-do, Republic of Korea
-          </span>
+        <div className="h-full">
+          <div className="flex flex-col my-5 mx-6">
+            <span className="text-white font-medium">
+              Ongozisin, Hanyang univ. All Rights Reserved
+            </span>
+            <span className="mx-1 text-white font-light text-opacity-50">
+              59-9, Hanyangdaehak 1-gil, Sangnok-gu,
+            </span>
+            <span className="mx-1 text-white font-light text-opacity-50">
+              Ansan-si, Gyeonggi-do, Republic of Korea
+            </span>
+          </div>
+          <div className="flex flex-col mx-6">
+            <span className="text-white text-opacity-50">
+              Today {viewCount.todayViewCount.toLocaleString()} | Total{" "}
+              {viewCount.allViewCount.toLocaleString()}
+            </span>
+          </div>
         </div>
-        <div className="flex flex-col mx-6">
-          <span className="text-white text-opacity-50">
-            Today {viewCount.todayViewCount.toLocaleString()} | Total{" "}
-            {viewCount.allViewCount.toLocaleString()}
-          </span>
-        </div>
+        <div className="h-[2vh]" />
       </div>
     </div>
   );

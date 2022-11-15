@@ -28,7 +28,7 @@ function Designer({ students }: IndexProps) {
     pauseOnHover: true,
     pauseOnFocus: false,
     autoplay: true,
-    autoplaySpeed: 2500,
+    autoplaySpeed: 500,
     focusOnSelect: true,
     arrows: false,
     centerMode: true,
@@ -46,7 +46,7 @@ function Designer({ students }: IndexProps) {
   };
 
   return (
-    <div className="bg-cover w-full h-[100vh]  bg-[url('/web/background/profile_background.png')] ">
+    <div className="bg-cover w-full h-full  bg-[url('/web/background/profile_background.png')] ">
       <Head>
         <title>HYID Designers</title>
       </Head>
@@ -81,9 +81,6 @@ function Designer({ students }: IndexProps) {
                       setStudentId(student.id);
                       slider.current?.slickPause();
                       setTimeout(() => {
-                        setStudentId(10000);
-                      }, 8000);
-                      setTimeout(() => {
                         slider.current?.slickPlay();
                       }, 5000);
                     }}
@@ -109,11 +106,7 @@ function Designer({ students }: IndexProps) {
                 }}
               >
                 <div
-                  className={`hover:w-[360px] hover:bg-white hover:text-center hover:h-[550px] hover:pt-[15px]  hover:text-blue-700 text-white ${
-                    studentId === student.id
-                      ? "w-[360px] bg-white text-center h-[550px] pt-[15px]  text-blue-700"
-                      : "text-white"
-                  }`}
+                  className={`hover:w-[360px] hover:bg-white hover:text-center hover:h-[550px] hover:pt-[15px]  hover:text-blue-700 text-white `}
                 >
                   <Image
                     priority={true}

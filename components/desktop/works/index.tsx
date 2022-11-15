@@ -106,7 +106,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
               );
             })}
           </div>
-          <div className="border-b-[1px] border-black w-[10000px] ml-[47px] mr-[37px] mt-[30px]" />
+          <div className="border-b-[1px] border-slate-500 w-[10000px] ml-[47px] mr-[37px] mt-[30px] opacity-80 " />
           <div className="flex justify-between space-x-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -254,10 +254,10 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
         }  `}
       >
         <div
-          className="closeButton bg-white rounded-[5p%] w-[90px] h-[90px] flex items-center justify-center rounded-full float-right shadow-2xl  hover:scale-105"
+          className="closeButton mt-10 bg-white rounded-[5p%] w-14 h-14 flex items-center justify-center rounded-full float-right shadow-2xl  hover:scale-105"
           onClick={setClose}
         >
-          <Image src="/web/icon/close.svg" width={40} height={40} alt="close" />
+          <Image src="/web/icon/close.svg" width={20} height={20} alt="close" />
         </div>
         <div className=" flex flex-wrap max-w-[1000px]   ">
           {categories?.map((category, idx) => {

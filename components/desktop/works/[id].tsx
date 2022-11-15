@@ -72,9 +72,9 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
   return (
     <div className="relative">
       <div className="bg-[#fff] h-full z-20">
-        <div ref={outside} className="fixed z-30 right-0 top-48">
+        <div ref={outside} className="fixed z-30 -right-4 top-48">
           <div
-            className={`maker w-[66px] h-[341px] bg-[#FF7437] origin-center     ${
+            className={`maker w-auto h-auto bg-[#FF7437] origin-center     ${
               showModal ? "hidden  origin-center " : "block  origin-center "
             }  `}
             onClick={() => {
@@ -214,12 +214,12 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                   "/works"
                 );
               }}
-              className="closeButton w-[66px] h-[66px] rounded-[50%] bg-white flex justify-center items-center drop-shadow-2xl cursor-pointer absolute top-10 right-16  "
+              className="closeButton w-14 h-14 rounded-[50%] bg-white flex justify-center items-center drop-shadow-2xl cursor-pointer absolute top-10 right-16  "
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="27.685"
-                height="27.685"
+                width="20.685"
+                height="20.685"
                 viewBox="0 0 27.685 27.685"
               >
                 <g
@@ -317,8 +317,8 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                     }));
                   }}
                   xmlns="http://www.w3.org/2000/svg"
-                  width="31.077"
-                  height="27.361"
+                  width="25.077"
+                  height="18.361"
                   viewBox="0 0 31.077 27.361"
                 >
                   <path
@@ -372,8 +372,8 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="29.042"
-                    height="31.844"
+                    width="23.042"
+                    height="24.844"
                     viewBox="0 0 29.042 31.844"
                   >
                     <path
@@ -391,13 +391,13 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
 
             {showButton && (
               <div
-                className={`bottom-[20%] bg-white flex justify-center items-center  w-[66px] h-[66px] rounded-[50%] drop-shadow-2xl sticky float-right right-[75px] duration-300 `}
+                className={`bottom-[20%] bg-white flex justify-center items-center  w-14 h-14 rounded-[50%] drop-shadow-2xl sticky float-right right-[75px] duration-300 `}
               >
                 <button onClick={scrollTop}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="19.211"
-                    height="28.13"
+                    width="15.211"
+                    height="23.13"
                     viewBox="0 0 19.211 28.13"
                   >
                     <path
