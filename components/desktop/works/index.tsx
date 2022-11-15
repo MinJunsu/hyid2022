@@ -254,7 +254,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
         </div>
         <div className=" flex flex-wrap max-w-[1000px]   ">
           {categories?.map((category, idx) => {
-            console.log(category);
+            // console.log(category);
             return (
               <div key={idx} className="group relative ">
                 <div className="text-[105px] flex pointer-cursor ">

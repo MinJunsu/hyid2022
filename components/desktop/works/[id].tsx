@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import getImageRatio from "../../../utils/image";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 interface WorkDetailProps {
   work: WorkWithStudentsAndImages;
@@ -23,6 +24,9 @@ function WorkDetail({ work }: WorkDetailProps) {
       .then((res) => res.data)
       .catch((err) => console.log(err));
   };
+
+  const { data, isLoading } = useQuery(["like"], like);
+
   const [showButton, setShowButton] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const query = false;

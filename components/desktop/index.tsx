@@ -41,7 +41,6 @@ function Home({ viewCount }: HomeProps) {
 
   // Slide 구현
   const [pages, setPages] = useState<number>(0);
-  console.log(viewCount);
 
   const [ScrollY, setScrollY] = useState(0); // 스크롤값을 저장하기 위한 상태
   const handleFollow = () => {
@@ -165,7 +164,7 @@ function Home({ viewCount }: HomeProps) {
       <div className="first relative">
         <div className="bg-[url('/web/background/web_main_banner_1_gif.gif')] bg-cover bg-center h-[100vh] px-[40px] py-[20px]">
           <Header color="white" />
-          <Link to="section2" spy={true} smooth={true}>
+          <Link to="second" spy={true} smooth={true}>
             <div className="flex items-center space-x-[18px] absolute bottom-5 animate-bounce cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +219,7 @@ function Home({ viewCount }: HomeProps) {
               </h2>
               <Image src="/web/icon/design_star.png" width={77} height={77} />
               <p className="text-[22px] mt-10 font-extralight">
-                2022 한양대학교 산업디자인학과 졸업 전시 &apos온고지신&apos은
+                2022 한양대학교 산업디자인학과 졸업 전시 {"'"} 온고지신 {"'"} 은
                 <br />
                 학생이라는 신분에서 배워 온 많은 것들을 몸으로 익히고,
                 <br />
