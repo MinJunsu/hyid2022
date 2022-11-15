@@ -26,10 +26,10 @@ function Designer({ students }: IndexProps) {
     slidesToShow: 4,
     slidesToScroll: 1,
     pauseOnHover: true,
-    pauseOnFocus: false,
+    pauseOnFocus: true,
     autoplay: true,
     autoplaySpeed: 500,
-    focusOnSelect: true,
+    focusOnSelect: false,
     arrows: false,
     centerMode: true,
     responsive: [
@@ -37,6 +37,15 @@ function Designer({ students }: IndexProps) {
         breakpoint: 1450,
         settings: {
           slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: "30px",
+        },
+      },
+      {
+        breakpoint: 1145,
+        settings: {
+          slidesToShow: 2,
           slidesToScroll: 1,
           centerMode: true,
           centerPadding: "30px",
@@ -70,7 +79,7 @@ function Designer({ students }: IndexProps) {
           </div>
         </div>
         <div className="rightContents text-white ">
-          <h2 className=" text-[28px]">Designers</h2>
+          <h2 className=" text-[28px] ml-3">Designers</h2>
           <div className="studentName grid grid-cols-11  ">
             {students?.map((student, index) => {
               return (
@@ -99,16 +108,17 @@ function Designer({ students }: IndexProps) {
           {students?.map((student, index) => {
             return (
               <div
-                className="cursor-pointer"
+                className="cursor-pointer "
                 key={index}
                 onClick={() => {
                   router.push(`designers/${student.id}`);
                 }}
               >
                 <div
-                  className={`hover:w-[360px] hover:bg-white hover:text-center hover:h-[550px] hover:pt-[15px]  hover:text-blue-700 text-white `}
+                  className={`xl:w-[330px] xl:hover:w-[360px] lg:w-[300px] lg:w-[350px] hover:bg-white hover:text-center hover:h-[550px] hover:pt-[15px] transition  duration-1000 hover:text-blue-700 text-white `}
                 >
                   <Image
+                    className="transitions duration-500 ease-in-out transform hover:scale-110"
                     priority={true}
                     src={student.profileImage!}
                     width={330}
