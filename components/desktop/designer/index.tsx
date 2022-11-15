@@ -34,7 +34,7 @@ function Designer({ students }: IndexProps) {
     centerMode: true,
     responsive: [
       {
-        breakpoint: 1450,
+        breakpoint: 1500,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
