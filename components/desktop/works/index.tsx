@@ -56,7 +56,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
   }, []);
 
   return (
-    <div className={` ${modal ? "overflow-y-hidden h-[100vh]" : null}`}>
+    <div className={` ${modal ? "overflow-y-hidden h-[105vh]" : null}`}>
       <Head>
         <title>HYID Works</title>
       </Head>
@@ -249,7 +249,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
       {/* 모달 창 */}
 
       <div
-        className={`modal px-[43px] absolute top-0  cursor-pointer w-full ${
+        className={`modal px-[43px] absolute top-0  cursor-pointer w-full  ${
           modal ? null : "hidden"
         }  `}
       >
@@ -259,12 +259,12 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
         >
           <Image src="/web/icon/close.svg" width={20} height={20} alt="close" />
         </div>
-        <div className=" flex flex-wrap max-w-[1000px] mt-44   ">
+        <div className=" flex flex-wrap xl:max-w-[800px] lg:max-m-[900px]  mt-44">
           {categories?.map((category, idx) => {
             // console.log(category);
             return (
               <div key={idx} className="group relative ">
-                <div className="text-[105px] flex pointer-cursor ">
+                <div className="text-[85px] flex pointer-cursor ">
                   <h2
                     onClick={() => {
                       setTypes(idx);
@@ -282,15 +282,15 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                     ,
                   </h2>
                 </div>
-                <div className="counter bg-[#0649EC] w-[90px] h-[62px] rounded-full absolute  opacity-80 text-center text-[39px] text-white group-hover:inline top-0 -right-0 hidden">
-                  {category.works.length}
+                <div className="counter bg-[#0649EC] w-[90px]  rounded-full absolute  opacity-80 text-center text-[39px] text-white group-hover:inline -top-5 -right-0 hidden">
+                  <p className="pt-2">{category.works.length}</p>
                 </div>
               </div>
             );
           })}
         </div>
         <div className="total  ">
-          <p className="text-[#E26748] font-extralight text-[60px] mt-[90px]">
+          <p className="text-[#E26748] font-extralight text-[60px] mt-[35px] ">
             - {categories[0].works.length} Works
           </p>
         </div>
