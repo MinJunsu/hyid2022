@@ -1,0 +1,8 @@
+hyid2022:
+  component: '@sls-next/serverless-component@latest'
+  inputs:
+    name:
+      defaultLambda: 'hyid2022-default-lambda'
+      imageLambda: 'hyid2022-image-lambda'
+    bucketRegion: 'ap-northeast-2'
+    bucketName: 'hyid2022-assets'

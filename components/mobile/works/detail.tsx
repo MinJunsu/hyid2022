@@ -12,7 +12,6 @@ interface MobileWorkDetailProps {
 
 function MobileWorkDetail({ work }: MobileWorkDetailProps) {
   const router = useRouter();
-  console.log(work);
   return (
     <div className="flex flex-col relative">
       <div className="z-50 m-5 absolute right-0 shadow-2xl">
@@ -37,6 +36,7 @@ function MobileWorkDetail({ work }: MobileWorkDetailProps) {
           layout="fill"
           objectFit="cover"
           alt="work-detail-backdrop"
+          priority
         />
       </div>
       {/* 작품 정보 */}
@@ -89,6 +89,7 @@ function MobileWorkDetail({ work }: MobileWorkDetailProps) {
                     layout="fill"
                     objectFit="cover"
                     alt={`메인 이미지 ${index}`}
+                    priority
                   />
                 </div>
               );
@@ -126,6 +127,7 @@ function MobileWorkDetail({ work }: MobileWorkDetailProps) {
                       src={works[0].work.workProfileImage!.image}
                       layout="fill"
                       objectFit="cover"
+                      priority
                     />
                   </a>
                 </Link>

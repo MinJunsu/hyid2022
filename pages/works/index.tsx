@@ -14,16 +14,22 @@ import Works from "@components/desktop/works";
 interface ServerSideProps {
   dehydratedState: DehydratedState;
   category: string;
+  keyword: string;
 }
 
 const getCategory = () => {
-  return Axios.get("/api/category").then((res) => res.data);
+  return Axios.get(
+    "https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/category"
+  ).then((res) => res.data);
 };
 
-const WorksPage: NextPage<ServerSideProps> = ({ category }, context) => {
+const WorksPage: NextPage<ServerSideProps> = (
+  { category, keyword },
+  context
+) => {
   const mobile = useMobile();
   const isCategory = Boolean(category === "true");
-  const keyword = category || "ALL";
+  const nowCategory = category?.toLowerCase() || "all";
 
   const { data, isLoading } = useQuery<CategoryWithWorks[]>(
     ["category"],
@@ -38,6 +44,7 @@ const WorksPage: NextPage<ServerSideProps> = ({ category }, context) => {
     return (
       <MobileWorks
         categories={data!}
+        nowCategory={nowCategory}
         keyword={keyword}
         isCategory={isCategory}
       />
@@ -46,9 +53,10 @@ const WorksPage: NextPage<ServerSideProps> = ({ category }, context) => {
 };
 
 export async function getServerSideProps(context: {
-  query: { category: string };
+  query: { category: string; keyword: string };
 }) {
   const category = context.query.category || null;
+  const keyword = context.query.keyword || null;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["category"], getCategory);
   return {

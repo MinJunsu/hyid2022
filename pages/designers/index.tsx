@@ -13,7 +13,11 @@ import useMobile from "@hooks/mobile";
 import MobileDesigner from "@components/mobile/designers";
 
 const getStudent = () => {
-  return axios.get("/api/students").then((res) => res.data);
+  return axios
+    .get(
+      "https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/students"
+    )
+    .then((res) => res.data);
 };
 
 interface ServerSideProps {
@@ -37,8 +41,7 @@ const DesignersPage: NextPage<ServerSideProps> = ({ keyword }, context) => {
 export async function getServerSideProps(context: {
   query: { keyword: string };
 }) {
-  // console.log(context);
-  const keyword = context.query.keyword || null;
+  const keyword = context.query.keyword || "ALL";
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["students"], getStudent);
   return {

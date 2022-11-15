@@ -54,14 +54,16 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
         })}
         {[...iterateWorkCategory].map((category, index) => {
           return (
-            <div
-              className="px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer"
+            <Link
               key={index}
+              href={`/works/?category=${category.toLowerCase()}`}
             >
-              <span className="flex justify-center items-center text-sm uppercase">
-                {category}
-              </span>
-            </div>
+              <a className="block px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer">
+                <span className="flex justify-center items-center text-sm uppercase">
+                  {category}
+                </span>
+              </a>
+            </Link>
           );
         })}
       </div>
@@ -89,7 +91,7 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
       <div className="mt-5 mb-14 grid grid-cols-2 gap-2">
         {student.works.map((work, index) => {
           return (
-            <Link key={index} href={`/works/${work.id}`}>
+            <Link key={index} href={`/works/${work.work.id}`}>
               <a className="block w-full relative aspect-[154/131]">
                 <Image
                   src={work.work.workThumbnailImage!.image}

@@ -17,7 +17,9 @@ interface ServerSideProps {
 }
 
 const getWork = (id: string) => {
-  return Axios.get(`/api/works/${id}`).then((res) => res.data);
+  return Axios.get(
+    `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}`
+  ).then((res) => res.data);
 };
 
 const WorksDetailPage: NextPage<ServerSideProps> = ({ id }, context) => {

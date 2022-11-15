@@ -110,6 +110,7 @@ function MobileDesigner({ students, keyword = "ALL" }: MobileDesignerProps) {
                     layout="fill"
                     objectFit="cover"
                     alt="profileImage"
+                    priority
                   />
                 </div>
                 <div className="my-3 flex flex-col justify-center items-center">
