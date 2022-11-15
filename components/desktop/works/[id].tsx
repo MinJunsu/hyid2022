@@ -302,7 +302,7 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
             <div className="flex justify-center mt-[90px] pb-[100px]">
               <div className="loved flex items-center border-[2px] border-[#AEAEAE] w-auto rounded-full p-3 text-center justify-evenly px-6 py-4">
                 <svg
-                  onClick={() => mutation.mutate(work.id)}
+                  onClick={() => mutation.mutate(idx)}
                   xmlns="http://www.w3.org/2000/svg"
                   width="31.077"
                   height="27.361"
@@ -339,7 +339,7 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                       transform="translate(1)"
                       fill="none"
                       stroke="#aeaeae"
-                      stroke-width="2"
+                      strokeWidth="2"
                     />
                   </svg>
                 </div>

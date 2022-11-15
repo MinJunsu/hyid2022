@@ -69,7 +69,7 @@ const WorksDetailPage: NextPage<ServerSideProps> = ({ id }, context) => {
     return (
       <MobileWorkDetail work={work!} like={workLike!} mutation={mutation} />
     );
-  else return <WorksDetail work={work!} like={workLike!} />;
+  else return <WorksDetail work={work!} like={workLike!} mutation={mutation} />;
 };
 
 export async function getServerSideProps(context: { params: { id: string } }) {
