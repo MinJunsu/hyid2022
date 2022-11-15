@@ -103,12 +103,12 @@ function MobileWorks({
           );
         })}
       </div>
+      {iterWorks?.works.length === 0 && (
+        <div className="w-full flex flex-col justify-center items-center text-sm">
+          <span>해당 키워드에 맞는 작업물이 존재하지 않습니다.</span>
+        </div>
+      )}
       <div className="grid grid-cols-2 gap-2 mb-16">
-        {iterWorks?.works.length === 0 && (
-          <div className="w-full flex  flex-col justify-center items-center">
-            <span>해당 키워드에 맞는 게시물이 존재하지 않습니다.</span>
-          </div>
-        )}
         {iterWorks?.works.map((work, index) => {
           if (!work.workThumbnailImage) {
             return <div key={index}></div>;
@@ -126,7 +126,7 @@ function MobileWorks({
                   />
                 </div>
                 <div className="flex flex-col my-3 space-y-1">
-                  <h2 className="flex justify-center items-center">
+                  <h2 className="flex justify-center items-center text-center">
                     {work.title}
                   </h2>
                   <div className="flex flex-row space-x-2 flex justify-center items-center">

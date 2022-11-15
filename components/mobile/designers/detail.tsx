@@ -55,16 +55,14 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
         })}
         {[...iterateWorkCategory].map((category, index) => {
           return (
-            <Link
+            <div
               key={index}
-              href={`/works/?category=${category.toLowerCase()}`}
+              className="block px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer"
             >
-              <a className="block px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer">
-                <span className="whitespace-nowrap flex justify-center items-center text-sm uppercase">
-                  {category}
-                </span>
-              </a>
-            </Link>
+              <span className="whitespace-nowrap flex justify-center items-center text-sm uppercase">
+                {category}
+              </span>
+            </div>
           );
         })}
       </div>
