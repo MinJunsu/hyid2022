@@ -61,7 +61,7 @@ function MobileWorks({
     <div className="flex flex-col mx-10">
       <Header />
       <InputBox keyword="작업물" setWord={setKeyword} />
-      <div className="flex flex-row my-5 space-x-3 overflow-y-scroll scrollbar-hide">
+      <div className="flex flex-row my-5 space-x-3 overflow-y-scroll scrollbar-hide -mr-10">
         {categories.map((category, index) => {
           return (
             <Link

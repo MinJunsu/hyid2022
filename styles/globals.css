@@ -13,5 +13,7 @@ html {
 }
 
 body {
-    font-family: SpoqaHanSansNeo;
+    font-family: 'SpoqaHanSansNeo';
+    text-align: left;
+    letter-spacing: 0;
 }

@@ -27,7 +27,7 @@ const WorksPage: NextPage<ServerSideProps> = () => {
   const [category, setCategory] = useState<string>("all");
   const [keyword, setKeyword] = useState<string>("");
   useEffect(() => {
-    setIsCategory(router.query.category !== "true");
+    setIsCategory(router.query.category === "true");
     setCategory(router.query.category as string);
   }, [router.isReady, router.query.category]);
 

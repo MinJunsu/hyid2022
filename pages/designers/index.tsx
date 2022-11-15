@@ -26,6 +26,7 @@ const DesignersPage: NextPage = () => {
   const mobile = useMobile();
   const router = useRouter();
   const [keyword, setKeyword] = useState<string>("");
+  const [students, setStudents] = useState<Student[]>([]);
 
   useEffect(() => {
     setKeyword(router.query.keyword as string);
@@ -33,12 +34,24 @@ const DesignersPage: NextPage = () => {
 
   const { data, isLoading } = useQuery<Student[]>(["students"], getStudent);
 
+  useEffect(() => {
+    if (data) {
+      const noMona = data.filter((student) => {
+        return !student.nameKor.includes("모나리자");
+      });
+      const mona = data.filter((student) => {
+        return student.nameKor.includes("모나리자");
+      });
+      setStudents([...noMona, ...mona]);
+    }
+  }, [data]);
+
   if (isLoading) {
     return <div></div>;
   }
 
-  if (mobile) return <MobileDesigner students={data!} keyword={keyword} />;
-  else return <Designer students={data!} />;
+  if (mobile) return <MobileDesigner students={students!} keyword={keyword} />;
+  else return <Designer students={students!} />;
 };
 
 // export async function getInitialProps(context: { query: { keyword: string } }) {

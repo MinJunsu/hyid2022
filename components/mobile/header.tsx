@@ -11,8 +11,8 @@ function Header() {
           <a>
             <Image
               src="/web/logo/web_logo_black.svg"
-              width={100}
-              height={90}
+              width={60}
+              height={50}
               alt="icon"
             />
           </a>
@@ -22,7 +22,7 @@ function Header() {
         <span
           className={`${
             router.pathname.includes("works") && "border-b-[1px]"
-          } border-black cursor-pointer`}
+          } border-black cursor-pointer text-sm`}
           onClick={() => router.push("/works")}
         >
           WORKS
@@ -30,7 +30,7 @@ function Header() {
         <span
           className={`${
             router.pathname.includes("designers") && "border-b-[1px]"
-          } border-black cursor-pointer`}
+          } border-black cursor-pointer text-sm`}
           onClick={() => router.push("/designers")}
         >
           DESIGNER
