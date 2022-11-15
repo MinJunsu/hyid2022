@@ -2,9 +2,9 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import getImageRatio from "../../../utils/image";
 import { Like } from "@pages/works/[id]";
+import { WorkWithStudentsAndImages } from "../../../type";
 
 interface WorkDetailProps {
   work: WorkWithStudentsAndImages;

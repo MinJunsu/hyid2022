@@ -6,8 +6,8 @@ import Image from "next/image";
 import router from "next/router";
 import { Link } from "react-scroll";
 import Header from "@components/desktop/header";
-import { ViewCount } from "@pages/api";
 import Head from "next/head";
+import { ViewCount } from "../../type";
 
 const Fade = require("react-reveal/Fade");
 

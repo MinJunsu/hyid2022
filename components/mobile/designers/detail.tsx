@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { StudentWithWorksAndTags } from "@pages/api/students/[id]";
 import Link from "next/link";
 import Header from "@components/mobile/header";
+import { StudentWithWorksAndTags } from "../../../type";
 
 interface MobileDesignerDetailProps {
   student: StudentWithWorksAndTags;
@@ -70,24 +70,30 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
       </div>
       <div className="mt-10">
         <span className="block text-lg my-3">Contact</span>
-        <div className="flex flex-row">
-          <span className="w-28">E-mail</span>
-          <a href={`mailto:﻿"${student?.email}"`}>{student?.email}</a>
-        </div>
-        <div className="flex flex-row">
-          <span className="w-28">Instagram</span>
-          <Link href={`https://instagram.com/_u/${student?.snsLink}/`}>
-            <a>{student?.snsLink}</a>
-          </Link>
-        </div>
-        <div className="flex flex-row">
-          <span className="w-28">Behance</span>
-          {student?.webSite && (
-            <Link href={student?.webSite}>
-              <a>{getNameFromBehance(student?.webSite)}</a>
+        {student?.email && (
+          <div className="flex flex-row">
+            <span className="w-28">E-mail</span>
+            <a href={`mailto:﻿"${student?.email}"`}>{student?.email}</a>
+          </div>
+        )}
+        {student?.snsLink && (
+          <div className="flex flex-row">
+            <span className="w-28">Instagram</span>
+            <Link href={`https://instagram.com/_u/${student?.snsLink}/`}>
+              <a>{student?.snsLink}</a>
             </Link>
-          )}
-        </div>
+          </div>
+        )}
+        {student?.webSite && (
+          <div className="flex flex-row">
+            <span className="w-28">Behance</span>
+            {student?.webSite && (
+              <Link href={student?.webSite}>
+                <a>{getNameFromBehance(student?.webSite)}</a>
+              </Link>
+            )}
+          </div>
+        )}
       </div>
       <div className="mt-5 mb-14 grid grid-cols-2 gap-2">
         {student?.works.map((work, index) => {

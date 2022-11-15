@@ -1,5 +1,5 @@
-import { CategoryWithWorks } from "@pages/api/category";
 import Image from "next/image";
+import { CategoryWithWorks } from "../../type";
 
 interface CategoryProps {
   categories: CategoryWithWorks[];

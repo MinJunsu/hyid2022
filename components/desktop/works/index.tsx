@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import Header from "@components/desktop/header";
-import { CategoryWithWorks } from "@pages/api/category";
 import Head from "next/head";
+import { CategoryWithWorks } from "../../../type";
 
 interface IndexProps {
   categories: CategoryWithWorks[];

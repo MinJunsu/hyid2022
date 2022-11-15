@@ -4,7 +4,7 @@ import Links from "next/link";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ViewCount } from "@pages/api";
+import { ViewCount } from "../../type";
 import { Link } from "react-scroll";
 
 interface MobileHomeProps {

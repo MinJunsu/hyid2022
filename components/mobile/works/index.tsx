@@ -1,10 +1,10 @@
-import { CategoryWithWorks } from "@pages/api/category";
 import { useEffect, useState } from "react";
 import MobileCategory from "@components/mobile/works/category";
 import InputBox from "@components/mobile/input-box";
 import Header from "@components/mobile/header";
 import Link from "next/link";
 import Image from "next/image";
+import { CategoryWithWorks } from "../../../type";
 
 interface MobileWorksProps {
   categories: CategoryWithWorks[];

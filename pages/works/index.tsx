@@ -1,15 +1,12 @@
 import Axios from "axios";
-import {
-  dehydrate,
-  DehydratedState,
-  QueryClient,
-  useQuery,
-} from "@tanstack/react-query";
-import { CategoryWithWorks } from "@pages/api/category";
+import { DehydratedState, useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
 import MobileWorks from "@components/mobile/works";
 import useMobile from "@hooks/mobile";
 import Works from "@components/desktop/works";
+import { CategoryWithWorks } from "../../type";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 interface ServerSideProps {
   dehydratedState: DehydratedState;
@@ -23,13 +20,20 @@ const getCategory = () => {
   ).then((res) => res.data);
 };
 
-const WorksPage: NextPage<ServerSideProps> = (
-  { category, keyword },
-  context
-) => {
+const WorksPage: NextPage<ServerSideProps> = () => {
   const mobile = useMobile();
-  const isCategory = Boolean(category === "true");
-  const nowCategory = category?.toLowerCase() || "all";
+  const router = useRouter();
+  const [isCategory, setIsCategory] = useState<boolean>(false);
+  const [category, setCategory] = useState<string>("all");
+  const [keyword, setKeyword] = useState<string>("");
+  useEffect(() => {
+    setIsCategory(router.query.category !== "true");
+    setCategory(router.query.category as string);
+  }, [router.isReady, router.query.category]);
+
+  useEffect(() => {
+    setKeyword(router.query.keyword as string);
+  }, [router.isReady, router.query.keyword]);
 
   const { data, isLoading } = useQuery<CategoryWithWorks[]>(
     ["category"],
@@ -44,7 +48,7 @@ const WorksPage: NextPage<ServerSideProps> = (
     return (
       <MobileWorks
         categories={data!}
-        nowCategory={nowCategory}
+        nowCategory={category}
         keyword={keyword}
         isCategory={isCategory}
       />
@@ -52,19 +56,19 @@ const WorksPage: NextPage<ServerSideProps> = (
   else return <Works categories={data!} />;
 };
 
-export async function getInitialProps(context: {
-  query: { category: string; keyword: string };
-}) {
-  const category = context.query.category || null;
-  const keyword = context.query.keyword || null;
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(["category"], getCategory);
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-      category,
-    },
-  };
-}
+// export async function getInitialProps(context: {
+//   query: { category: string; keyword: string };
+// }) {
+//   const category = context.query.category || null;
+//   const keyword = context.query.keyword || null;
+//   const queryClient = new QueryClient();
+//   await queryClient.prefetchQuery(["category"], getCategory);
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//       category,
+//     },
+//   };
+// }
 
 export default WorksPage;

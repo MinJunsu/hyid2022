@@ -1,5 +1,5 @@
-import { CategoryWithWorks } from "@pages/api/category";
 import { useRouter } from "next/router";
+import { CategoryWithWorks } from "../../../type";
 
 interface MobileCategoryProps {
   categories: CategoryWithWorks[];

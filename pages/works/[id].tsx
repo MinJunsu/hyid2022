@@ -5,9 +5,9 @@ import WorksDetail from "@components/desktop/works/[id]";
 import Axios from "axios";
 import axios from "axios";
 import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
-import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { WorkWithStudentsAndImages } from "../../type";
 
 // interface ServerSideProps {
 //   dehydratedState: DehydratedState;

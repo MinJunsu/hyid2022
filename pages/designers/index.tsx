@@ -1,16 +1,13 @@
 import axios from "axios";
-import {
-  dehydrate,
-  DehydratedState,
-  QueryClient,
-  useQuery,
-} from "@tanstack/react-query";
+import { DehydratedState, useQuery } from "@tanstack/react-query";
 import { Student } from "@prisma/client";
 import Designer from "../../components/desktop/designer";
 
 import type { NextPage } from "next";
 import useMobile from "@hooks/mobile";
 import MobileDesigner from "@components/mobile/designers";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const getStudent = () => {
   return axios
@@ -25,8 +22,14 @@ interface ServerSideProps {
   keyword: string;
 }
 
-const DesignersPage: NextPage<ServerSideProps> = ({ keyword }, context) => {
+const DesignersPage: NextPage = () => {
   const mobile = useMobile();
+  const router = useRouter();
+  const [keyword, setKeyword] = useState<string>("");
+
+  useEffect(() => {
+    setKeyword(router.query.keyword as string);
+  }, [router.isReady, router.query.keyword]);
 
   const { data, isLoading } = useQuery<Student[]>(["students"], getStudent);
 
@@ -38,16 +41,16 @@ const DesignersPage: NextPage<ServerSideProps> = ({ keyword }, context) => {
   else return <Designer students={data!} />;
 };
 
-export async function getInitialProps(context: { query: { keyword: string } }) {
-  const keyword = context.query.keyword || "ALL";
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(["students"], getStudent);
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-      keyword,
-    },
-  };
-}
+// export async function getInitialProps(context: { query: { keyword: string } }) {
+//   const keyword = context.query.keyword || "ALL";
+//   const queryClient = new QueryClient();
+//   await queryClient.prefetchQuery(["students"], getStudent);
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//       keyword,
+//     },
+//   };
+// }
 
 export default DesignersPage;

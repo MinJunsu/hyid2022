@@ -10,7 +10,7 @@ import {
   QueryClient,
   useQuery,
 } from "@tanstack/react-query";
-import { ViewCount } from "@pages/api";
+import { ViewCount } from "../type";
 
 const getViewCount = () => {
   return axios

@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import MobileDesignerDetail from "@components/mobile/designers/detail";
-import { StudentWithWorksAndTags } from "@pages/api/students/[id]";
 import type { NextPage } from "next";
 import Designers from "@components/desktop/designer/[id]";
 import useMobile from "@hooks/mobile";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { StudentWithWorksAndTags } from "../../type";
 
 // interface ServerSideProps {
 //   dehydratedState: DehydratedState;

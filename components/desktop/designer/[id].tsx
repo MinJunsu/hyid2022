@@ -5,7 +5,7 @@ import getImageRatio from "../../../utils/image";
 import router from "next/router";
 import Head from "next/head";
 import Link from "next/link";
-import { StudentWithWorksAndTags } from "@pages/api/students/[id]";
+import { StudentWithWorksAndTags } from "../../../type";
 
 interface StudentProps {
   student: StudentWithWorksAndTags;

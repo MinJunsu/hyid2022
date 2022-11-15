@@ -2,11 +2,11 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import CloseButton from "@components/mobile/icons/close-button";
 import UpButton from "@components/mobile/icons/up-button";
-import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import getImageRatio from "../../../utils/image";
 import Link from "next/link";
 import { Like } from "@pages/works/[id]";
 import { useState } from "react";
+import { WorkWithStudentsAndImages } from "../../../type";
 
 interface MobileWorkDetailProps {
   work: WorkWithStudentsAndImages;
