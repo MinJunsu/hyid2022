@@ -24,7 +24,8 @@ function Designer({ students }: IndexProps) {
     speed: 2500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    pauseOnHover: false,
+    pauseOnHover: true,
+    pauseOnFocus: false,
     autoplay: true,
     autoplaySpeed: 2500,
     focusOnSelect: true,
@@ -44,43 +45,47 @@ function Designer({ students }: IndexProps) {
   };
 
   return (
-    <div className="bg-cover w-full h-auto  bg-[url('/web/background/profile_background.png')] overflow-x-hidden">
+    <div className="bg-cover w-full h-auto  bg-[url('/web/background/profile_background.png')] ">
       <div className="px-[40px] py-[20px]">
         <Header color="white" />
       </div>
-
-      <div className="relative top-[175px] left-[194px] ">
-        <div className="absolute left-20 bottom-8 animate-pulse">
-          <Image src="/web/icon/design_star.png" height={77} width={77} />
+      <div className="px-[40px] flex items-center ">
+        <div className="leftContents w-[40%] relative top-20">
+          <div className="animate-pulse absolute bottom-6 left-20  ">
+            <Image src="/web/icon/design_star.png" height={77} width={77} />
+          </div>
+          <div>
+            <p className="text-white font-light text-[18px]">
+              Click on The <br /> name of the designer
+            </p>
+          </div>
         </div>
-        <p className="text-white font-light">
-          Click on the
-          <br /> name of the designer
-        </p>
-      </div>
-      <div className="relative -top-[64px] text-white -right-[751px] w-[30vw]">
-        <h2 className=" text-[28px]">Designers</h2>
-        <div className="studentName flex flex-wrap items-center justify-start w-[950px]  ">
-          {students?.map((student, index) => {
-            return (
-              <div key={index}>
-                <p
-                  onClick={() => {
-                    slider.current?.slickGoTo(index);
-                    slider.current?.slickPause();
-                    setStudentId(student.id);
-
-                    setTimeout(() => {
-                      slider.current?.slickPlay();
-                    }, 5000);
-                  }}
-                  className="text-[18px] mr-[43px] mt-[15px] font-extralight w-[4vw] truncate text-center hover:underline cursor-pointer"
-                >
-                  {student.nameKor}
-                </p>
-              </div>
-            );
-          })}
+        <div className="rightContents text-white ">
+          <h2 className=" text-[28px]">Designers</h2>
+          <div className="studentName grid grid-cols-11  ">
+            {students?.map((student, index) => {
+              return (
+                <div key={index}>
+                  <p
+                    onClick={() => {
+                      slider.current?.slickGoTo(index);
+                      setStudentId(student.id);
+                      slider.current?.slickPause();
+                      setTimeout(() => {
+                        setStudentId(10000);
+                      }, 8000);
+                      setTimeout(() => {
+                        slider.current?.slickPlay();
+                      }, 5000);
+                    }}
+                    className="text-[18px] mr-[43px] mt-[15px] font-extralight w-[5vw] truncate text-center hover:underline cursor-pointer"
+                  >
+                    {student.nameKor}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className="mt-[50px] pb-[200px]">

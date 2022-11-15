@@ -9,11 +9,9 @@ interface StudentProps {
 }
 
 function Id({ student }: StudentProps) {
-  console.log(student);
   return (
     <div className="px-[40px] py-[20px]">
       <Header color="black" />
-
       <div className="fixed left-0 top-0 w-[100vw] h-[100vh] -z-50">
         <div className="flex h-full -z-30">
           <div className="profile w-[45%] bg-[#EFEFEF]  h-full flex justify-center items-center">
