@@ -6,23 +6,17 @@ import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import getImageRatio from "../../../utils/image";
 import axios from "axios";
 import Head from "next/head";
+import { Like } from "@pages/works/[id]";
 
 interface WorkDetailProps {
   work: WorkWithStudentsAndImages;
+  like: Like;
+  mutation: any;
 }
 
-function WorkDetail({ work }: WorkDetailProps) {
+function WorkDetail({ work, like, mutation }: WorkDetailProps) {
   const router = useRouter();
   const idx = router.query.id;
-  const path = router.asPath;
-
-  const like = () => {
-    axios
-      .get(
-        `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/works/${idx}/like`
-      )
-      .then((res) => res.data);
-  };
 
   const [showButton, setShowButton] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -74,9 +68,6 @@ function WorkDetail({ work }: WorkDetailProps) {
 
   return (
     <div className="relative">
-      <Head>
-        <title>Work: {work.title}</title>
-      </Head>
       <div className="bg-[#fff] h-full z-20">
         <div ref={outside} className="fixed z-30 right-0 top-48">
           <div
@@ -309,9 +300,9 @@ function WorkDetail({ work }: WorkDetailProps) {
               </div>
             </div>
             <div className="flex justify-center mt-[90px] pb-[100px]">
-              <div className="loved flex items-center border-[2px] border-[#AEAEAE] w-[200px] rounded-3xl p-3 text-center justify-evenly">
+              <div className="loved flex items-center border-[2px] border-[#AEAEAE] w-auto rounded-full p-3 text-center justify-evenly px-6 py-4">
                 <svg
-                  onClick={like}
+                  onClick={() => mutation.mutate(work.id)}
                   xmlns="http://www.w3.org/2000/svg"
                   width="31.077"
                   height="27.361"
@@ -321,14 +312,38 @@ function WorkDetail({ work }: WorkDetailProps) {
                     id="heart"
                     d="M28.383,5.24a7.651,7.651,0,0,0-10.822,0L16.087,6.715,14.612,5.24A7.652,7.652,0,0,0,3.79,16.062l1.474,1.474L16.087,28.359,26.909,17.537l1.474-1.474a7.651,7.651,0,0,0,0-10.822Z"
                     transform="translate(-0.549 -1.998)"
-                    fill="none"
-                    stroke="#aeaeae"
+                    fill={`${like.isLiked ? "#0649EC" : "#FFFFFF"}`}
+                    stroke={`${like.isLiked ? "none" : "#AEAEAE"}`}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
                   />
                 </svg>
-                <p>좋아요</p>
+                <p className={`mx-4 ${like.isLiked ? "text-[#0649EC]" : null}`}>
+                  좋아요
+                </p>
+                <p className={`${like.isLiked ? "text-[#0649EC]" : null}`}>
+                  {like?.likeCount}
+                </p>
+                <div className="mx-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="2"
+                    height="21.68"
+                    viewBox="0 0 2 21.68"
+                  >
+                    <line
+                      id="선_23"
+                      data-name="선 23"
+                      y2="21.68"
+                      transform="translate(1)"
+                      fill="none"
+                      stroke="#aeaeae"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+
                 <div
                   onClick={() => {
                     handleCopyClipBoard(
