@@ -47,7 +47,7 @@ const WorksPage: NextPage<ServerSideProps> = (
         isCategory={isCategory}
       />
     );
-  else return <Works categories={data!} isCategory={true} />;
+  else return <Works categories={data!} />;
 };
 
 export async function getServerSideProps(context: {
