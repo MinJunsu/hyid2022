@@ -101,7 +101,7 @@ function MobileDesigner({ students, keyword = "ALL" }: MobileDesignerProps) {
           return (
             <Link href={`/designers/${student.id}`} key={index}>
               <div
-                className="flex flex-col justify-center items-center cursor-pointer m-2"
+                className="flex flex-col justify-start items-center cursor-pointer m-2"
                 key={index}
               >
                 <div className="w-full aspect-[1/1.31] relative">
@@ -114,8 +114,12 @@ function MobileDesigner({ students, keyword = "ALL" }: MobileDesignerProps) {
                   />
                 </div>
                 <div className="my-3 flex flex-col justify-center items-center">
-                  <span className="text-lg">{student.nameKor}</span>
-                  <span className="text-sm">{student.name}</span>
+                  <span className="flex justify-center items-center text-lg">
+                    {student.nameKor}
+                  </span>
+                  <span className="flex justify-center items-center text-sm text-center">
+                    {student.name}
+                  </span>
                 </div>
               </div>
             </Link>

@@ -33,10 +33,10 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
         <h1 className="text-3xl font-bold">{student?.nameKor}</h1>
         <p className="text-xl">{student?.name}</p>
       </div>
-      <div className="flex flex-row space-x-3 my-3">
+      <div className="flex flex-row space-x-3 my-3 overflow-x-scroll scrollbar-hide">
         {student?.isManager && (
           <div className="px-3 py-2 rounded-full bg-[#0649EC] text-black cursor-pointer">
-            <span className="flex justify-center items-center text-sm text-white">
+            <span className="whitespace-nowrap justify-center items-center text-sm text-white">
               졸준위
             </span>
           </div>
@@ -44,10 +44,10 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
         {student?.tags.map((tag, index) => {
           return (
             <div
-              className="px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer"
+              className="w-full px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer flex-nowrap"
               key={index}
             >
-              <span className="flex justify-center items-center text-sm uppercase">
+              <span className="whitespace-nowrap flex justify-center items-center text-sm uppercase inline">
                 {tag.tag.name}
               </span>
             </div>
@@ -60,7 +60,7 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
               href={`/works/?category=${category.toLowerCase()}`}
             >
               <a className="block px-3 py-2 rounded-full bg-[#F2F2F2] text-black cursor-pointer">
-                <span className="flex justify-center items-center text-sm uppercase">
+                <span className="whitespace-nowrap flex justify-center items-center text-sm uppercase">
                   {category}
                 </span>
               </a>
