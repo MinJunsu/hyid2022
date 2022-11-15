@@ -73,7 +73,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
         <div>
           <Header color="black" />
         </div>
-        <div className="tabMenu flex items-center mt-[76px] mb-[53px] cursor-pointer ">
+        <div className="tabMenu flex items-center mt-[76px] mb-[53px] cursor-pointer justify-between ">
           <div className=" flex space-x-[9px] ">
             {categories?.map((category, index) => {
               return (
@@ -106,12 +106,12 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
               );
             })}
           </div>
-          <div className="border-b-[1px] border-slate-500 w-[10000px] ml-[47px] mr-[37px] mt-[30px] opacity-80 " />
+          {/*<div className="border-b-[1px] border-slate-500 w-[10000px] ml-[47px] mr-[37px] mt-[30px] opacity-80 " />*/}
           <div className="flex justify-between space-x-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="30.405"
-              height="30.405"
+              width="20.405"
+              height="20.405"
               viewBox="0 0 30.405 30.405"
             >
               <g
