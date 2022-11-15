@@ -5,13 +5,20 @@ import UpButton from "@components/mobile/icons/up-button";
 import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import getImageRatio from "../../../utils/image";
 import Link from "next/link";
+import { Like } from "@pages/works/[id]";
 
 interface MobileWorkDetailProps {
   work: WorkWithStudentsAndImages;
+  like: Like;
 }
 
-function MobileWorkDetail({ work }: MobileWorkDetailProps) {
+function MobileWorkDetail({ work, like }: MobileWorkDetailProps) {
   const router = useRouter();
+
+  const handleCopyClipBoard = async (text: string) => {
+    await navigator.clipboard.writeText(text);
+  };
+
   return (
     <div className="flex flex-col relative">
       <div className="z-50 m-5 absolute right-0 shadow-2xl">
@@ -115,7 +122,7 @@ function MobileWorkDetail({ work }: MobileWorkDetailProps) {
                 <Link href={`/works/${works[0].work.id}`}>
                   <a
                     key={index}
-                    className="block w-full relative mb-12"
+                    className="block w-full relative "
                     style={{
                       aspectRatio: `${getImageRatio(
                         works[0].work.workProfileImage!.width,
@@ -134,6 +141,61 @@ function MobileWorkDetail({ work }: MobileWorkDetailProps) {
               </div>
             );
           })}
+        </div>
+
+        {/* 좋아요 버튼 */}
+        <div className="mb-12">
+          <div className="flex flex-row">
+            <div className="flex flex-row cursor-pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="18"
+                viewBox="0 0 31.077 27.361"
+              >
+                <path
+                  id="heart"
+                  d="M28.383,5.24a7.651,7.651,0,0,0-10.822,0L16.087,6.715,14.612,5.24A7.652,7.652,0,0,0,3.79,16.062l1.474,1.474L16.087,28.359,26.909,17.537l1.474-1.474a7.651,7.651,0,0,0,0-10.822Z"
+                  transform="translate(-0.549 -1.998)"
+                  fill={`${like.isLiked ? "#0649EC" : "none"}`}
+                  stroke={`${like.isLiked ? "#0649EC" : "#aeaeae"}`}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+              </svg>
+              <span
+                className={`ml-2 font-medium ${
+                  like.isLiked && "text-[#0649EC]"
+                }`}
+              >
+                {like.likeCount}
+              </span>
+            </div>
+            <span className="mx-3 font-bold">|</span>
+            <div
+              className="cursor-pointer"
+              onClick={() =>
+                handleCopyClipBoard(`www.hyiddegreeshow.kr/work/${work.id}`)
+              }
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="23"
+                viewBox="0 0 29.042 31.844"
+              >
+                <path
+                  id="패스_246"
+                  data-name="패스 246"
+                  d="M24.4,20.185a5.6,5.6,0,0,0-3.975,1.652L13,17.511a5.47,5.47,0,0,0,0-3.023l7.42-4.33A5.678,5.678,0,1,0,19,7.708l-7.421,4.33a5.618,5.618,0,1,0,0,7.923L19,24.285a5.616,5.616,0,1,0,5.405-4.1Zm-16.217-6.9a3.458,3.458,0,0,0-.589-.06,3.481,3.481,0,0,0-.59.06,2.666,2.666,0,0,1,1.179,0Z"
+                  transform="translate(-1.479 -0.078)"
+                  stroke="#aeaeae"
+                  strokeWidth="1"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </div>

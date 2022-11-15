@@ -1,11 +1,10 @@
 import Image from "next/image";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import getImageRatio from "../../../utils/image";
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 
 interface WorkDetailProps {
   work: WorkWithStudentsAndImages;
@@ -21,11 +20,8 @@ function WorkDetail({ work }: WorkDetailProps) {
       .get(
         `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/works/${idx}/like`
       )
-      .then((res) => res.data)
-      .catch((err) => console.log(err));
+      .then((res) => res.data);
   };
-
-  const { data, isLoading } = useQuery(["like"], like);
 
   const [showButton, setShowButton] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -40,12 +36,7 @@ function WorkDetail({ work }: WorkDetailProps) {
   });
 
   const handleCopyClipBoard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      alert("링크가 복사되었습니다.");
-    } catch (e) {
-      alert("링크 복사에 실패하였습니다. 잠시 후 다시 시도해주세요.");
-    }
+    await navigator.clipboard.writeText(text);
   };
 
   const handlerOutside = (e: any) => {
@@ -387,6 +378,7 @@ function WorkDetail({ work }: WorkDetailProps) {
     </div>
   );
 }
+
 const animate = {
   initial: {
     transform: `translateY(1000px)`,

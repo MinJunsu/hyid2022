@@ -3,6 +3,7 @@ import useMobile from "@hooks/mobile";
 import MobileWorkDetail from "@components/mobile/works/detail";
 import WorksDetail from "@components/desktop/works/[id]";
 import Axios from "axios";
+import axios from "axios";
 import {
   dehydrate,
   DehydratedState,
@@ -22,26 +23,42 @@ const getWork = (id: string) => {
   ).then((res) => res.data);
 };
 
+const getLike = (id: string) => {
+  return axios
+    .get(
+      `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}/like`
+    )
+    .then((res) => res.data);
+};
+
+export interface Like {
+  isLiked: boolean;
+  likeCount: number;
+}
+
 const WorksDetailPage: NextPage<ServerSideProps> = ({ id }, context) => {
   const mobile = useMobile();
 
-  const { data, isLoading } = useQuery<WorkWithStudentsAndImages>(
-    ["work", id],
-    () => getWork(id)
+  const { data: work, isLoading: workLoading } =
+    useQuery<WorkWithStudentsAndImages>(["work", id], () => getWork(id));
+  const { data: workLike, isLoading: workLikeLoading } = useQuery<Like>(
+    ["like", id],
+    () => getLike(id)
   );
 
-  if (isLoading) {
+  if (workLike && workLikeLoading) {
     return <div></div>;
   }
 
-  if (mobile) return <MobileWorkDetail work={data!} />;
-  else return <WorksDetail work={data!} />;
+  if (mobile) return <MobileWorkDetail work={work!} like={workLike!} />;
+  else return <WorksDetail work={work!} />;
 };
 
 export async function getServerSideProps(context: { params: { id: string } }) {
   const id = context.params.id;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["work", id], () => getWork(id));
+  await queryClient.prefetchQuery(["like", id], () => getLike(id));
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
