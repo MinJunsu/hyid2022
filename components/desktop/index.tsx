@@ -79,7 +79,7 @@ function Home() {
   return (
     <div className="webView scroll-smooth">
       <div className="dots fixed text-white z-20 right-8 bottom-[50%] ">
-        <Link to="section1" smooth={true} spy={true}>
+        <Link to="first" smooth={true} spy={true}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +98,7 @@ function Home() {
             />
           </svg>
         </Link>
-        <Link to="section2" smooth={true} spy={true}>
+        <Link to="second" smooth={true} spy={true}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +117,7 @@ function Home() {
             />
           </svg>
         </Link>
-        <Link to="section3" smooth={true} spy={true}>
+        <Link to="third" smooth={true} spy={true}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +136,7 @@ function Home() {
             />
           </svg>
         </Link>
-        <Link to="section4" smooth={true} spy={true}>
+        <Link to="fourth" smooth={true} spy={true}>
           <svg
             className="mb-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +156,7 @@ function Home() {
           </svg>
         </Link>
       </div>
-      <div className="section1 relative">
+      <div className="first relative">
         <div className="bg-[url('/web/background/web_main_banner_1_gif.gif')] bg-cover bg-center h-[100vh] px-[40px] py-[20px]">
           <Header color="white" />
           <Link to="section2" spy={true} smooth={true}>
@@ -183,8 +183,8 @@ function Home() {
         </div>
       </div>
 
-      <div className="section2">
-        <div className="second bg-[url('/web/background/web_main_2_gif.gif')] bg-cover bg-center h-[100vh] flex flex-col">
+      <div className="second">
+        <div className=" bg-[url('/web/background/web_main_2_gif.gif')] bg-cover bg-center h-[100vh] flex flex-col">
           <Fade top cascade>
             <div className="flex justify-center ml-[100px]">
               <Image src="/web/icon/second.png" width={299} height={361} />
@@ -205,7 +205,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="section3">
+      <div className="third">
         <div className="third bg-[url('/web/background/web_main_3_gif.gif')]  bg-cover bg-center h-[100vh] text-white  ">
           <Fade top cascade>
             <div className="flex-col justify-center text-center items-center relative top-[30vh] ">
@@ -226,8 +226,8 @@ function Home() {
         </div>
       </div>
 
-      <div className="section4">
-        <div className="fourth bg-black  bg-cover bg-center h-auto text-white relative   ">
+      <div className="fourth">
+        <div className=" bg-black  bg-cover bg-center h-auto text-white relative   ">
           <Fade top cascade>
             <div className="pt-[490px] flex justify-center">
               <Image
@@ -332,14 +332,6 @@ function Home() {
                 <p className="text-[20px] font-extralight">조호현</p>
                 <p></p>
               </div>
-              {/* <div className="grid grid-cols-6 space-x-[74px] pt-[55px] ">
-                <h1> </h1>
-                <p className="text-[20px] fonts-extralight">개발팀</p>
-                <p className="text-[20px] fonts-extralight">민준수</p>
-                <p className="text-[20px] fonts-extralight">박재현</p>
-                <p> </p>
-                <p> </p>
-              </div> */}
             </div>
           </div>
         </div>

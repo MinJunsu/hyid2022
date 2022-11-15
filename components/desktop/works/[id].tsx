@@ -1,15 +1,28 @@
 import Image from "next/image";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
 import getImageRatio from "../../../utils/image";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 interface WorkDetailProps {
   work: WorkWithStudentsAndImages;
 }
 
 function WorkDetail({ work }: WorkDetailProps) {
+  const router = useRouter();
+  const idx = router.query.id;
+
+  const like = () => {
+    axios
+      .get(
+        `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/works/${idx}/like`
+      )
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  };
   const [showButton, setShowButton] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const query = false;
@@ -290,6 +303,7 @@ function WorkDetail({ work }: WorkDetailProps) {
             <div className="flex justify-center mt-[90px] pb-[100px]">
               <div className="loved flex items-center border-[2px] border-[#AEAEAE] w-[200px] rounded-3xl p-3 text-center justify-evenly">
                 <svg
+                  onClick={like}
                   xmlns="http://www.w3.org/2000/svg"
                   width="31.077"
                   height="27.361"
