@@ -34,12 +34,13 @@ function Designer({ students }: IndexProps) {
     centerMode: true,
     responsive: [
       {
-        breakpoint: 1500,
+        breakpoint: 1650,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "30px",
+          centerPadding: "10px",
+          햣,
         },
       },
       {
