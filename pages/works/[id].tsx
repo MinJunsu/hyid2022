@@ -8,6 +8,7 @@ import {
   dehydrate,
   DehydratedState,
   QueryClient,
+  useMutation,
   useQuery,
 } from "@tanstack/react-query";
 import { WorkWithStudentsAndImages } from "@pages/api/works/[id]";
@@ -38,19 +39,36 @@ export interface Like {
 
 const WorksDetailPage: NextPage<ServerSideProps> = ({ id }, context) => {
   const mobile = useMobile();
+  const queryClient = new QueryClient();
 
   const { data: work, isLoading: workLoading } =
     useQuery<WorkWithStudentsAndImages>(["work", id], () => getWork(id));
+
   const { data: workLike, isLoading: workLikeLoading } = useQuery<Like>(
     ["like", id],
     () => getLike(id)
+  );
+
+  const mutation = useMutation(
+    (id: number) =>
+      fetch(
+        `https://jqjb7fpthe.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}/like/create`
+      ),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["like", id]);
+      },
+    }
   );
 
   if (workLike && workLikeLoading) {
     return <div></div>;
   }
 
-  if (mobile) return <MobileWorkDetail work={work!} like={workLike!} />;
+  if (mobile)
+    return (
+      <MobileWorkDetail work={work!} like={workLike!} mutation={mutation} />
+    );
   else return <WorksDetail work={work!} />;
 };
 
