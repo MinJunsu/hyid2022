@@ -67,7 +67,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
       </div>
       <div
         className={`works px-[40px] py-[25px] bg-white cursor-works  ${
-          modal ? "blur-xl" : null
+          modal ? "blur-2xl" : null
         } `}
       >
         <div>
@@ -259,7 +259,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
         >
           <Image src="/web/icon/close.svg" width={20} height={20} alt="close" />
         </div>
-        <div className=" flex flex-wrap max-w-[1000px]   ">
+        <div className=" flex flex-wrap max-w-[1000px] mt-44   ">
           {categories?.map((category, idx) => {
             // console.log(category);
             return (
