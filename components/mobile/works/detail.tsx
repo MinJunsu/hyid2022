@@ -10,9 +10,10 @@ import { Like } from "@pages/works/[id]";
 interface MobileWorkDetailProps {
   work: WorkWithStudentsAndImages;
   like: Like;
+  mutation: any;
 }
 
-function MobileWorkDetail({ work, like }: MobileWorkDetailProps) {
+function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
   const router = useRouter();
 
   const handleCopyClipBoard = async (text: string) => {
@@ -146,7 +147,10 @@ function MobileWorkDetail({ work, like }: MobileWorkDetailProps) {
         {/* 좋아요 버튼 */}
         <div className="mb-12">
           <div className="flex flex-row">
-            <div className="flex flex-row cursor-pointer">
+            <div
+              className="flex flex-row cursor-pointer"
+              onClick={() => mutation.mutate(work.id)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="21"
