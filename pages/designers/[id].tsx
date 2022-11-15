@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 // }
 
 const getStudentWorks = (id: string) => {
+  if (!id) return null;
   return axios
     .get(
       `https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod/students/${id}`
@@ -29,7 +30,7 @@ const DesignersDetailPage: NextPage = () => {
     setId(router.query.id as string);
   }, [router.isReady, router.query.id]);
 
-  const { data, isLoading } = useQuery<StudentWithWorksAndTags>(
+  const { data, isLoading } = useQuery<StudentWithWorksAndTags | null>(
     ["student", id],
     () => getStudentWorks(id)
   );

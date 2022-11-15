@@ -15,23 +15,25 @@ import { useEffect, useState } from "react";
 // }
 
 const getWork = (id: string) => {
+  if (!id) return null;
   return Axios.get(
     `https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}`
   ).then((res) => res.data);
-};
-
-const getLike = (id: string) => {
-  return axios
-    .get(
-      `https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}/like`
-    )
-    .then((res) => res.data);
 };
 
 export interface Like {
   isLiked: boolean;
   likeCount: number;
 }
+
+const getLike = (id: string) => {
+  if (!id) return { isLiked: false, likeCount: 0 };
+  return axios
+    .get(
+      `https://3x2tglbd1a.execute-api.ap-northeast-2.amazonaws.com/prod/works/${id}/like`
+    )
+    .then((res) => res.data);
+};
 
 const WorksDetailPage: NextPage = () => {
   const mobile = useMobile();
@@ -43,7 +45,7 @@ const WorksDetailPage: NextPage = () => {
   }, [router.isReady, router.query.id]);
 
   const { data: work, isLoading: workLoading } =
-    useQuery<WorkWithStudentsAndImages>(["work", id], () => getWork(id));
+    useQuery<WorkWithStudentsAndImages | null>(["work", id], () => getWork(id));
 
   const { data: workLike, isLoading: workLikeLoading } = useQuery<Like>(
     ["like", id],
