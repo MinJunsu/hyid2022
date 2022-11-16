@@ -6,8 +6,6 @@ import router from "next/router";
 import Head from "next/head";
 import Link from "next/link";
 import { StudentWithWorksAndTags } from "../../../type";
-import { motion } from "framer-motion";
-import { AnimatePresence } from "framer-motion";
 
 interface StudentProps {
   student: StudentWithWorksAndTags;

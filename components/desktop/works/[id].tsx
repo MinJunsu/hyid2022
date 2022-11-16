@@ -169,13 +169,22 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                       <p className="text-white font-light text-xs my-[18px] ">
                         {res?.student.email}
                       </p>
-
-                      <Image
-                        src={work?.workThumbnailImage?.image!}
-                        width={150}
-                        height={128}
-                        alt="썸네일 이미지"
-                      />
+                      <div className="flex flex-row space-x-2">
+                        {res.student.works.map((res, idx) => {
+                          if (res.work.id !== work.id) {
+                            return (
+                              <div key={idx}>
+                                <Image
+                                  src={res?.work?.workProfileImage?.image!}
+                                  width={150}
+                                  height={128}
+                                  alt="썸네일 이미지"
+                                />
+                              </div>
+                            );
+                          }
+                        })}
+                      </div>
                     </div>
                   </div>
                 );

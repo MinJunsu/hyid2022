@@ -123,26 +123,34 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
                     <span className="text-xs mt-2 mb-5">{email}</span>
                   </a>
                 </Link>
-                <Link href={`/works/${works[0].work?.id}`}>
-                  <a
-                    key={index}
-                    className="block w-full relative "
-                    style={{
-                      aspectRatio: `${getImageRatio(
-                        works[0].work?.workProfileImage!.width,
-                        works[0].work?.workProfileImage!.height
-                      )}`,
-                    }}
-                  >
-                    <Image
-                      src={works[0].work?.workProfileImage!.image}
-                      layout="fill"
-                      objectFit="cover"
-                      priority
-                      alt="썸네일 이미지"
-                    />
-                  </a>
-                </Link>
+                <div className="flex flex-col space-y-2">
+                  {works.map((nowWork, index) => {
+                    if (nowWork.work.id !== work.id) {
+                      return (
+                        <Link key={index} href={`/works/${nowWork.work?.id}`}>
+                          <a
+                            key={index}
+                            className="block w-full relative "
+                            style={{
+                              aspectRatio: `${getImageRatio(
+                                nowWork.work?.workProfileImage!.width,
+                                nowWork.work?.workProfileImage!.height
+                              )}`,
+                            }}
+                          >
+                            <Image
+                              src={nowWork.work?.workProfileImage!.image}
+                              layout="fill"
+                              objectFit="cover"
+                              priority
+                              alt="썸네일 이미지"
+                            />
+                          </a>
+                        </Link>
+                      );
+                    }
+                  })}
+                </div>
               </div>
             );
           })}
