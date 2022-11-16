@@ -5,6 +5,7 @@ hyid2022:
     bucketName: 'hyid2022-front-bucket'
     cloudfront:
       distributionId: 'E2FP95VWHSY7TE'
+    domain: 'hyidegreeshow.com'
 #      aliases:
 #        - 'hyiddegreeshow.kr'
 #        - 'www.hyiddegreeshow.kr'
