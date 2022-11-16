@@ -8,7 +8,6 @@ import { Link } from "react-scroll";
 import Header from "@components/desktop/header";
 import Head from "next/head";
 import { ViewCount } from "../../type";
-import { AnimatePresence, motion } from "framer-motion";
 
 const Fade = require("react-reveal/Fade");
 
@@ -266,7 +265,7 @@ function Home({ viewCount }: HomeProps) {
                 alt="icon"
               />
             </div>
-            <div className="relative float-right mr-40 -top-32">
+            <div className="relative float-right mr-32 -top-32">
               <div>
                 <Image
                   src="/web/icon/design_star.png"
