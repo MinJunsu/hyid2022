@@ -195,7 +195,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                     {res.students?.map((student, index) => {
                       return (
                         <div key={index}>
-                          <p className="text-[15px] font-extralight">
+                          <p className="text-[15px] font-normal">
                             {student.student.nameKor}
                           </p>
                         </div>
@@ -229,11 +229,11 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                         modal ? "hidden" : null
                       }`}
                     >
-                      <h2 className="text-[20px] font-medium ">{res.title}</h2>
+                      <h2 className="text-[20px] font-normal ">{res.title}</h2>
                       {res.students?.map((student, index) => {
                         return (
                           <div key={index}>
-                            <p className="text-[15px] font-extralight">
+                            <p className="text-[15px] font-normal">
                               {student.student.nameKor}
                             </p>
                           </div>
