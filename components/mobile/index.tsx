@@ -17,7 +17,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
     infinite: true,
     speed: 3000,
     fade: false,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -30,13 +30,13 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 3,
         },
       },
       {
         breakpoint: 500,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 3,
         },
       },
     ],
@@ -339,9 +339,9 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
             return (
               <Image
                 key={index}
-                src="/mobile/icon/slide.svg"
-                width={2000}
-                height={48}
+                src="/mobile/icon/slide.png"
+                width={119}
+                height={16}
                 alt="icon"
               />
             );
