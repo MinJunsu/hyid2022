@@ -261,7 +261,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
         >
           <Image src="/web/icon/close.svg" width={20} height={20} alt="close" />
         </div>
-        <div className="font-medium flex flex-wrap xl:max-w-[900px] lg:max-m-[900px]  mt-44">
+        <div className="font-medium flex flex-wrap xl:min-w-[890px] lg:min-w-[890px] xl:max-w-[900px] lg:max-m-[900px]  mt-44">
           {categories?.map((category, idx) => {
             return (
               <div key={idx} className="group relative ">

@@ -17,6 +17,13 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta property="og:title" content="온고지신" />
+          <meta
+            property="og:description"
+            content="한양대학교 산업디자인과 졸업 전시"
+          />
+          <meta property="og:url" content="https://hyidegreeshow.com/" />
+          <meta property="og:image" content="/og/og_Main.jpeg" />
           <link
             href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
             rel="stylesheet"
