@@ -262,7 +262,7 @@ function Home({ viewCount }: HomeProps) {
                 alt="icon"
               />
             </div>
-            <div className="relative float-right mr-48 -top-32">
+            <div className="relative float-right mr-40 -top-32">
               <div>
                 <Image
                   src="/web/icon/design_star.png"
@@ -272,7 +272,7 @@ function Home({ viewCount }: HomeProps) {
                 />
               </div>
               <div>
-                <p className="font-light leading-7 ml-[50px]">
+                <p className="font-light leading-7">
                   무수한 과거와 현재가 이어져 미지의 공간인 미래를
                   <br />
                   만들어 간다는 의미를 담아

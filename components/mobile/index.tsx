@@ -296,7 +296,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
         </div>
         <div className="h-[35vh]" />
       </div>
-      <div className="bg-black h-[100vh] fourth pb-48">
+      <div className="bg-black h-auto fourth pb-48">
         <div className="flex justify-center mt-[140px]">
           <Image
             src="/mobile/icon/ourConcept.png"
@@ -305,9 +305,12 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
             alt="icon"
           />
         </div>
-        <div className="ml-24 mt-[30px] h-[100vh] ">
-          <div className="flex justify-center ">
-            <div className="flex flex-col space-y-2 justify-center mb-10">
+        <div className="ml-32 mt-[30px]  ">
+          <div>
+            <Image src="/mobile/icon/orange_logo.svg" width={36} height={36} />
+          </div>
+          <div className="flex justify-center  ">
+            <div className="flex flex-col space-y-1 justify-center mb-10 text-xs leading-6">
               <div className="block text-white w-full flex justify-start">
                 무수한 과거와 현재가 이어져
               </div>
