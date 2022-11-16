@@ -120,7 +120,7 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
                   <a className="block flex flex-col">
                     <h2 className="text-xl font-bold">{nameKor}</h2>
                     <span className="text-lg ">{name}</span>
-                    <span className="text-sm mt-2 mb-5">{email}</span>
+                    <span className="text-xs mt-2 mb-5">{email}</span>
                   </a>
                 </Link>
                 <Link href={`/works/${works[0].work?.id}`}>
