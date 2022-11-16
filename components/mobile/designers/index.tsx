@@ -79,7 +79,7 @@ function MobileDesigner({ students, keyword = "ALL" }: MobileDesignerProps) {
     <div className="mx-10">
       <Header />
       <InputBox keyword="이름" setWord={(word: string) => setWord(word)} />
-      <div className="flex flex-row my-5 space-x-3 overflow-y-scroll scrollbar-hide -mr-10">
+      <div className="flex flex-row my-5 space-x-1 overflow-y-scroll scrollbar-hide -mr-10">
         {keywords.map((key, index) => {
           return (
             <Link href={`/designers?keyword=${key}`} key={index}>
@@ -114,10 +114,10 @@ function MobileDesigner({ students, keyword = "ALL" }: MobileDesignerProps) {
                   />
                 </div>
                 <div className="my-3 flex flex-col justify-center items-center">
-                  <span className="flex justify-center items-center text-lg">
+                  <span className="flex justify-center items-center text-sm font-medium">
                     {student.nameKor}
                   </span>
-                  <span className="flex justify-center items-center text-sm text-center">
+                  <span className="flex justify-center items-center text-xs text-center text-[#707070]">
                     {student.name}
                   </span>
                 </div>

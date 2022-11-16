@@ -61,7 +61,7 @@ function MobileWorks({
     <div className="flex flex-col mx-10">
       <Header />
       <InputBox keyword="작업물" setWord={setKeyword} />
-      <div className="flex flex-row my-5 space-x-3 overflow-y-scroll scrollbar-hide -mr-10">
+      <div className="flex flex-row my-5 space-x-2 overflow-y-scroll text-sm scrollbar-hide -mr-10">
         {categories.map((category, index) => {
           return (
             <Link
@@ -79,7 +79,7 @@ function MobileWorks({
                     className={`m-2 flex flex-row justify-center items-center`}
                   >
                     <span
-                      className={`uppercase flex items-center justify-center ${
+                      className={`uppercase  flex items-center justify-center ${
                         category.name.toLowerCase() === nowCategory &&
                         "text-white"
                       }`}
@@ -125,14 +125,14 @@ function MobileWorks({
                     priority
                   />
                 </div>
-                <div className="flex flex-col my-3 space-y-1">
-                  <h2 className="flex justify-center items-center text-center">
+                <div className="flex flex-col my-3 text-sm ">
+                  <h2 className="flex justify-center items-center text-center font-medium">
                     {work.title}
                   </h2>
                   <div className="flex flex-row space-x-2 flex justify-center items-center">
                     {work.students.map((student, index) => {
                       return (
-                        <span key={index} className="text-sm text-[#707070]">
+                        <span key={index} className="text-xs text-[#707070]">
                           {student.student.nameKor}
                         </span>
                       );

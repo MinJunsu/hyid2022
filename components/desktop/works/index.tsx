@@ -87,10 +87,10 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                     onClick={() => {
                       setTypes(index);
                     }}
-                    className={`h-[39px] font-medium rounded-[22px] text-center pb-[5px] pt-[8px] px-[18px]  border-[1px] border-[#DBDBDB]  w-full ${
+                    className={`h-auto items-center text-[15px] font-medium rounded-[22px] text-center py-[4px] px-[12px]  border-[1px] border-[#DBDBDB]  w-full ${
                       types === index
-                        ? "bg-[#0649EC] text-white border-[#DBDBDB]"
-                        : "bg-white text-black"
+                        ? "bg-[#0649EC] text-white x border-0"
+                        : "bg-white text-black "
                     }`}
                   >
                     {category.name.toUpperCase()}
@@ -146,16 +146,17 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                 />
               </g>
             </svg>
+
             <input
               placeholder="작업물을 검색하세요"
               type="text"
-              className="focus:outline-none"
+              className="focus:outline-none  placeholder:text-sm"
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
         </div>
         <div
-          className={`workList grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3`}
+          className={`workList grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 `}
         >
           {categories[types]?.works?.map((res, index) => {
             if (search === "") {
@@ -214,7 +215,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                       router.push(`/works/${res.id}`);
                     }}
                   >
-                    <div className={`group-hover:opacity-25 duration-300`}>
+                    <div className={`group-hover:blur-lg duration-300`}>
                       <Image
                         src={res.workThumbnailImage?.image!}
                         alt="workImage"
@@ -262,7 +263,6 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
         </div>
         <div className="font-medium flex flex-wrap xl:max-w-[900px] lg:max-m-[900px]  mt-44">
           {categories?.map((category, idx) => {
-            // console.log(category);
             return (
               <div key={idx} className="group relative ">
                 <div className="text-[85px] flex pointer-cursor ">
@@ -283,8 +283,14 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                     ,
                   </h2>
                 </div>
-                <div className="counter bg-[#0649EC] w-[90px]  rounded-full absolute  opacity-80 text-center text-[39px] text-white group-hover:inline -top-5 -right-0 hidden">
-                  <p className="pt-2">{category.works.length}</p>
+                <div
+                  className={`counter bg-[#0649EC] py-[5px] h-auto px-4 rounded-full absolute  opacity-80 text-center text-4xl text-white group-hover:inline -top-1 right-2 hidden ${
+                    category.works.length.toString().length === 1
+                      ? "px-6"
+                      : null
+                  }`}
+                >
+                  <p>{category.works.length.toString()}</p>
                 </div>
               </div>
             );

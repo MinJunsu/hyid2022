@@ -30,8 +30,8 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
         />
       </div>
       <div className="flex flex-col">
-        <h1 className="text-3xl font-bold">{student?.nameKor}</h1>
-        <p className="text-xl">{student?.name}</p>
+        <h1 className="text-2xl font-bold">{student?.nameKor}</h1>
+        <p className="text-lg">{student?.name}</p>
       </div>
       <div className="flex flex-row space-x-3 my-3 overflow-x-scroll scrollbar-hide">
         {student?.isManager && (
@@ -67,27 +67,31 @@ function MobileDesignerDetail({ student }: MobileDesignerDetailProps) {
         })}
       </div>
       <div className="mt-10">
-        <span className="block text-lg my-3">Contact</span>
+        <span className="block text-base font-medium my-3">Contact</span>
         {student?.email && (
           <div className="flex flex-row">
-            <span className="w-28">E-mail</span>
-            <a href={`mailto:﻿"${student?.email}"`}>{student?.email}</a>
+            <span className="w-28 text-sm">E-mail</span>
+            <a className="text-sm" href={`mailto:﻿"${student?.email}"`}>
+              {student?.email}
+            </a>
           </div>
         )}
         {student?.snsLink && (
           <div className="flex flex-row">
-            <span className="w-28">Instagram</span>
+            <span className="w-28 text-sm">Instagram</span>
             <Link href={`https://instagram.com/_u/${student?.snsLink}/`}>
-              <a>{student?.snsLink}</a>
+              <a className="text-sm">{student?.snsLink}</a>
             </Link>
           </div>
         )}
         {student?.webSite && (
           <div className="flex flex-row">
-            <span className="w-28">Behance</span>
+            <span className="w-28 text-sm">Behance</span>
             {student?.webSite && (
               <Link href={student?.webSite}>
-                <a>{getNameFromBehance(student?.webSite)}</a>
+                <a className="text-sm">
+                  {getNameFromBehance(student?.webSite)}
+                </a>
               </Link>
             )}
           </div>
