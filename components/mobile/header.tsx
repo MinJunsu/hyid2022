@@ -1,22 +1,26 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import Links from "next/link";
+import React from "react";
 
 function Header() {
   const router = useRouter();
   return (
-    <div className="flex flex-row my-3">
+    <div className="flex flex-row my-8">
       <div className="w-1/2">
-        <Link href="/">
-          <a>
-            <Image
-              src="/web/logo/web_logo_black.svg"
-              width={60}
-              height={50}
-              alt="icon"
-            />
-          </a>
-        </Link>
+        <div className="mt-3">
+          <Link href="/">
+            <a>
+              <Image
+                src="/web/logo/web_logo_black.svg"
+                width={40}
+                height={30}
+                alt="icon"
+              />
+            </a>
+          </Link>
+        </div>
       </div>
       <div className="w-1/2 flex justify-end items-center space-x-3">
         <span

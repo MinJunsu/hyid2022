@@ -81,12 +81,12 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
               setShowModal(true);
             }}
           >
-            <div className="flex-col justify-center align-middle items-center text-center px-[12px] py-[30px]">
+            <div className="flex-col justify-center align-middle items-center text-center px-[12px] py-[20px]">
               <div className="mr-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
+                  width="24"
+                  height="24"
                   viewBox="0 0 32 32"
                 >
                   <path
@@ -98,25 +98,27 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                   />
                 </svg>
               </div>
+              <div>
+                <svg
+                  className="mt-[25px]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="2"
+                  viewBox="0 0 34 2"
+                >
+                  <path
+                    id="패스_261"
+                    data-name="패스 261"
+                    d="M0,0H34"
+                    transform="translate(0 1)"
+                    fill="none"
+                    stroke="#0649ec"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </div>
 
-              <svg
-                className="mt-[25px]"
-                xmlns="http://www.w3.org/2000/svg"
-                width="34"
-                height="2"
-                viewBox="0 0 34 2"
-              >
-                <path
-                  id="패스_261"
-                  data-name="패스 261"
-                  d="M0,0H34"
-                  transform="translate(0 1)"
-                  fill="none"
-                  stroke="#0649ec"
-                  strokeWidth="2"
-                />
-              </svg>
-              <p className="writing-mode-vertical-lr mt-[100px] text-[#0649EC] text-[25px] pr-4">
+              <p className="writing-mode-vertical-lr mt-[100px] text-[#0649EC] text-lg pr-4">
                 Designer
               </p>
             </div>
@@ -125,13 +127,13 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
           {/*디자이너 펼쳤을 때*/}
 
           <div
-            className={`maker  h-[341px] bg-[#000000] fixed right-0 top-48 p-5  origin-center ease-in-out    ${
+            className={`maker  h-auto bg-[#000000]  fixed right-0 top-48 px-5 pt-3  pb-3  origin-center ease-in-out    ${
               showModal
                 ? "block ease-in duration-300 "
                 : "hidden  origin-center "
             }`}
           >
-            <div className="flex items-center cursor-pointer  ">
+            <div className="flex items-center cursor-pointer   ">
               <div className="absolute top-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -157,21 +159,21 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                     className="flex justify-start ml-11 "
                     key={idx}
                   >
-                    <div className="mr-4">
-                      <h2 className="text-white text-[25px]">
+                    <div className="mr-1">
+                      <h2 className="text-white text-lg">
                         {res?.student.nameKor}
                       </h2>
-                      <h3 className="text-white text-[15px]">
+                      <h3 className="text-white font-light text-sm">
                         {res?.student.name}
                       </h3>
-                      <p className="text-white my-[18px] ">
+                      <p className="text-white font-light text-xs my-[18px] ">
                         {res?.student.email}
                       </p>
 
                       <Image
                         src={work?.workThumbnailImage?.image!}
-                        width={215}
-                        height={183}
+                        width={150}
+                        height={128}
                         alt="썸네일 이미지"
                       />
                     </div>

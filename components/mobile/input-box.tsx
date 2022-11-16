@@ -24,7 +24,7 @@ function InputBox({ keyword, setWord }: InputBoxProps) {
         height={20}
         alt="input-icon"
       />
-      <div className="flex flex-1">
+      <div className="flex flex-1 text-sm">
         <input
           {...register("word")}
           autoComplete="off"
