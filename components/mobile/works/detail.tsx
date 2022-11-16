@@ -25,7 +25,7 @@ function MobileWorkDetail({ work, like, mutation }: MobileWorkDetailProps) {
   };
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence>
       <motion.div
         initial={animate.initial}
         // @ts-ignore
