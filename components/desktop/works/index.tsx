@@ -171,13 +171,14 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                   }}
                 >
                   <div
-                    className={`group-hover:opacity-25 duration-300 ${
+                    className={`group-hover:opacity-25  transition  duration-500 ${
                       modal
                         ? null
                         : "cursor-[url(/web/mouse/cursor.cur),_pointer]"
                     }`}
                   >
                     <Image
+                      className="hover:scale-125 transition duration-700햣 "
                       src={res.workThumbnailImage?.image!}
                       alt="workImage"
                       layout="fill"
