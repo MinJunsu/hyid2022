@@ -187,7 +187,11 @@ function Home({ viewCount }: HomeProps) {
                   strokeWidth="2.835"
                 />
               </svg>
-              <p className="text-[24px] text-white font-normal">scroll down</p>
+              <article>
+                <p className="text-[24px] text-white font-normal">
+                  scroll down
+                </p>
+              </article>
             </div>
           </Link>
         </div>
@@ -322,11 +326,11 @@ function Home({ viewCount }: HomeProps) {
               alt="icon"
             />
           </div>
-          <div>
-            <h1 className="text-[80px] flex justify-center text-center mt-[170px]">
+          <article>
+            <h1 className="text-6xl flex justify-center text-center mt-[150px] mb-[10px] ">
               OUR <br /> DEGREE SHOW
             </h1>
-          </div>
+          </article>
           <div className="madeBy mt-[125px]">
             <div className="w-[1000px] m-auto pb-[250px]">
               <div className="grid grid-cols-6 space-x-[44px] mb-[40px]">

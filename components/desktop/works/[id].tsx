@@ -151,7 +151,7 @@ function WorkDetail({ work, like, mutation }: WorkDetailProps) {
                 </svg>
               </div>
               {work?.students.map((res, idx) => {
-                console.log(res);
+                // console.log(res);
                 return (
                   <div
                     onClick={() => {

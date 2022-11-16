@@ -163,6 +163,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
           </svg>
         </Link>
       </div>
+
       {/* Main Page - Main Animation 1  */}
       <div
         className="first flex flex-col h-[100vh] bg-cover bg-center"
@@ -170,26 +171,28 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
           backgroundImage: 'url("/mobile/animation/main-animation-1.gif")',
         }}
       >
-        <div className="flex flex-row mx-10 my-8 justify-between items-center">
-          <Links href="/">
-            <a className="mt-4">
-              <Image
-                src="/web/logo/web_logo_white.svg"
-                width={40}
-                height={30}
-                alt="icon"
-              />
-            </a>
-          </Links>
-          <div className="flex flex-row space-x-5">
-            <Links href="/works/?category=true">
-              <a className="text-white font-normal">WORKS</a>
+        <article>
+          <div className="flex flex-row mx-10 my-8 justify-between items-center">
+            <Links href="/">
+              <a className="mt-4">
+                <Image
+                  src="/web/logo/web_logo_white.svg"
+                  width={40}
+                  height={30}
+                  alt="icon"
+                />
+              </a>
             </Links>
-            <Links href="/designers">
-              <a className="text-white font-normal">DESIGNER</a>
-            </Links>
+            <div className="flex flex-row space-x-5">
+              <Links href="/works/?category=true">
+                <a className="text-white font-normal">WORKS</a>
+              </Links>
+              <Links href="/designers">
+                <a className="text-white font-normal">DESIGNER</a>
+              </Links>
+            </div>
           </div>
-        </div>
+        </article>
         <Link to="second" smooth={true} duration={0}>
           <div className="flex justify-center">
             <div className=" absolute bottom-4 text-center animate-bounce">
@@ -362,12 +365,12 @@ const MobileHome: React.FC<MobileHomeProps> = ({ viewCount }) => {
             />
           </Links>
         </div>
-        <div>
+        <article>
           <h2 className="text-center text-[26px] text-white font-medium leading-8">
             OUR
             <br /> DEGREE SHOW
           </h2>
-        </div>
+        </article>
         <div className="text-white my-8 mx-10">
           <h2 className="font-medium mb-5">지도교수</h2>
           <div className="grid grid-cols-3 gap-3">

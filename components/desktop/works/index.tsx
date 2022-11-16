@@ -107,7 +107,6 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
               );
             })}
           </div>
-          {/*<div className="border-b-[1px] border-slate-500 w-[10000px] ml-[47px] mr-[37px] mt-[30px] opacity-80 " />*/}
           <div className="flex justify-between space-x-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +190,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                       modal ? "hidden" : null
                     }`}
                   >
-                    <h2 className="text-[20px]">{res.title}</h2>
+                    <h2 className="text-[20px] font-medium">{res.title}</h2>
                     {res.students?.map((student, index) => {
                       return (
                         <div key={index}>
@@ -229,7 +228,7 @@ function Works({ categories }: IndexProps, { modalState }: Close) {
                         modal ? "hidden" : null
                       }`}
                     >
-                      <h2 className="text-[20px]">{res.title}</h2>
+                      <h2 className="text-[20px] font-medium ">{res.title}</h2>
                       {res.students?.map((student, index) => {
                         return (
                           <div key={index}>
